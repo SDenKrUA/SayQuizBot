@@ -22,5 +22,11 @@
     "trusted": [],
     "trusted_usernames": [],
     "pending": []
+  },
+  "media for test/Media.json": {
+    "owner_id": 5798500887,
+    "trusted": [],
+    "trusted_usernames": [],
+    "pending": []
   }
 }

@@ -1,0 +1,170 @@
+[
+  {
+    "question": "1. Фото: що зображено?",
+    "answers": [
+      {
+        "text": "Крильчатка насоса",
+        "correct": true
+      },
+      {
+        "text": "Редуктор",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "2. Фото без тексту — визначте елемент.",
+    "answers": [
+      {
+        "text": "Сальник",
+        "correct": false
+      },
+      {
+        "text": "Підшипник",
+        "correct": true
+      },
+      {
+        "text": ".",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "3. Аудіо: що ви чуєте?",
+    "answers": [
+      {
+        "text": "Кавітація насоса",
+        "correct": true
+      },
+      {
+        "text": "Рівний гул підшипника",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "4. Аудіо без тексту — класифікуйте звук.",
+    "answers": [
+      {
+        "text": "Синус 50 Гц",
+        "correct": true
+      },
+      {
+        "text": "Меандр 10 кГц",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "5. Відео: що відбувається на відео?",
+    "answers": [
+      {
+        "text": "Пуск дизель-генератора",
+        "correct": true
+      },
+      {
+        "text": "Зупинка компресора",
+        "correct": false
+      },
+      {
+        "text": "Промивка фільтра",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "6. Відео без тексту — оберіть правильний сценарій.",
+    "answers": [
+      {
+        "text": "Аварійне відключення",
+        "correct": false
+      },
+      {
+        "text": "Плановий запуск",
+        "correct": true
+      },
+      {
+        "text": ".",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "7. Документ: знайдіть параметр у PDF.",
+    "answers": [
+      {
+        "text": "Струм спрацювання 250 A",
+        "correct": true
+      },
+      {
+        "text": "Струм спрацювання 200 A",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "8. Документ без тексту — оберіть вірне твердження.",
+    "answers": [
+      {
+        "text": "Клас захисту IP44",
+        "correct": false
+      },
+      {
+        "text": "Клас захисту IP54",
+        "correct": true
+      },
+      {
+        "text": ".",
+        "correct": false
+      },
+      {
+        "text": ".",
+        "correct": false
+      }
+    ]
+  }
+]

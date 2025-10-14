@@ -3,6 +3,7 @@ import os
 import logging
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
+from typing import Optional
 
 # === Env ===
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
@@ -39,47 +40,44 @@ def _build_file_handler(path_str: str, level: int) -> logging.Handler:
     fh.setFormatter(logging.Formatter(LOG_FORMAT, datefmt=DATE_FORMAT))
     return fh
 
-def setup_logging() -> None:
+def setup_logging() -> logging.Logger:
     """
-    Налаштування root-логгера один раз.
-    Виклич якнайраніше (після load_dotenv()).
+    Налаштовує root-логгер один раз і ПОВЕРТАЄ модульний логгер 'sayquiz'.
+    Викликай якнайраніше (після load_dotenv()).
     """
     root = logging.getLogger()
-    if getattr(root, "_sayquiz_configured", False):
-        return
+    if not getattr(root, "_sayquiz_configured", False):
+        level = getattr(logging, LOG_LEVEL, logging.INFO)
+        root.setLevel(level)
 
-    level = getattr(logging, LOG_LEVEL, logging.INFO)
-    root.setLevel(level)
+        # прибираємо попередні хендлери
+        for h in list(root.handlers):
+            root.removeHandler(h)
 
-    # прибираємо попередні хендлери
-    for h in list(root.handlers):
-        root.removeHandler(h)
+        # консоль або файл
+        if LOG_FILE:
+            handler = _build_file_handler(LOG_FILE, level)
+        else:
+            handler = _build_console_handler(level)
 
-    # консоль або файл
-    if LOG_FILE:
-        handler = _build_file_handler(LOG_FILE, level)
-    else:
-        handler = _build_console_handler(level)
+        root.addHandler(handler)
+        root._sayquiz_configured = True
 
-    root.addHandler(handler)
-    root._sayquiz_configured = True
+        # зменшити балакучість сторонніх бібліотек
+        logging.getLogger("httpx").setLevel(logging.WARNING)
+        logging.getLogger("apscheduler").setLevel(logging.WARNING)
+        logging.getLogger("telegram").setLevel(logging.INFO)
 
-    # зменшити балакучість сторонніх бібліотек
-    logging.getLogger("httpx").setLevel(logging.WARNING)
-    logging.getLogger("apscheduler").setLevel(logging.WARNING)
-    logging.getLogger("telegram").setLevel(logging.INFO)
+    return logging.getLogger("sayquiz")
 
 # --- Беквард-сумісність з твоїм імпортом ---
-def setup_logger() -> None:
+def setup_logger() -> logging.Logger:
     """
     Сумісна назва для старого імпорту:
         from utils.logger import setup_logger
-    Робить те саме, що setup_logging().
+    Повертає логгер 'sayquiz'.
     """
-    setup_logging()
+    return setup_logging()
 
-# Виконуємо одразу при імпорті (безпечно — захищено від повторної конфігурації)
-setup_logging()
-
-# Зручний модульний логгер
-logger = logging.getLogger("sayquiz")
+# Ініціалізація за замовчуванням при імпорті
+logger: logging.Logger = setup_logging()
