@@ -179,3 +179,17 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+# Secrets
+.env
+*.env
+
+# Logs/exports
+*.log
+exports/
+output/
+
+# Large media (optional to ignore)
+tests/**/media/
+tests/**/images/
+tests/**/videos/
+tests/**/audios/
