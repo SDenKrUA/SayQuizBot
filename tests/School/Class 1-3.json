@@ -1,0 +1,4202 @@
+[
+  {
+    "question": "1. Скільки буде 2 + 3?",
+    "answers": [
+      {
+        "text": "5",
+        "correct": true
+      },
+      {
+        "text": "6",
+        "correct": false
+      },
+      {
+        "text": "4",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "2. Скільки буде 3 + 5?",
+    "answers": [
+      {
+        "text": "8",
+        "correct": true
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "3. Скільки буде 4 + 7?",
+    "answers": [
+      {
+        "text": "11",
+        "correct": true
+      },
+      {
+        "text": "12",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "13",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "4. Скільки буде 5 + 1?",
+    "answers": [
+      {
+        "text": "6",
+        "correct": true
+      },
+      {
+        "text": "7",
+        "correct": false
+      },
+      {
+        "text": "5",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "5. Скільки буде 6 + 3?",
+    "answers": [
+      {
+        "text": "9",
+        "correct": true
+      },
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "6. Скільки буде 7 + 5?",
+    "answers": [
+      {
+        "text": "12",
+        "correct": true
+      },
+      {
+        "text": "13",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      },
+      {
+        "text": "14",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "7. Скільки буде 8 + 7?",
+    "answers": [
+      {
+        "text": "15",
+        "correct": true
+      },
+      {
+        "text": "16",
+        "correct": false
+      },
+      {
+        "text": "14",
+        "correct": false
+      },
+      {
+        "text": "17",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "8. Скільки буде 9 + 1?",
+    "answers": [
+      {
+        "text": "10",
+        "correct": true
+      },
+      {
+        "text": "11",
+        "correct": false
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "12",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "9. Скільки буде 1 + 3?",
+    "answers": [
+      {
+        "text": "4",
+        "correct": true
+      },
+      {
+        "text": "5",
+        "correct": false
+      },
+      {
+        "text": "3",
+        "correct": false
+      },
+      {
+        "text": "6",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "10. Скільки буде 2 + 5?",
+    "answers": [
+      {
+        "text": "7",
+        "correct": true
+      },
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "6",
+        "correct": false
+      },
+      {
+        "text": "9",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "11. Скільки буде 3 + 7?",
+    "answers": [
+      {
+        "text": "10",
+        "correct": true
+      },
+      {
+        "text": "11",
+        "correct": false
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "12",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "12. Скільки буде 4 + 1?",
+    "answers": [
+      {
+        "text": "5",
+        "correct": true
+      },
+      {
+        "text": "6",
+        "correct": false
+      },
+      {
+        "text": "4",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "13. Скільки буде 5 + 3?",
+    "answers": [
+      {
+        "text": "8",
+        "correct": true
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "14. Скільки буде 6 + 5?",
+    "answers": [
+      {
+        "text": "11",
+        "correct": true
+      },
+      {
+        "text": "12",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "13",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "15. Скільки буде 7 + 7?",
+    "answers": [
+      {
+        "text": "14",
+        "correct": true
+      },
+      {
+        "text": "15",
+        "correct": false
+      },
+      {
+        "text": "13",
+        "correct": false
+      },
+      {
+        "text": "16",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "16. Скільки буде 8 + 1?",
+    "answers": [
+      {
+        "text": "9",
+        "correct": true
+      },
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "17. Скільки буде 9 + 3?",
+    "answers": [
+      {
+        "text": "12",
+        "correct": true
+      },
+      {
+        "text": "13",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      },
+      {
+        "text": "14",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "18. Скільки буде 1 + 5?",
+    "answers": [
+      {
+        "text": "6",
+        "correct": true
+      },
+      {
+        "text": "7",
+        "correct": false
+      },
+      {
+        "text": "5",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "19. Скільки буде 2 + 7?",
+    "answers": [
+      {
+        "text": "9",
+        "correct": true
+      },
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "20. Скільки буде 3 + 1?",
+    "answers": [
+      {
+        "text": "4",
+        "correct": true
+      },
+      {
+        "text": "5",
+        "correct": false
+      },
+      {
+        "text": "3",
+        "correct": false
+      },
+      {
+        "text": "6",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "21. Скільки буде 9 − 2?",
+    "answers": [
+      {
+        "text": "6",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": true
+      },
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "9",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "22. Скільки буде 10 − 3?",
+    "answers": [
+      {
+        "text": "6",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": true
+      },
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "9",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "23. Скільки буде 12 − 4?",
+    "answers": [
+      {
+        "text": "7",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": true
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "24. Скільки буде 14 − 5?",
+    "answers": [
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "9",
+        "correct": true
+      },
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "25. Скільки буде 15 − 7?",
+    "answers": [
+      {
+        "text": "7",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": true
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "26. Скільки буде 13 − 6?",
+    "answers": [
+      {
+        "text": "6",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": true
+      },
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "9",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "27. Скільки буде 18 − 9?",
+    "answers": [
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "9",
+        "correct": true
+      },
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "28. Скільки буде 20 − 8?",
+    "answers": [
+      {
+        "text": "11",
+        "correct": false
+      },
+      {
+        "text": "12",
+        "correct": true
+      },
+      {
+        "text": "13",
+        "correct": false
+      },
+      {
+        "text": "14",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "29. Скільки буде 17 − 9?",
+    "answers": [
+      {
+        "text": "7",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": true
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "30. Скільки буде 16 − 7?",
+    "answers": [
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "9",
+        "correct": true
+      },
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "31. Який знак треба поставити між 3 і 5?",
+    "answers": [
+      {
+        "text": "<",
+        "correct": true
+      },
+      {
+        "text": "=",
+        "correct": false
+      },
+      {
+        "text": ">",
+        "correct": false
+      },
+      {
+        "text": "≤",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "32. Який знак треба поставити між 7 і 4?",
+    "answers": [
+      {
+        "text": "<",
+        "correct": false
+      },
+      {
+        "text": "=",
+        "correct": false
+      },
+      {
+        "text": ">",
+        "correct": true
+      },
+      {
+        "text": "≠",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "33. Який знак треба поставити між 9 і 9?",
+    "answers": [
+      {
+        "text": "<",
+        "correct": false
+      },
+      {
+        "text": "=",
+        "correct": true
+      },
+      {
+        "text": ">",
+        "correct": false
+      },
+      {
+        "text": "≥",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "34. Який знак треба поставити між 12 і 10?",
+    "answers": [
+      {
+        "text": "<",
+        "correct": false
+      },
+      {
+        "text": "=",
+        "correct": false
+      },
+      {
+        "text": ">",
+        "correct": true
+      },
+      {
+        "text": "≠",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "35. Який знак треба поставити між 18 і 20?",
+    "answers": [
+      {
+        "text": "<",
+        "correct": true
+      },
+      {
+        "text": "=",
+        "correct": false
+      },
+      {
+        "text": ">",
+        "correct": false
+      },
+      {
+        "text": "≤",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "36. Обчисли: 2 × 3 = ?",
+    "answers": [
+      {
+        "text": "6",
+        "correct": true
+      },
+      {
+        "text": "5",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "37. Обчисли: 3 × 3 = ?",
+    "answers": [
+      {
+        "text": "9",
+        "correct": true
+      },
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "38. Обчисли: 4 × 2 = ?",
+    "answers": [
+      {
+        "text": "8",
+        "correct": true
+      },
+      {
+        "text": "7",
+        "correct": false
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "39. Обчисли: 5 × 2 = ?",
+    "answers": [
+      {
+        "text": "10",
+        "correct": true
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      },
+      {
+        "text": "12",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "40. Обчисли: 2 × 5 = ?",
+    "answers": [
+      {
+        "text": "10",
+        "correct": true
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      },
+      {
+        "text": "12",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "41. Вкажи голосну літеру:",
+    "answers": [
+      {
+        "text": "м",
+        "correct": false
+      },
+      {
+        "text": "о",
+        "correct": true
+      },
+      {
+        "text": "т",
+        "correct": false
+      },
+      {
+        "text": "к",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "42. Яке слово зайве: «яблуко, груша, огірок, слива»?",
+    "answers": [
+      {
+        "text": "яблуко",
+        "correct": false
+      },
+      {
+        "text": "груша",
+        "correct": false
+      },
+      {
+        "text": "огірок",
+        "correct": true
+      },
+      {
+        "text": "слива",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "43. Знайди антонім до слова «великий».",
+    "answers": [
+      {
+        "text": "широкий",
+        "correct": false
+      },
+      {
+        "text": "довгий",
+        "correct": false
+      },
+      {
+        "text": "малий",
+        "correct": true
+      },
+      {
+        "text": "гарний",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "44. Яка літера стоїть першою в українській абетці?",
+    "answers": [
+      {
+        "text": "Б",
+        "correct": false
+      },
+      {
+        "text": "А",
+        "correct": true
+      },
+      {
+        "text": "В",
+        "correct": false
+      },
+      {
+        "text": "Я",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "45. В якому слові всі літери — приголосні?",
+    "answers": [
+      {
+        "text": "мир",
+        "correct": false
+      },
+      {
+        "text": "мирно",
+        "correct": false
+      },
+      {
+        "text": "птах",
+        "correct": true
+      },
+      {
+        "text": "море",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "46. Познач правильне ділення на склади слова «мама».",
+    "answers": [
+      {
+        "text": "ма-ма",
+        "correct": true
+      },
+      {
+        "text": "м-ама",
+        "correct": false
+      },
+      {
+        "text": "мам-а",
+        "correct": false
+      },
+      {
+        "text": "м-а-ма",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "47. Яке слово пишеться з великої літери?",
+    "answers": [
+      {
+        "text": "київ",
+        "correct": false
+      },
+      {
+        "text": "школа",
+        "correct": false
+      },
+      {
+        "text": "Україна",
+        "correct": true
+      },
+      {
+        "text": "вчитель",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "48. Вкажи закінчення у слові «книжка».",
+    "answers": [
+      {
+        "text": "кн",
+        "correct": false
+      },
+      {
+        "text": "кни",
+        "correct": false
+      },
+      {
+        "text": "жк",
+        "correct": false
+      },
+      {
+        "text": "а",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "49. До якого роду належить слово «сонце»?",
+    "answers": [
+      {
+        "text": "чоловічий",
+        "correct": false
+      },
+      {
+        "text": "жіночий",
+        "correct": false
+      },
+      {
+        "text": "середній",
+        "correct": true
+      },
+      {
+        "text": "спільний",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "50. Вибери синонім до слова «гарний».",
+    "answers": [
+      {
+        "text": "красивий",
+        "correct": true
+      },
+      {
+        "text": "поганий",
+        "correct": false
+      },
+      {
+        "text": "темний",
+        "correct": false
+      },
+      {
+        "text": "сумний",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "51. Укажи правильну форму множини: один учень — багато ...",
+    "answers": [
+      {
+        "text": "учні",
+        "correct": true
+      },
+      {
+        "text": "учена",
+        "correct": false
+      },
+      {
+        "text": "ученя",
+        "correct": false
+      },
+      {
+        "text": "ученів",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "52. Вибери слово з м’яким знаком:",
+    "answers": [
+      {
+        "text": "лiс",
+        "correct": false
+      },
+      {
+        "text": "кінь",
+        "correct": true
+      },
+      {
+        "text": "мак",
+        "correct": false
+      },
+      {
+        "text": "трава",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "53. Знайди зайве слово: «бігти, стрибати, читати, веселий».",
+    "answers": [
+      {
+        "text": "бігти",
+        "correct": false
+      },
+      {
+        "text": "стрибати",
+        "correct": false
+      },
+      {
+        "text": "читати",
+        "correct": false
+      },
+      {
+        "text": "веселий",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "54. Познач частину мови: «зелений».",
+    "answers": [
+      {
+        "text": "іменник",
+        "correct": false
+      },
+      {
+        "text": "прикметник",
+        "correct": true
+      },
+      {
+        "text": "дієслово",
+        "correct": false
+      },
+      {
+        "text": "прислівник",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "55. Скільки звуків у слові «мир»?",
+    "answers": [
+      {
+        "text": "два",
+        "correct": false
+      },
+      {
+        "text": "три",
+        "correct": true
+      },
+      {
+        "text": "чотири",
+        "correct": false
+      },
+      {
+        "text": "п'ять",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "56. Яке речення закінчується знаком оклику?",
+    "answers": [
+      {
+        "text": "Де мій зошит",
+        "correct": false
+      },
+      {
+        "text": "Я люблю літо!",
+        "correct": true
+      },
+      {
+        "text": "Це кіт",
+        "correct": false
+      },
+      {
+        "text": "Чи йдеш ти",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "57. Вкажи правильний наголос: «коли́ска» чи «ко́лиска»?",
+    "answers": [
+      {
+        "text": "коли́ска",
+        "correct": false
+      },
+      {
+        "text": "ко́лиска",
+        "correct": true
+      },
+      {
+        "text": "обидва",
+        "correct": false
+      },
+      {
+        "text": "жодне",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "58. Який суфікс у слові «рибалка»?",
+    "answers": [
+      {
+        "text": "-ка",
+        "correct": true
+      },
+      {
+        "text": "-ал-",
+        "correct": false
+      },
+      {
+        "text": "-ба-",
+        "correct": false
+      },
+      {
+        "text": "-ок-",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "59. Укажи, де слово написано правильно:",
+    "answers": [
+      {
+        "text": "снігурок",
+        "correct": false
+      },
+      {
+        "text": "сніжок",
+        "correct": true
+      },
+      {
+        "text": "снєжок",
+        "correct": false
+      },
+      {
+        "text": "снiжок",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "60. Вибери займенник:",
+    "answers": [
+      {
+        "text": "він",
+        "correct": true
+      },
+      {
+        "text": "зелений",
+        "correct": false
+      },
+      {
+        "text": "бігти",
+        "correct": false
+      },
+      {
+        "text": "сміливо",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "61. Познач форму часу дієслова «читав».",
+    "answers": [
+      {
+        "text": "минулий",
+        "correct": true
+      },
+      {
+        "text": "теперішній",
+        "correct": false
+      },
+      {
+        "text": "майбутній",
+        "correct": false
+      },
+      {
+        "text": "умовний",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "62. Вкажи правильне слово: «шо» чи «що»?",
+    "answers": [
+      {
+        "text": "шо",
+        "correct": false
+      },
+      {
+        "text": "що",
+        "correct": true
+      },
+      {
+        "text": "обидва",
+        "correct": false
+      },
+      {
+        "text": "жодне",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "63. Скільки складів у слові «школа»?",
+    "answers": [
+      {
+        "text": "один",
+        "correct": false
+      },
+      {
+        "text": "два",
+        "correct": true
+      },
+      {
+        "text": "три",
+        "correct": false
+      },
+      {
+        "text": "чотири",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "64. Вибери правильний префікс: __бігти (з/с/роз)",
+    "answers": [
+      {
+        "text": "з",
+        "correct": true
+      },
+      {
+        "text": "с",
+        "correct": false
+      },
+      {
+        "text": "роз",
+        "correct": false
+      },
+      {
+        "text": "без",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "65. Познач речення з підметом і присудком:",
+    "answers": [
+      {
+        "text": "Синє небо.",
+        "correct": false
+      },
+      {
+        "text": "Діти читають.",
+        "correct": true
+      },
+      {
+        "text": "На столі.",
+        "correct": false
+      },
+      {
+        "text": "У парку.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "66. Яка пора року настає після весни?",
+    "answers": [
+      {
+        "text": "Зима",
+        "correct": false
+      },
+      {
+        "text": "Літо",
+        "correct": true
+      },
+      {
+        "text": "Осінь",
+        "correct": false
+      },
+      {
+        "text": "Знову весна",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "67. Який орган допомагає дихати?",
+    "answers": [
+      {
+        "text": "Серце",
+        "correct": false
+      },
+      {
+        "text": "Легені",
+        "correct": true
+      },
+      {
+        "text": "Шлунок",
+        "correct": false
+      },
+      {
+        "text": "Печінка",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "68. Хто з цих тварин — свійська?",
+    "answers": [
+      {
+        "text": "Лис",
+        "correct": false
+      },
+      {
+        "text": "Вовк",
+        "correct": false
+      },
+      {
+        "text": "Кіт",
+        "correct": true
+      },
+      {
+        "text": "Олень",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "69. Що потрібно рослині для росту?",
+    "answers": [
+      {
+        "text": "Світло і вода",
+        "correct": true
+      },
+      {
+        "text": "Тільки сіль",
+        "correct": false
+      },
+      {
+        "text": "Лише вітер",
+        "correct": false
+      },
+      {
+        "text": "Тільки тінь",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "70. Яка вода придатна для пиття?",
+    "answers": [
+      {
+        "text": "Морська",
+        "correct": false
+      },
+      {
+        "text": "Опріснена кип’ячена",
+        "correct": true
+      },
+      {
+        "text": "Солона",
+        "correct": false
+      },
+      {
+        "text": "Брудна",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "71. Що із цього — дерево?",
+    "answers": [
+      {
+        "text": "Троянда",
+        "correct": false
+      },
+      {
+        "text": "Береза",
+        "correct": true
+      },
+      {
+        "text": "Півонія",
+        "correct": false
+      },
+      {
+        "text": "Ромашка",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "72. Яка планета найближча до Сонця?",
+    "answers": [
+      {
+        "text": "Земля",
+        "correct": false
+      },
+      {
+        "text": "Венера",
+        "correct": false
+      },
+      {
+        "text": "Меркурій",
+        "correct": true
+      },
+      {
+        "text": "Марс",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "73. Сонце — це ...",
+    "answers": [
+      {
+        "text": "планета",
+        "correct": false
+      },
+      {
+        "text": "зоря",
+        "correct": true
+      },
+      {
+        "text": "комета",
+        "correct": false
+      },
+      {
+        "text": "місяць",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "74. Що зображено на термометрі?",
+    "answers": [
+      {
+        "text": "Тиск",
+        "correct": false
+      },
+      {
+        "text": "Швидкість",
+        "correct": false
+      },
+      {
+        "text": "Температура",
+        "correct": true
+      },
+      {
+        "text": "Вологість",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "75. Який агрегатний стан має лід?",
+    "answers": [
+      {
+        "text": "Рідкий",
+        "correct": false
+      },
+      {
+        "text": "Твердий",
+        "correct": true
+      },
+      {
+        "text": "Газоподібний",
+        "correct": false
+      },
+      {
+        "text": "Плазма",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "76. Який птах не вміє літати?",
+    "answers": [
+      {
+        "text": "Горобець",
+        "correct": false
+      },
+      {
+        "text": "Страус",
+        "correct": true
+      },
+      {
+        "text": "Ластівка",
+        "correct": false
+      },
+      {
+        "text": "Синиця",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "77. Що виділяють дерева вдень?",
+    "answers": [
+      {
+        "text": "Кисень",
+        "correct": true
+      },
+      {
+        "text": "Вуглекислий газ",
+        "correct": false
+      },
+      {
+        "text": "Азот",
+        "correct": false
+      },
+      {
+        "text": "Гелій",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "78. Де живе білий ведмідь?",
+    "answers": [
+      {
+        "text": "Арктика",
+        "correct": true
+      },
+      {
+        "text": "Сахара",
+        "correct": false
+      },
+      {
+        "text": "Амазонія",
+        "correct": false
+      },
+      {
+        "text": "Антарктида",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "79. Яка тварина — комаха?",
+    "answers": [
+      {
+        "text": "Павук",
+        "correct": false
+      },
+      {
+        "text": "Метелик",
+        "correct": true
+      },
+      {
+        "text": "Рак",
+        "correct": false
+      },
+      {
+        "text": "Жаба",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "80. Що показує годинник?",
+    "answers": [
+      {
+        "text": "Температуру",
+        "correct": false
+      },
+      {
+        "text": "Час",
+        "correct": true
+      },
+      {
+        "text": "Довжину",
+        "correct": false
+      },
+      {
+        "text": "Масу",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "81. Скільки сторін має світ?",
+    "answers": [
+      {
+        "text": "Дві",
+        "correct": false
+      },
+      {
+        "text": "Три",
+        "correct": false
+      },
+      {
+        "text": "Чотири",
+        "correct": true
+      },
+      {
+        "text": "П’ять",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "82. Що таке дощ?",
+    "answers": [
+      {
+        "text": "Тверда опадова вода",
+        "correct": false
+      },
+      {
+        "text": "Рідкі опади",
+        "correct": true
+      },
+      {
+        "text": "Газоподібні опади",
+        "correct": false
+      },
+      {
+        "text": "Сонячне світло",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "83. Який океан найбільший?",
+    "answers": [
+      {
+        "text": "Атлантичний",
+        "correct": false
+      },
+      {
+        "text": "Індійський",
+        "correct": false
+      },
+      {
+        "text": "Тихий",
+        "correct": true
+      },
+      {
+        "text": "Північний Льодовитий",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "84. Який орган відчуває запахи?",
+    "answers": [
+      {
+        "text": "Очі",
+        "correct": false
+      },
+      {
+        "text": "Ніс",
+        "correct": true
+      },
+      {
+        "text": "Вуха",
+        "correct": false
+      },
+      {
+        "text": "Шкіра",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "85. Що допомагає зберігати зуби здоровими?",
+    "answers": [
+      {
+        "text": "Цукерки",
+        "correct": false
+      },
+      {
+        "text": "Чищення зубів",
+        "correct": true
+      },
+      {
+        "text": "Тільки сіль",
+        "correct": false
+      },
+      {
+        "text": "Не їсти",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "86. Яка частина рослини під землею?",
+    "answers": [
+      {
+        "text": "Квітка",
+        "correct": false
+      },
+      {
+        "text": "Листок",
+        "correct": false
+      },
+      {
+        "text": "Корінь",
+        "correct": true
+      },
+      {
+        "text": "Стебло",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "87. Хто є хижаком?",
+    "answers": [
+      {
+        "text": "Корова",
+        "correct": false
+      },
+      {
+        "text": "Кролик",
+        "correct": false
+      },
+      {
+        "text": "Лев",
+        "correct": true
+      },
+      {
+        "text": "Кінь",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "88. Що з цього — природне явище?",
+    "answers": [
+      {
+        "text": "Дощ",
+        "correct": true
+      },
+      {
+        "text": "Парасолька",
+        "correct": false
+      },
+      {
+        "text": "Дім",
+        "correct": false
+      },
+      {
+        "text": "Авто",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "89. Яке тіло яскраво світить уночі?",
+    "answers": [
+      {
+        "text": "Сонце",
+        "correct": false
+      },
+      {
+        "text": "Місяць",
+        "correct": true
+      },
+      {
+        "text": "Марс",
+        "correct": false
+      },
+      {
+        "text": "Юпітер",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "90. Яка річ необхідна для життя?",
+    "answers": [
+      {
+        "text": "Бензин",
+        "correct": false
+      },
+      {
+        "text": "Вода",
+        "correct": true
+      },
+      {
+        "text": "Фарба",
+        "correct": false
+      },
+      {
+        "text": "Крейда",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "91. Знайди зайве: «квадрат, коло, трикутник, ложка».",
+    "answers": [
+      {
+        "text": "квадрат",
+        "correct": false
+      },
+      {
+        "text": "коло",
+        "correct": false
+      },
+      {
+        "text": "трикутник",
+        "correct": false
+      },
+      {
+        "text": "ложка",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "92. Продовжи ряд: 2, 4, 6, __",
+    "answers": [
+      {
+        "text": "7",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": true
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "93. Що зайве: «кіт, собака, корова, морква»?",
+    "answers": [
+      {
+        "text": "кіт",
+        "correct": false
+      },
+      {
+        "text": "собака",
+        "correct": false
+      },
+      {
+        "text": "корова",
+        "correct": false
+      },
+      {
+        "text": "морква",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "94. Знайди пару до «день»: __",
+    "answers": [
+      {
+        "text": "ніч",
+        "correct": true
+      },
+      {
+        "text": "ранок",
+        "correct": false
+      },
+      {
+        "text": "дощ",
+        "correct": false
+      },
+      {
+        "text": "свято",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "95. Скільки кутів у прямокутника?",
+    "answers": [
+      {
+        "text": "три",
+        "correct": false
+      },
+      {
+        "text": "чотири",
+        "correct": true
+      },
+      {
+        "text": "п’ять",
+        "correct": false
+      },
+      {
+        "text": "шість",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "96. Що більше: 15 чи 12?",
+    "answers": [
+      {
+        "text": "15",
+        "correct": true
+      },
+      {
+        "text": "12",
+        "correct": false
+      },
+      {
+        "text": "однаково",
+        "correct": false
+      },
+      {
+        "text": "не знаю",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "97. Продовжи: 5, 10, 15, __",
+    "answers": [
+      {
+        "text": "16",
+        "correct": false
+      },
+      {
+        "text": "20",
+        "correct": true
+      },
+      {
+        "text": "12",
+        "correct": false
+      },
+      {
+        "text": "25",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "98. Зайве слово: «зошит, ручка, підручник, тарілка».",
+    "answers": [
+      {
+        "text": "зошит",
+        "correct": false
+      },
+      {
+        "text": "ручка",
+        "correct": false
+      },
+      {
+        "text": "підручник",
+        "correct": false
+      },
+      {
+        "text": "тарілка",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "99. Що наступне після букви «Г»?",
+    "answers": [
+      {
+        "text": "Д",
+        "correct": true
+      },
+      {
+        "text": "Е",
+        "correct": false
+      },
+      {
+        "text": "В",
+        "correct": false
+      },
+      {
+        "text": "Ж",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "100. Знайди продовження: Пн, Вт, Ср, __",
+    "answers": [
+      {
+        "text": "Чт",
+        "correct": true
+      },
+      {
+        "text": "Пт",
+        "correct": false
+      },
+      {
+        "text": "Сб",
+        "correct": false
+      },
+      {
+        "text": "Нд",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "101. Що зайве: «літо, осінь, зима, понеділок»?",
+    "answers": [
+      {
+        "text": "літо",
+        "correct": false
+      },
+      {
+        "text": "осінь",
+        "correct": false
+      },
+      {
+        "text": "зима",
+        "correct": false
+      },
+      {
+        "text": "понеділок",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "102. Яке число пропущене: 3, __, 7 (крок 2)?",
+    "answers": [
+      {
+        "text": "4",
+        "correct": false
+      },
+      {
+        "text": "5",
+        "correct": true
+      },
+      {
+        "text": "6",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "103. Знайди пару: «високий — ...»",
+    "answers": [
+      {
+        "text": "низький",
+        "correct": true
+      },
+      {
+        "text": "широкий",
+        "correct": false
+      },
+      {
+        "text": "тонкий",
+        "correct": false
+      },
+      {
+        "text": "важкий",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "104. Обери фігуру з трьома кутами.",
+    "answers": [
+      {
+        "text": "коло",
+        "correct": false
+      },
+      {
+        "text": "квадрат",
+        "correct": false
+      },
+      {
+        "text": "трикутник",
+        "correct": true
+      },
+      {
+        "text": "прямокутник",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "105. Що важче: кілограм вати чи кілограм заліза?",
+    "answers": [
+      {
+        "text": "вата",
+        "correct": false
+      },
+      {
+        "text": "залізо",
+        "correct": false
+      },
+      {
+        "text": "однаково",
+        "correct": true
+      },
+      {
+        "text": "не знаю",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "106. Продовжи послідовність: А, Б, В, __",
+    "answers": [
+      {
+        "text": "Г",
+        "correct": true
+      },
+      {
+        "text": "Д",
+        "correct": false
+      },
+      {
+        "text": "Е",
+        "correct": false
+      },
+      {
+        "text": "Є",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "107. Що наступне: 10, 9, 8, __",
+    "answers": [
+      {
+        "text": "7",
+        "correct": true
+      },
+      {
+        "text": "6",
+        "correct": false
+      },
+      {
+        "text": "5",
+        "correct": false
+      },
+      {
+        "text": "4",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "108. Знайди пару до «правда»: __",
+    "answers": [
+      {
+        "text": "брехня",
+        "correct": true
+      },
+      {
+        "text": "істина",
+        "correct": false
+      },
+      {
+        "text": "добро",
+        "correct": false
+      },
+      {
+        "text": "радiсть",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "109. Зайве: «яблуко, груша, банан, будинок».",
+    "answers": [
+      {
+        "text": "яблуко",
+        "correct": false
+      },
+      {
+        "text": "груша",
+        "correct": false
+      },
+      {
+        "text": "банан",
+        "correct": false
+      },
+      {
+        "text": "будинок",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "110. Скільки ніг у павука?",
+    "answers": [
+      {
+        "text": "чотири",
+        "correct": false
+      },
+      {
+        "text": "шiсть",
+        "correct": false
+      },
+      {
+        "text": "вiсiм",
+        "correct": true
+      },
+      {
+        "text": "десять",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "111. Як англійською буде «кіт»?",
+    "answers": [
+      {
+        "text": "Dog",
+        "correct": false
+      },
+      {
+        "text": "Cat",
+        "correct": true
+      },
+      {
+        "text": "Cow",
+        "correct": false
+      },
+      {
+        "text": "Bird",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "112. Як англійською буде «дякую»?",
+    "answers": [
+      {
+        "text": "Hello",
+        "correct": false
+      },
+      {
+        "text": "Thank you",
+        "correct": true
+      },
+      {
+        "text": "Please",
+        "correct": false
+      },
+      {
+        "text": "Bye",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "113. Вибери переклад: «red».",
+    "answers": [
+      {
+        "text": "синій",
+        "correct": false
+      },
+      {
+        "text": "червоний",
+        "correct": true
+      },
+      {
+        "text": "зелений",
+        "correct": false
+      },
+      {
+        "text": "жовтий",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "114. Що означає «book»?",
+    "answers": [
+      {
+        "text": "олівець",
+        "correct": false
+      },
+      {
+        "text": "стілець",
+        "correct": false
+      },
+      {
+        "text": "книга",
+        "correct": true
+      },
+      {
+        "text": "двері",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "115. Вибери переклад: «blue».",
+    "answers": [
+      {
+        "text": "жовтий",
+        "correct": false
+      },
+      {
+        "text": "білий",
+        "correct": false
+      },
+      {
+        "text": "синій",
+        "correct": true
+      },
+      {
+        "text": "зелений",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "116. «Good morning» — це ...",
+    "answers": [
+      {
+        "text": "добраніч",
+        "correct": false
+      },
+      {
+        "text": "добрий ранок",
+        "correct": true
+      },
+      {
+        "text": "привіт",
+        "correct": false
+      },
+      {
+        "text": "дякую",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "117. Як англійською буде «школа»?",
+    "answers": [
+      {
+        "text": "school",
+        "correct": true
+      },
+      {
+        "text": "table",
+        "correct": false
+      },
+      {
+        "text": "window",
+        "correct": false
+      },
+      {
+        "text": "teacher",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "118. Переклад «green».",
+    "answers": [
+      {
+        "text": "зелений",
+        "correct": true
+      },
+      {
+        "text": "синій",
+        "correct": false
+      },
+      {
+        "text": "червоний",
+        "correct": false
+      },
+      {
+        "text": "білий",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "119. Що означає «teacher»?",
+    "answers": [
+      {
+        "text": "учень",
+        "correct": false
+      },
+      {
+        "text": "вчитель",
+        "correct": true
+      },
+      {
+        "text": "мама",
+        "correct": false
+      },
+      {
+        "text": "друг",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "120. Вибери переклад числа «three».",
+    "answers": [
+      {
+        "text": "два",
+        "correct": false
+      },
+      {
+        "text": "три",
+        "correct": true
+      },
+      {
+        "text": "чотири",
+        "correct": false
+      },
+      {
+        "text": "п'ять",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "121. Як англійською буде «собака»?",
+    "answers": [
+      {
+        "text": "Cat",
+        "correct": false
+      },
+      {
+        "text": "Dog",
+        "correct": true
+      },
+      {
+        "text": "Cow",
+        "correct": false
+      },
+      {
+        "text": "Mouse",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "122. «Thank you» — відповідаємо ...",
+    "answers": [
+      {
+        "text": "Goodbye",
+        "correct": false
+      },
+      {
+        "text": "Please",
+        "correct": false
+      },
+      {
+        "text": "You’re welcome",
+        "correct": true
+      },
+      {
+        "text": "Hello",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "123. Переклад «window».",
+    "answers": [
+      {
+        "text": "стіна",
+        "correct": false
+      },
+      {
+        "text": "стілець",
+        "correct": false
+      },
+      {
+        "text": "вікно",
+        "correct": true
+      },
+      {
+        "text": "стіл",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "124. Що означає «apple»?",
+    "answers": [
+      {
+        "text": "груша",
+        "correct": false
+      },
+      {
+        "text": "яблуко",
+        "correct": true
+      },
+      {
+        "text": "слива",
+        "correct": false
+      },
+      {
+        "text": "вишня",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "125. Переклад «black».",
+    "answers": [
+      {
+        "text": "білий",
+        "correct": false
+      },
+      {
+        "text": "чорний",
+        "correct": true
+      },
+      {
+        "text": "сірий",
+        "correct": false
+      },
+      {
+        "text": "коричневий",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "126. Як англійською буде «мама»?",
+    "answers": [
+      {
+        "text": "mother",
+        "correct": true
+      },
+      {
+        "text": "father",
+        "correct": false
+      },
+      {
+        "text": "sister",
+        "correct": false
+      },
+      {
+        "text": "brother",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "127. Що означає «chair»?",
+    "answers": [
+      {
+        "text": "стіл",
+        "correct": false
+      },
+      {
+        "text": "стілець",
+        "correct": true
+      },
+      {
+        "text": "двері",
+        "correct": false
+      },
+      {
+        "text": "лава",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "128. Переклад «white».",
+    "answers": [
+      {
+        "text": "білий",
+        "correct": true
+      },
+      {
+        "text": "чорний",
+        "correct": false
+      },
+      {
+        "text": "синій",
+        "correct": false
+      },
+      {
+        "text": "червоний",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "129. Що означає «pencil»?",
+    "answers": [
+      {
+        "text": "ручка",
+        "correct": false
+      },
+      {
+        "text": "олівець",
+        "correct": true
+      },
+      {
+        "text": "книга",
+        "correct": false
+      },
+      {
+        "text": "гумка",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "130. Як англійською буде «дякую, будь ласка» (пара)?",
+    "answers": [
+      {
+        "text": "Thanks, please",
+        "correct": true
+      },
+      {
+        "text": "Hello, bye",
+        "correct": false
+      },
+      {
+        "text": "Yes, no",
+        "correct": false
+      },
+      {
+        "text": "Good, bad",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "131. Переклад «family».",
+    "answers": [
+      {
+        "text": "родина",
+        "correct": true
+      },
+      {
+        "text": "іграшка",
+        "correct": false
+      },
+      {
+        "text": "квітка",
+        "correct": false
+      },
+      {
+        "text": "машина",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "132. Що означає «brother»?",
+    "answers": [
+      {
+        "text": "сестра",
+        "correct": false
+      },
+      {
+        "text": "брат",
+        "correct": true
+      },
+      {
+        "text": "тато",
+        "correct": false
+      },
+      {
+        "text": "дядько",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "133. Переклад «water».",
+    "answers": [
+      {
+        "text": "повітря",
+        "correct": false
+      },
+      {
+        "text": "вода",
+        "correct": true
+      },
+      {
+        "text": "вогонь",
+        "correct": false
+      },
+      {
+        "text": "земля",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "134. Що означає «sun»?",
+    "answers": [
+      {
+        "text": "місяць",
+        "correct": false
+      },
+      {
+        "text": "сонце",
+        "correct": true
+      },
+      {
+        "text": "небо",
+        "correct": false
+      },
+      {
+        "text": "зірка",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "135. Переклад «schoolbag».",
+    "answers": [
+      {
+        "text": "парта",
+        "correct": false
+      },
+      {
+        "text": "пенал",
+        "correct": false
+      },
+      {
+        "text": "портфель",
+        "correct": true
+      },
+      {
+        "text": "ручка",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "136. Що означає «eat»?",
+    "answers": [
+      {
+        "text": "йти",
+        "correct": false
+      },
+      {
+        "text": "їсти",
+        "correct": true
+      },
+      {
+        "text": "читати",
+        "correct": false
+      },
+      {
+        "text": "спати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "137. Переклад «run».",
+    "answers": [
+      {
+        "text": "працювати",
+        "correct": false
+      },
+      {
+        "text": "бігти",
+        "correct": true
+      },
+      {
+        "text": "малювати",
+        "correct": false
+      },
+      {
+        "text": "дивитися",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "138. Що означає «friend»?",
+    "answers": [
+      {
+        "text": "квітка",
+        "correct": false
+      },
+      {
+        "text": "друг",
+        "correct": true
+      },
+      {
+        "text": "іграшка",
+        "correct": false
+      },
+      {
+        "text": "учитель",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "139. Переклад «hello».",
+    "answers": [
+      {
+        "text": "гаразд",
+        "correct": false
+      },
+      {
+        "text": "привіт",
+        "correct": true
+      },
+      {
+        "text": "дякую",
+        "correct": false
+      },
+      {
+        "text": "до побачення",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "140. Що означає «goodbye»?",
+    "answers": [
+      {
+        "text": "дякую",
+        "correct": false
+      },
+      {
+        "text": "привіт",
+        "correct": false
+      },
+      {
+        "text": "до побачення",
+        "correct": true
+      },
+      {
+        "text": "будь ласка",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "141. Столиця України — це ...",
+    "answers": [
+      {
+        "text": "Львів",
+        "correct": false
+      },
+      {
+        "text": "Одеса",
+        "correct": false
+      },
+      {
+        "text": "Київ",
+        "correct": true
+      },
+      {
+        "text": "Харків",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "142. Державна мова України — ...",
+    "answers": [
+      {
+        "text": "російська",
+        "correct": false
+      },
+      {
+        "text": "українська",
+        "correct": true
+      },
+      {
+        "text": "англійська",
+        "correct": false
+      },
+      {
+        "text": "польська",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "143. Прапор України має кольори ...",
+    "answers": [
+      {
+        "text": "червоний і чорний",
+        "correct": false
+      },
+      {
+        "text": "жовтий і синій",
+        "correct": true
+      },
+      {
+        "text": "синій і білий",
+        "correct": false
+      },
+      {
+        "text": "зелений і жовтий",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "144. Герб України називається ...",
+    "answers": [
+      {
+        "text": "Тризуб",
+        "correct": true
+      },
+      {
+        "text": "Лев",
+        "correct": false
+      },
+      {
+        "text": "Орлан",
+        "correct": false
+      },
+      {
+        "text": "Калина",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "145. Скільки днів у тижні?",
+    "answers": [
+      {
+        "text": "пʼять",
+        "correct": false
+      },
+      {
+        "text": "шість",
+        "correct": false
+      },
+      {
+        "text": "сім",
+        "correct": true
+      },
+      {
+        "text": "вісім",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "146. Який день тижня йде після понеділка?",
+    "answers": [
+      {
+        "text": "Вівторок",
+        "correct": true
+      },
+      {
+        "text": "Середа",
+        "correct": false
+      },
+      {
+        "text": "Четвер",
+        "correct": false
+      },
+      {
+        "text": "П'ятниця",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "147. Коли святкують Новий рік (за звичним календарем)?",
+    "answers": [
+      {
+        "text": "1 січня",
+        "correct": true
+      },
+      {
+        "text": "14 лютого",
+        "correct": false
+      },
+      {
+        "text": "24 серпня",
+        "correct": false
+      },
+      {
+        "text": "9 травня",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "148. Коли День Незалежності України?",
+    "answers": [
+      {
+        "text": "24 серпня",
+        "correct": true
+      },
+      {
+        "text": "1 травня",
+        "correct": false
+      },
+      {
+        "text": "8 березня",
+        "correct": false
+      },
+      {
+        "text": "19 грудня",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "149. Що таке Конституція?",
+    "answers": [
+      {
+        "text": "Свято",
+        "correct": false
+      },
+      {
+        "text": "Гра",
+        "correct": false
+      },
+      {
+        "text": "Основний закон держави",
+        "correct": true
+      },
+      {
+        "text": "Прапор",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "150. Яку форму має земна поверхня?",
+    "answers": [
+      {
+        "text": "пласку",
+        "correct": false
+      },
+      {
+        "text": "кульову",
+        "correct": true
+      },
+      {
+        "text": "трикутну",
+        "correct": false
+      },
+      {
+        "text": "квадратну",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "151. Як називається наша планета?",
+    "answers": [
+      {
+        "text": "Марс",
+        "correct": false
+      },
+      {
+        "text": "Венера",
+        "correct": false
+      },
+      {
+        "text": "Земля",
+        "correct": true
+      },
+      {
+        "text": "Юпітер",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "152. Що означає червоне світло світлофора?",
+    "answers": [
+      {
+        "text": "Йти",
+        "correct": false
+      },
+      {
+        "text": "Чекати",
+        "correct": true
+      },
+      {
+        "text": "Бігти",
+        "correct": false
+      },
+      {
+        "text": "Плисти",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "153. Де переходять дорогу діти?",
+    "answers": [
+      {
+        "text": "Де заманеться",
+        "correct": false
+      },
+      {
+        "text": "На переході",
+        "correct": true
+      },
+      {
+        "text": "На газоні",
+        "correct": false
+      },
+      {
+        "text": "На зупинці",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "154. Що треба сказати, коли просиш щось?",
+    "answers": [
+      {
+        "text": "Будь ласка",
+        "correct": true
+      },
+      {
+        "text": "Віддай",
+        "correct": false
+      },
+      {
+        "text": "Швидко",
+        "correct": false
+      },
+      {
+        "text": "Ні",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "155. Ким працює людина, що лікує?",
+    "answers": [
+      {
+        "text": "Пекар",
+        "correct": false
+      },
+      {
+        "text": "Лікар",
+        "correct": true
+      },
+      {
+        "text": "Водій",
+        "correct": false
+      },
+      {
+        "text": "Пілот",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "156. Який місяць іде після березня?",
+    "answers": [
+      {
+        "text": "квітень",
+        "correct": true
+      },
+      {
+        "text": "травень",
+        "correct": false
+      },
+      {
+        "text": "червень",
+        "correct": false
+      },
+      {
+        "text": "липень",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "157. Скільки місяців у році?",
+    "answers": [
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "11",
+        "correct": false
+      },
+      {
+        "text": "12",
+        "correct": true
+      },
+      {
+        "text": "13",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "158. Яка пора року найхолодніша?",
+    "answers": [
+      {
+        "text": "Весна",
+        "correct": false
+      },
+      {
+        "text": "Літо",
+        "correct": false
+      },
+      {
+        "text": "Осінь",
+        "correct": false
+      },
+      {
+        "text": "Зима",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "159. Хто очолює школу?",
+    "answers": [
+      {
+        "text": "Учень",
+        "correct": false
+      },
+      {
+        "text": "Прибиральник",
+        "correct": false
+      },
+      {
+        "text": "Директор",
+        "correct": true
+      },
+      {
+        "text": "Вахтер",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "160. Що допомагає знайти місце на карті?",
+    "answers": [
+      {
+        "text": "Малюнок",
+        "correct": false
+      },
+      {
+        "text": "Легенда й масштаб",
+        "correct": true
+      },
+      {
+        "text": "Кольори",
+        "correct": false
+      },
+      {
+        "text": "Квадрати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "161. Який місяць має 28 або 29 днів?",
+    "answers": [
+      {
+        "text": "січень",
+        "correct": false
+      },
+      {
+        "text": "лютий",
+        "correct": true
+      },
+      {
+        "text": "березень",
+        "correct": false
+      },
+      {
+        "text": "квітень",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "162. Що таке бібліотека?",
+    "answers": [
+      {
+        "text": "Крамниця",
+        "correct": false
+      },
+      {
+        "text": "Місце для читання книжок",
+        "correct": true
+      },
+      {
+        "text": "Спортзал",
+        "correct": false
+      },
+      {
+        "text": "Їдальня",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "163. Хто такі друзі?",
+    "answers": [
+      {
+        "text": "Незнайомці",
+        "correct": false
+      },
+      {
+        "text": "Люди, які товаришують",
+        "correct": true
+      },
+      {
+        "text": "Лікарі",
+        "correct": false
+      },
+      {
+        "text": "Вчителі",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "164. Що треба робити з відходами?",
+    "answers": [
+      {
+        "text": "Викидати де-небудь",
+        "correct": false
+      },
+      {
+        "text": "Сортувати і викидати у смітник",
+        "correct": true
+      },
+      {
+        "text": "Ховати",
+        "correct": false
+      },
+      {
+        "text": "Спалювати завжди",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "165. Що показує календар?",
+    "answers": [
+      {
+        "text": "Температуру",
+        "correct": false
+      },
+      {
+        "text": "Час",
+        "correct": false
+      },
+      {
+        "text": "Дати і місяці",
+        "correct": true
+      },
+      {
+        "text": "Швидкість",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "166. Як називається людина, що навчається у школі?",
+    "answers": [
+      {
+        "text": "Учень",
+        "correct": true
+      },
+      {
+        "text": "Вчитель",
+        "correct": false
+      },
+      {
+        "text": "Бібліотекар",
+        "correct": false
+      },
+      {
+        "text": "Тренер",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "167. Що таке музей?",
+    "answers": [
+      {
+        "text": "Місце для покупок",
+        "correct": false
+      },
+      {
+        "text": "Місце, де зберігають експонати",
+        "correct": true
+      },
+      {
+        "text": "Кафе",
+        "correct": false
+      },
+      {
+        "text": "Двір",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "168. Який документ має бути у школяра?",
+    "answers": [
+      {
+        "text": "Квиток на автобус",
+        "correct": false
+      },
+      {
+        "text": "Щоденник",
+        "correct": true
+      },
+      {
+        "text": "Паспорт",
+        "correct": false
+      },
+      {
+        "text": "Посвідчення водія",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "169. Що таке урок?",
+    "answers": [
+      {
+        "text": "Гра",
+        "correct": false
+      },
+      {
+        "text": "Заняття у школі",
+        "correct": true
+      },
+      {
+        "text": "Відпочинок",
+        "correct": false
+      },
+      {
+        "text": "Свято",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "170. Хто пише крейдою на дошці?",
+    "answers": [
+      {
+        "text": "Учень",
+        "correct": false
+      },
+      {
+        "text": "Вчитель",
+        "correct": true
+      },
+      {
+        "text": "Директор",
+        "correct": false
+      },
+      {
+        "text": "Черговий",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "171. Що кажуть, коли знайомляться?",
+    "answers": [
+      {
+        "text": "До побачення",
+        "correct": false
+      },
+      {
+        "text": "Дякую",
+        "correct": false
+      },
+      {
+        "text": "Привіт/Добрий день",
+        "correct": true
+      },
+      {
+        "text": "Будь ласка",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "172. Що треба зробити після гри в кімнаті?",
+    "answers": [
+      {
+        "text": "Залишити безлад",
+        "correct": false
+      },
+      {
+        "text": "Скласти іграшки",
+        "correct": true
+      },
+      {
+        "text": "Викинути іграшки",
+        "correct": false
+      },
+      {
+        "text": "Заховати під ліжко",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "173. Як поводитися у бібліотеці?",
+    "answers": [
+      {
+        "text": "Говорити голосно",
+        "correct": false
+      },
+      {
+        "text": "Бігати",
+        "correct": false
+      },
+      {
+        "text": "Було тихо",
+        "correct": true
+      },
+      {
+        "text": "Сміятися голосно",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "174. Що робити перед їжею?",
+    "answers": [
+      {
+        "text": "Мити руки",
+        "correct": true
+      },
+      {
+        "text": "Пити чай",
+        "correct": false
+      },
+      {
+        "text": "Бігати",
+        "correct": false
+      },
+      {
+        "text": "Спати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "175. Як просити допомогу?",
+    "answers": [
+      {
+        "text": "Гей, ти!",
+        "correct": false
+      },
+      {
+        "text": "Будь ласка, допоможи",
+        "correct": true
+      },
+      {
+        "text": "Мовчати",
+        "correct": false
+      },
+      {
+        "text": "Кричати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "176. Як звертатися до вчителя?",
+    "answers": [
+      {
+        "text": "На «ти»",
+        "correct": false
+      },
+      {
+        "text": "Імʼям без поваги",
+        "correct": false
+      },
+      {
+        "text": "Шанобливо",
+        "correct": true
+      },
+      {
+        "text": "Мовчати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "177. Куди складають сміття?",
+    "answers": [
+      {
+        "text": "На підлогу",
+        "correct": false
+      },
+      {
+        "text": "У смітник",
+        "correct": true
+      },
+      {
+        "text": "У куток",
+        "correct": false
+      },
+      {
+        "text": "В рюкзак",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "178. Що робити, якщо розлив воду?",
+    "answers": [
+      {
+        "text": "Сховатися",
+        "correct": false
+      },
+      {
+        "text": "Нічого",
+        "correct": false
+      },
+      {
+        "text": "Витерти",
+        "correct": true
+      },
+      {
+        "text": "Закричати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "179. Як передати предмет товаришу?",
+    "answers": [
+      {
+        "text": "Кинути",
+        "correct": false
+      },
+      {
+        "text": "Акуратно подати",
+        "correct": true
+      },
+      {
+        "text": "Кричати",
+        "correct": false
+      },
+      {
+        "text": "Ігнорувати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "180. Що робити, якщо загубився у магазині?",
+    "answers": [
+      {
+        "text": "Плакати",
+        "correct": false
+      },
+      {
+        "text": "Шукати поліцейського/працівника",
+        "correct": true
+      },
+      {
+        "text": "Вийти на дорогу",
+        "correct": false
+      },
+      {
+        "text": "Ховатися",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "181. Як поводитися на уроці?",
+    "answers": [
+      {
+        "text": "Слухати вчителя",
+        "correct": true
+      },
+      {
+        "text": "Говорити без дозволу",
+        "correct": false
+      },
+      {
+        "text": "Бігати",
+        "correct": false
+      },
+      {
+        "text": "Спати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "182. Що робити, коли хтось говорить?",
+    "answers": [
+      {
+        "text": "Перебивати",
+        "correct": false
+      },
+      {
+        "text": "Слухати",
+        "correct": true
+      },
+      {
+        "text": "Кричати",
+        "correct": false
+      },
+      {
+        "text": "Сміятися",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "183. Як вітатися вранці?",
+    "answers": [
+      {
+        "text": "Добраніч",
+        "correct": false
+      },
+      {
+        "text": "Добрий ранок",
+        "correct": true
+      },
+      {
+        "text": "Прощавай",
+        "correct": false
+      },
+      {
+        "text": "Привіт, ніч",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "184. Що робити з гострими предметами?",
+    "answers": [
+      {
+        "text": "Гратися",
+        "correct": false
+      },
+      {
+        "text": "Обережно використовувати з дорослими",
+        "correct": true
+      },
+      {
+        "text": "Жонглювати",
+        "correct": false
+      },
+      {
+        "text": "Кидати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "185. Як переходити дорогу?",
+    "answers": [
+      {
+        "text": "Де заманеться",
+        "correct": false
+      },
+      {
+        "text": "На пішохідному переході",
+        "correct": true
+      },
+      {
+        "text": "Бігти між машинами",
+        "correct": false
+      },
+      {
+        "text": "На червоне світло",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "186. Що сказати, коли отримав подарунок?",
+    "answers": [
+      {
+        "text": "Що це?",
+        "correct": false
+      },
+      {
+        "text": "Мені мало!",
+        "correct": false
+      },
+      {
+        "text": "Дякую",
+        "correct": true
+      },
+      {
+        "text": "Не хочу",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "187. Як діяти при пожежі?",
+    "answers": [
+      {
+        "text": "Ховатися",
+        "correct": false
+      },
+      {
+        "text": "Викликати 101 і виходити спокійно",
+        "correct": true
+      },
+      {
+        "text": "Повернутися за іграшками",
+        "correct": false
+      },
+      {
+        "text": "Бігти в дим",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "188. Що робити з дверима перед людиною, яка йде позаду?",
+    "answers": [
+      {
+        "text": "Зачинити відразу",
+        "correct": false
+      },
+      {
+        "text": "Трішки притримати",
+        "correct": true
+      },
+      {
+        "text": "Штовхнути",
+        "correct": false
+      },
+      {
+        "text": "Ігнорувати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "189. Як просити вибачення?",
+    "answers": [
+      {
+        "text": "Та нічого",
+        "correct": false
+      },
+      {
+        "text": "Вибач, будь ласка",
+        "correct": true
+      },
+      {
+        "text": "Тікай",
+        "correct": false
+      },
+      {
+        "text": "Не треба",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "190. Що робити з телефоном на уроці?",
+    "answers": [
+      {
+        "text": "Грати",
+        "correct": false
+      },
+      {
+        "text": "Вимкнути/не використовувати",
+        "correct": true
+      },
+      {
+        "text": "Фотографувати",
+        "correct": false
+      },
+      {
+        "text": "Дзвонити",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "191. Як поводитись у транспорті?",
+    "answers": [
+      {
+        "text": "Говорити голосно",
+        "correct": false
+      },
+      {
+        "text": "Поступатися місцем старшим",
+        "correct": true
+      },
+      {
+        "text": "Штовхатись",
+        "correct": false
+      },
+      {
+        "text": "Смітити",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "192. Що робити, коли хтось упав?",
+    "answers": [
+      {
+        "text": "Сміятися",
+        "correct": false
+      },
+      {
+        "text": "Пройти повз",
+        "correct": false
+      },
+      {
+        "text": "Запитати, чи потрібна допомога",
+        "correct": true
+      },
+      {
+        "text": "Сфотографувати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "193. Як реагувати на зауваження вчителя?",
+    "answers": [
+      {
+        "text": "Ображатися",
+        "correct": false
+      },
+      {
+        "text": "Слухати і виправитися",
+        "correct": true
+      },
+      {
+        "text": "Сперечатися",
+        "correct": false
+      },
+      {
+        "text": "Ігнорувати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "194. Що робити з таємницями інших?",
+    "answers": [
+      {
+        "text": "Розповідати всім",
+        "correct": false
+      },
+      {
+        "text": "Зберігати таємницю",
+        "correct": true
+      },
+      {
+        "text": "Кричати",
+        "correct": false
+      },
+      {
+        "text": "Записати на стіні",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "195. Як поводитись у лікаря?",
+    "answers": [
+      {
+        "text": "Бігати",
+        "correct": false
+      },
+      {
+        "text": "Слухати і відповідати",
+        "correct": true
+      },
+      {
+        "text": "Кричати",
+        "correct": false
+      },
+      {
+        "text": "Плакати без причини",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "196. Що робити, коли хтось просить допомогу?",
+    "answers": [
+      {
+        "text": "Ігнорувати",
+        "correct": false
+      },
+      {
+        "text": "Допомогти, якщо можеш",
+        "correct": true
+      },
+      {
+        "text": "Сміятися",
+        "correct": false
+      },
+      {
+        "text": "Тікати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "197. Як поводитись у театрі?",
+    "answers": [
+      {
+        "text": "Розмовляти голосно",
+        "correct": false
+      },
+      {
+        "text": "Дивитись тихо і уважно",
+        "correct": true
+      },
+      {
+        "text": "Жувати голосно",
+        "correct": false
+      },
+      {
+        "text": "Бігати",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "198. Що робити зі сміттям на пляжі?",
+    "answers": [
+      {
+        "text": "Закопати неглибоко",
+        "correct": false
+      },
+      {
+        "text": "Забрати із собою або в урну",
+        "correct": true
+      },
+      {
+        "text": "Кинути в море",
+        "correct": false
+      },
+      {
+        "text": "Залишити",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "199. Як звертатися до незнайомців на вулиці?",
+    "answers": [
+      {
+        "text": "Кричати",
+        "correct": false
+      },
+      {
+        "text": "Грубо",
+        "correct": false
+      },
+      {
+        "text": "Ввічливо",
+        "correct": true
+      },
+      {
+        "text": "Іронічно",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "200. Як подякувати за допомогу?",
+    "answers": [
+      {
+        "text": "Ну і що",
+        "correct": false
+      },
+      {
+        "text": "Спасибі/Дякую",
+        "correct": true
+      },
+      {
+        "text": "Ти мусив",
+        "correct": false
+      },
+      {
+        "text": "Мало допоміг",
+        "correct": false
+      }
+    ]
+  }
+]

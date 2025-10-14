@@ -1,0 +1,15 @@
+{
+  "test_name": "Мath",
+  "docx_path": "tests\\School\\Мath.docx",
+  "updated_at_iso": "2025-10-12T14:56:42",
+  "regenerated": true,
+  "sources": {
+    "base_json": "tests\\School\\Мath.json",
+    "custom_json": null
+  },
+  "counts": {
+    "base": 100,
+    "custom": 0,
+    "total": 100
+  }
+}

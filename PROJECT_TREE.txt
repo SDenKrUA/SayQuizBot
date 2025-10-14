@@ -1,0 +1,109 @@
+C:.
+|   .env
+|   bot.py
+|   PROJECT_TREE.txt
+|   requirements.txt
+|   start_bot.bat
+|   stats.db
+|   stats.db-shm
+|   stats.db-wal
+|   
++---handlers
+|   |   add_question.py
+|   |   comments.py
+|   |   favorites.py
+|   |   learning.py
+|   |   menu.py
+|   |   office.py
+|   |   owner_panel.py
+|   |   start.py
+|   |   state_sync.py
+|   |   statistics_db.py
+|   |   testing.py
+|   |   test_selection.py
+|   |   wrong_answers.py
+|   |   
+|   +---vip_tests
+|   |   |   vip_cancel.py
+|   |   |   vip_constants.py
+|   |   |   vip_delete.py
+|   |   |   vip_duplicates.py
+|   |   |   vip_edit.py
+|   |   |   vip_edit_menu.py
+|   |   |   vip_entry.py
+|   |   |   vip_files.py
+|   |   |   vip_files_single.py
+|   |   |   vip_images.py
+|   |   |   vip_move.py
+|   |   |   vip_naming.py
+|   |   |   vip_navigation.py
+|   |   |   vip_storage.py
+|   |   |   vip_templates.py
+|   |   |   vip_trusted.py
+|   |   |   vip_ui.py
+|   |   |   vip_upload.py
+|   |   |   vip_utils.py
+|   |   |   vip_validation.py
+|   |   |   __init__.py
+|   |   |   
+|   |   \---__pycache__
+|   \---__pycache__
++---logs
+|       bot.log
+|       
++---tests
+|   |   _owners.json
+|   |   
+|   +---School
+|   |       Class 1-3.json
+|   |        ath.docx
+|   |        ath.docx.meta.json
+|   |        ath.json
+|   |       
+|   +---Test with media for testing
+|   |   |   Media.json
+|   |   |   
+|   |   \---Media
+|   |           audio3.mp3
+|   |           audio4.mp3
+|   |           doc7.pdf
+|   |           doc8.pdf
+|   |           image1.jpeg
+|   |           image2.jpeg
+|   |           video5.3gp
+|   |           video6.3gp
+|   |           
+|   \---Tests for seaferers
+|       +---CBT
+|       +---CES
+|       |   \---Engine department
+|       |       |   ETO - Operational.json
+|       |       |   
+|       |       +---Ch.Engineer & 2nd Engineer
+|       |       |   |   Medium Speed Management.docx
+|       |       |   |   Medium Speed Management.docx.meta.json
+|       |       |   |   Medium Speed Management.json
+|       |       |   |   
+|       |       |   \---Medium Speed Management
+|       |       |           image1.jpg
+|       |       |           image10.jpg
+||       |       |           image99.jpg
+|       |       |           
+|       |       \---ETO - Operational
+|       |               image1.jpg
+|       |               image10.jpg
+|       |               image98.jpg
+|       |               
+|       \---Company tests
+\---utils
+    |   auth.py
+    |   export_docx.py
+    |   formatting.py
+    |   i18n.py
+    |   image_compress.py
+    |   keyboards.py
+    |   loader.py
+    |   logger.py
+    |   mod_tools.py
+    |   
+    \---__pycache__

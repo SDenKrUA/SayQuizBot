@@ -1,0 +1,15 @@
+{
+  "test_name": "Medium Speed Management",
+  "docx_path": "tests\\Tests for seaferers\\CES\\Engine department\\Ch.Engineer & 2nd Engineer\\Medium Speed Management.docx",
+  "updated_at_iso": "2025-10-13T12:17:43",
+  "regenerated": true,
+  "sources": {
+    "base_json": "tests\\Tests for seaferers\\CES\\Engine department\\Ch.Engineer & 2nd Engineer\\Medium Speed Management.json",
+    "custom_json": null
+  },
+  "counts": {
+    "base": 623,
+    "custom": 0,
+    "total": 623
+  }
+}

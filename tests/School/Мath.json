@@ -1,0 +1,2102 @@
+[
+  {
+    "question": "1. Обчисли: 18 − 2 = ?",
+    "answers": [
+      {
+        "text": "11",
+        "correct": false
+      },
+      {
+        "text": "26",
+        "correct": false
+      },
+      {
+        "text": "18",
+        "correct": false
+      },
+      {
+        "text": "16",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "2. Обчисли: 36 − 23 = ?",
+    "answers": [
+      {
+        "text": "11",
+        "correct": false
+      },
+      {
+        "text": "12",
+        "correct": false
+      },
+      {
+        "text": "13",
+        "correct": true
+      },
+      {
+        "text": "23",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "3. Обчисли: 32 − 10 = ?",
+    "answers": [
+      {
+        "text": "24",
+        "correct": false
+      },
+      {
+        "text": "12",
+        "correct": false
+      },
+      {
+        "text": "17",
+        "correct": false
+      },
+      {
+        "text": "22",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "4. Обчисли: 11 − 3 = ?",
+    "answers": [
+      {
+        "text": "8",
+        "correct": true
+      },
+      {
+        "text": "18",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": false
+      },
+      {
+        "text": "13",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "5. Обчисли: 10 − 8 = ?",
+    "answers": [
+      {
+        "text": "2",
+        "correct": true
+      },
+      {
+        "text": "0",
+        "correct": false
+      },
+      {
+        "text": "3",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "6. Обчисли: 45 + 27 = ?",
+    "answers": [
+      {
+        "text": "71",
+        "correct": false
+      },
+      {
+        "text": "67",
+        "correct": false
+      },
+      {
+        "text": "72",
+        "correct": true
+      },
+      {
+        "text": "62",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "7. Обчисли: 28 + 37 = ?",
+    "answers": [
+      {
+        "text": "70",
+        "correct": false
+      },
+      {
+        "text": "65",
+        "correct": true
+      },
+      {
+        "text": "64",
+        "correct": false
+      },
+      {
+        "text": "66",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "8. Обчисли: 45 + 2 = ?",
+    "answers": [
+      {
+        "text": "52",
+        "correct": false
+      },
+      {
+        "text": "47",
+        "correct": true
+      },
+      {
+        "text": "42",
+        "correct": false
+      },
+      {
+        "text": "49",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "9. Обчисли: 50 − 12 = ?",
+    "answers": [
+      {
+        "text": "40",
+        "correct": false
+      },
+      {
+        "text": "33",
+        "correct": false
+      },
+      {
+        "text": "38",
+        "correct": true
+      },
+      {
+        "text": "37",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "10. Обчисли: 29 + 32 = ?",
+    "answers": [
+      {
+        "text": "61",
+        "correct": true
+      },
+      {
+        "text": "60",
+        "correct": false
+      },
+      {
+        "text": "62",
+        "correct": false
+      },
+      {
+        "text": "56",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "11. Обчисли: 9 + 15 = ?",
+    "answers": [
+      {
+        "text": "34",
+        "correct": false
+      },
+      {
+        "text": "22",
+        "correct": false
+      },
+      {
+        "text": "14",
+        "correct": false
+      },
+      {
+        "text": "24",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "12. Обчисли: 24 + 7 = ?",
+    "answers": [
+      {
+        "text": "31",
+        "correct": true
+      },
+      {
+        "text": "30",
+        "correct": false
+      },
+      {
+        "text": "26",
+        "correct": false
+      },
+      {
+        "text": "29",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "13. Обчисли: 41 + 50 = ?",
+    "answers": [
+      {
+        "text": "91",
+        "correct": true
+      },
+      {
+        "text": "81",
+        "correct": false
+      },
+      {
+        "text": "86",
+        "correct": false
+      },
+      {
+        "text": "90",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "14. Обчисли: 19 + 46 = ?",
+    "answers": [
+      {
+        "text": "75",
+        "correct": false
+      },
+      {
+        "text": "55",
+        "correct": false
+      },
+      {
+        "text": "63",
+        "correct": false
+      },
+      {
+        "text": "65",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "15. Обчисли: 40 + 44 = ?",
+    "answers": [
+      {
+        "text": "94",
+        "correct": false
+      },
+      {
+        "text": "84",
+        "correct": true
+      },
+      {
+        "text": "82",
+        "correct": false
+      },
+      {
+        "text": "79",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "16. Обчисли: 21 + 29 = ?",
+    "answers": [
+      {
+        "text": "50",
+        "correct": true
+      },
+      {
+        "text": "51",
+        "correct": false
+      },
+      {
+        "text": "48",
+        "correct": false
+      },
+      {
+        "text": "55",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "17. Обчисли: 50 + 13 = ?",
+    "answers": [
+      {
+        "text": "68",
+        "correct": false
+      },
+      {
+        "text": "63",
+        "correct": true
+      },
+      {
+        "text": "53",
+        "correct": false
+      },
+      {
+        "text": "58",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "18. Обчисли: 50 + 9 = ?",
+    "answers": [
+      {
+        "text": "49",
+        "correct": false
+      },
+      {
+        "text": "64",
+        "correct": false
+      },
+      {
+        "text": "59",
+        "correct": true
+      },
+      {
+        "text": "57",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "19. Обчисли: 8 − 6 = ?",
+    "answers": [
+      {
+        "text": "2",
+        "correct": true
+      },
+      {
+        "text": "1",
+        "correct": false
+      },
+      {
+        "text": "12",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "20. Обчисли: 41 − 34 = ?",
+    "answers": [
+      {
+        "text": "2",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "9",
+        "correct": false
+      },
+      {
+        "text": "7",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "21. Обчисли: 30 − 9 = ?",
+    "answers": [
+      {
+        "text": "22",
+        "correct": false
+      },
+      {
+        "text": "16",
+        "correct": false
+      },
+      {
+        "text": "21",
+        "correct": true
+      },
+      {
+        "text": "19",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "22. Обчисли: 7 + 26 = ?",
+    "answers": [
+      {
+        "text": "23",
+        "correct": false
+      },
+      {
+        "text": "32",
+        "correct": false
+      },
+      {
+        "text": "31",
+        "correct": false
+      },
+      {
+        "text": "33",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "23. Обчисли: 4 − 1 = ?",
+    "answers": [
+      {
+        "text": "3",
+        "correct": true
+      },
+      {
+        "text": "5",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "1",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "24. Обчисли: 45 − 40 = ?",
+    "answers": [
+      {
+        "text": "0",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "5",
+        "correct": true
+      },
+      {
+        "text": "15",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "25. Обчисли: 28 − 2 = ?",
+    "answers": [
+      {
+        "text": "27",
+        "correct": false
+      },
+      {
+        "text": "24",
+        "correct": false
+      },
+      {
+        "text": "25",
+        "correct": false
+      },
+      {
+        "text": "26",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "26. Обчисли: 88 − 83 + 64 = ?",
+    "answers": [
+      {
+        "text": "64",
+        "correct": false
+      },
+      {
+        "text": "59",
+        "correct": false
+      },
+      {
+        "text": "69",
+        "correct": true
+      },
+      {
+        "text": "71",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "27. Обчисли: 1 + 66 + 76 = ?",
+    "answers": [
+      {
+        "text": "142",
+        "correct": false
+      },
+      {
+        "text": "133",
+        "correct": false
+      },
+      {
+        "text": "144",
+        "correct": false
+      },
+      {
+        "text": "143",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "28. Обчисли: 47 + 36 + 85 = ?",
+    "answers": [
+      {
+        "text": "167",
+        "correct": false
+      },
+      {
+        "text": "169",
+        "correct": false
+      },
+      {
+        "text": "168",
+        "correct": true
+      },
+      {
+        "text": "173",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "29. Обчисли: 57 + 39 + 4 = ?",
+    "answers": [
+      {
+        "text": "100",
+        "correct": true
+      },
+      {
+        "text": "98",
+        "correct": false
+      },
+      {
+        "text": "105",
+        "correct": false
+      },
+      {
+        "text": "95",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "30. Обчисли: 72 − 57 + 36 = ?",
+    "answers": [
+      {
+        "text": "51",
+        "correct": true
+      },
+      {
+        "text": "56",
+        "correct": false
+      },
+      {
+        "text": "49",
+        "correct": false
+      },
+      {
+        "text": "61",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "31. Обчисли: 13 + 40 − 41 = ?",
+    "answers": [
+      {
+        "text": "17",
+        "correct": false
+      },
+      {
+        "text": "22",
+        "correct": false
+      },
+      {
+        "text": "2",
+        "correct": false
+      },
+      {
+        "text": "12",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "32. Обчисли: 21 + 37 − 24 = ?",
+    "answers": [
+      {
+        "text": "34",
+        "correct": true
+      },
+      {
+        "text": "29",
+        "correct": false
+      },
+      {
+        "text": "44",
+        "correct": false
+      },
+      {
+        "text": "35",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "33. Обчисли: 38 + 78 + 92 = ?",
+    "answers": [
+      {
+        "text": "206",
+        "correct": false
+      },
+      {
+        "text": "208",
+        "correct": true
+      },
+      {
+        "text": "209",
+        "correct": false
+      },
+      {
+        "text": "203",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "34. Обчисли: 83 − 29 + 3 = ?",
+    "answers": [
+      {
+        "text": "55",
+        "correct": false
+      },
+      {
+        "text": "57",
+        "correct": true
+      },
+      {
+        "text": "52",
+        "correct": false
+      },
+      {
+        "text": "47",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "35. Обчисли: 67 + 81 + 46 = ?",
+    "answers": [
+      {
+        "text": "195",
+        "correct": false
+      },
+      {
+        "text": "204",
+        "correct": false
+      },
+      {
+        "text": "194",
+        "correct": true
+      },
+      {
+        "text": "193",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "36. Обчисли: 53 + 36 + 44 = ?",
+    "answers": [
+      {
+        "text": "133",
+        "correct": true
+      },
+      {
+        "text": "143",
+        "correct": false
+      },
+      {
+        "text": "131",
+        "correct": false
+      },
+      {
+        "text": "128",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "37. Обчисли: 11 + 92 + 69 = ?",
+    "answers": [
+      {
+        "text": "172",
+        "correct": true
+      },
+      {
+        "text": "170",
+        "correct": false
+      },
+      {
+        "text": "173",
+        "correct": false
+      },
+      {
+        "text": "177",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "38. Обчисли: 42 + 29 + 80 = ?",
+    "answers": [
+      {
+        "text": "161",
+        "correct": false
+      },
+      {
+        "text": "146",
+        "correct": false
+      },
+      {
+        "text": "152",
+        "correct": false
+      },
+      {
+        "text": "151",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "39. Обчисли: 3 + 37 + 41 = ?",
+    "answers": [
+      {
+        "text": "80",
+        "correct": false
+      },
+      {
+        "text": "82",
+        "correct": false
+      },
+      {
+        "text": "91",
+        "correct": false
+      },
+      {
+        "text": "81",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "40. Обчисли: 7 + 89 + 93 = ?",
+    "answers": [
+      {
+        "text": "189",
+        "correct": true
+      },
+      {
+        "text": "187",
+        "correct": false
+      },
+      {
+        "text": "179",
+        "correct": false
+      },
+      {
+        "text": "184",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "41. Обчисли: 79 − 53 + 70 = ?",
+    "answers": [
+      {
+        "text": "96",
+        "correct": true
+      },
+      {
+        "text": "97",
+        "correct": false
+      },
+      {
+        "text": "101",
+        "correct": false
+      },
+      {
+        "text": "91",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "42. Обчисли: 60 + 72 + 11 = ?",
+    "answers": [
+      {
+        "text": "138",
+        "correct": false
+      },
+      {
+        "text": "143",
+        "correct": true
+      },
+      {
+        "text": "144",
+        "correct": false
+      },
+      {
+        "text": "142",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "43. Обчисли: 94 + 93 + 76 = ?",
+    "answers": [
+      {
+        "text": "263",
+        "correct": true
+      },
+      {
+        "text": "261",
+        "correct": false
+      },
+      {
+        "text": "264",
+        "correct": false
+      },
+      {
+        "text": "258",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "44. Обчисли: 21 + 61 + 53 = ?",
+    "answers": [
+      {
+        "text": "135",
+        "correct": true
+      },
+      {
+        "text": "145",
+        "correct": false
+      },
+      {
+        "text": "137",
+        "correct": false
+      },
+      {
+        "text": "136",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "45. Обчисли: 93 + 70 − 78 = ?",
+    "answers": [
+      {
+        "text": "85",
+        "correct": true
+      },
+      {
+        "text": "80",
+        "correct": false
+      },
+      {
+        "text": "75",
+        "correct": false
+      },
+      {
+        "text": "90",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "46. Обчисли: 56 + 64 − 77 = ?",
+    "answers": [
+      {
+        "text": "41",
+        "correct": false
+      },
+      {
+        "text": "33",
+        "correct": false
+      },
+      {
+        "text": "44",
+        "correct": false
+      },
+      {
+        "text": "43",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "47. Обчисли: 66 − 4 + 48 = ?",
+    "answers": [
+      {
+        "text": "110",
+        "correct": true
+      },
+      {
+        "text": "109",
+        "correct": false
+      },
+      {
+        "text": "108",
+        "correct": false
+      },
+      {
+        "text": "100",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "48. Обчисли: 11 − 11 + 22 = ?",
+    "answers": [
+      {
+        "text": "32",
+        "correct": false
+      },
+      {
+        "text": "23",
+        "correct": false
+      },
+      {
+        "text": "22",
+        "correct": true
+      },
+      {
+        "text": "17",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "49. Обчисли: 0 + 38 + 89 = ?",
+    "answers": [
+      {
+        "text": "128",
+        "correct": false
+      },
+      {
+        "text": "129",
+        "correct": false
+      },
+      {
+        "text": "117",
+        "correct": false
+      },
+      {
+        "text": "127",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "50. Обчисли: 43 + 77 + 78 = ?",
+    "answers": [
+      {
+        "text": "203",
+        "correct": false
+      },
+      {
+        "text": "198",
+        "correct": true
+      },
+      {
+        "text": "199",
+        "correct": false
+      },
+      {
+        "text": "197",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "51. Обчисли: 35 + 50 + 48 − 92 = ?",
+    "answers": [
+      {
+        "text": "41",
+        "correct": true
+      },
+      {
+        "text": "61",
+        "correct": false
+      },
+      {
+        "text": "21",
+        "correct": false
+      },
+      {
+        "text": "39",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "52. Обчисли: 25 − 25 + 51 + 55 = ?",
+    "answers": [
+      {
+        "text": "116",
+        "correct": false
+      },
+      {
+        "text": "104",
+        "correct": false
+      },
+      {
+        "text": "101",
+        "correct": false
+      },
+      {
+        "text": "106",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "53. Обчисли: 97 + 94 − 6 − 75 = ?",
+    "answers": [
+      {
+        "text": "115",
+        "correct": false
+      },
+      {
+        "text": "112",
+        "correct": false
+      },
+      {
+        "text": "100",
+        "correct": false
+      },
+      {
+        "text": "110",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "54. Обчисли: 48 + 99 − 46 + 29 = ?",
+    "answers": [
+      {
+        "text": "120",
+        "correct": false
+      },
+      {
+        "text": "132",
+        "correct": false
+      },
+      {
+        "text": "130",
+        "correct": true
+      },
+      {
+        "text": "110",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "55. Обчисли: 42 − 24 + 74 + 85 = ?",
+    "answers": [
+      {
+        "text": "172",
+        "correct": false
+      },
+      {
+        "text": "177",
+        "correct": true
+      },
+      {
+        "text": "167",
+        "correct": false
+      },
+      {
+        "text": "197",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "56. Обчисли: 95 − 38 + 17 − 28 = ?",
+    "answers": [
+      {
+        "text": "46",
+        "correct": true
+      },
+      {
+        "text": "51",
+        "correct": false
+      },
+      {
+        "text": "26",
+        "correct": false
+      },
+      {
+        "text": "44",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "57. Обчисли: 96 + 49 + 55 + 81 = ?",
+    "answers": [
+      {
+        "text": "291",
+        "correct": false
+      },
+      {
+        "text": "281",
+        "correct": true
+      },
+      {
+        "text": "279",
+        "correct": false
+      },
+      {
+        "text": "283",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "58. Обчисли: 27 + 10 + 65 + 97 = ?",
+    "answers": [
+      {
+        "text": "197",
+        "correct": false
+      },
+      {
+        "text": "199",
+        "correct": true
+      },
+      {
+        "text": "204",
+        "correct": false
+      },
+      {
+        "text": "209",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "59. Обчисли: 97 − 92 + 87 + 40 = ?",
+    "answers": [
+      {
+        "text": "134",
+        "correct": false
+      },
+      {
+        "text": "122",
+        "correct": false
+      },
+      {
+        "text": "127",
+        "correct": false
+      },
+      {
+        "text": "132",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "60. Обчисли: 72 + 25 − 37 + 6 = ?",
+    "answers": [
+      {
+        "text": "64",
+        "correct": false
+      },
+      {
+        "text": "61",
+        "correct": false
+      },
+      {
+        "text": "66",
+        "correct": true
+      },
+      {
+        "text": "86",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "61. Обчисли: 75 + 10 + 67 + 6 = ?",
+    "answers": [
+      {
+        "text": "160",
+        "correct": false
+      },
+      {
+        "text": "158",
+        "correct": true
+      },
+      {
+        "text": "156",
+        "correct": false
+      },
+      {
+        "text": "153",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "62. Обчисли: 38 + 66 + 70 + 41 = ?",
+    "answers": [
+      {
+        "text": "215",
+        "correct": true
+      },
+      {
+        "text": "205",
+        "correct": false
+      },
+      {
+        "text": "195",
+        "correct": false
+      },
+      {
+        "text": "220",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "63. Обчисли: 75 − 29 + 51 + 35 = ?",
+    "answers": [
+      {
+        "text": "137",
+        "correct": false
+      },
+      {
+        "text": "142",
+        "correct": false
+      },
+      {
+        "text": "132",
+        "correct": true
+      },
+      {
+        "text": "130",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "64. Обчисли: 58 + 38 + 44 + 4 = ?",
+    "answers": [
+      {
+        "text": "164",
+        "correct": false
+      },
+      {
+        "text": "146",
+        "correct": false
+      },
+      {
+        "text": "144",
+        "correct": true
+      },
+      {
+        "text": "134",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "65. Обчисли: 72 + 96 + 83 + 68 = ?",
+    "answers": [
+      {
+        "text": "314",
+        "correct": false
+      },
+      {
+        "text": "319",
+        "correct": true
+      },
+      {
+        "text": "339",
+        "correct": false
+      },
+      {
+        "text": "317",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "66. Обчисли: 49 − 11 + 27 + 0 = ?",
+    "answers": [
+      {
+        "text": "45",
+        "correct": false
+      },
+      {
+        "text": "70",
+        "correct": false
+      },
+      {
+        "text": "67",
+        "correct": false
+      },
+      {
+        "text": "65",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "67. Обчисли: 32 + 40 + 97 + 10 = ?",
+    "answers": [
+      {
+        "text": "179",
+        "correct": true
+      },
+      {
+        "text": "184",
+        "correct": false
+      },
+      {
+        "text": "181",
+        "correct": false
+      },
+      {
+        "text": "189",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "68. Обчисли: 43 + 58 + 11 + 80 = ?",
+    "answers": [
+      {
+        "text": "202",
+        "correct": false
+      },
+      {
+        "text": "187",
+        "correct": false
+      },
+      {
+        "text": "192",
+        "correct": true
+      },
+      {
+        "text": "194",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "69. Обчисли: 62 + 65 + 40 + 12 = ?",
+    "answers": [
+      {
+        "text": "189",
+        "correct": false
+      },
+      {
+        "text": "184",
+        "correct": false
+      },
+      {
+        "text": "179",
+        "correct": true
+      },
+      {
+        "text": "181",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "70. Обчисли: 93 + 47 + 84 + 2 = ?",
+    "answers": [
+      {
+        "text": "246",
+        "correct": false
+      },
+      {
+        "text": "236",
+        "correct": false
+      },
+      {
+        "text": "226",
+        "correct": true
+      },
+      {
+        "text": "221",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "71. Обчисли: 64 + 87 + 68 − 61 = ?",
+    "answers": [
+      {
+        "text": "158",
+        "correct": true
+      },
+      {
+        "text": "148",
+        "correct": false
+      },
+      {
+        "text": "153",
+        "correct": false
+      },
+      {
+        "text": "138",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "72. Обчисли: 95 − 15 + 87 + 31 = ?",
+    "answers": [
+      {
+        "text": "218",
+        "correct": false
+      },
+      {
+        "text": "198",
+        "correct": true
+      },
+      {
+        "text": "196",
+        "correct": false
+      },
+      {
+        "text": "208",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "73. Обчисли: 98 − 8 + 9 − 11 = ?",
+    "answers": [
+      {
+        "text": "68",
+        "correct": false
+      },
+      {
+        "text": "108",
+        "correct": false
+      },
+      {
+        "text": "88",
+        "correct": true
+      },
+      {
+        "text": "86",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "74. Обчисли: 17 + 38 + 36 + 46 = ?",
+    "answers": [
+      {
+        "text": "147",
+        "correct": false
+      },
+      {
+        "text": "127",
+        "correct": false
+      },
+      {
+        "text": "132",
+        "correct": false
+      },
+      {
+        "text": "137",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "75. Обчисли: 13 + 58 + 41 + 25 = ?",
+    "answers": [
+      {
+        "text": "137",
+        "correct": true
+      },
+      {
+        "text": "117",
+        "correct": false
+      },
+      {
+        "text": "157",
+        "correct": false
+      },
+      {
+        "text": "127",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "76. Обчисли: 131 + 137 = ?",
+    "answers": [
+      {
+        "text": "288",
+        "correct": false
+      },
+      {
+        "text": "318",
+        "correct": false
+      },
+      {
+        "text": "268",
+        "correct": true
+      },
+      {
+        "text": "263",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "77. Обчисли: 258 + 250 − 269 = ?",
+    "answers": [
+      {
+        "text": "239",
+        "correct": true
+      },
+      {
+        "text": "259",
+        "correct": false
+      },
+      {
+        "text": "189",
+        "correct": false
+      },
+      {
+        "text": "219",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "78. Обчисли: 96 + 246 = ?",
+    "answers": [
+      {
+        "text": "392",
+        "correct": false
+      },
+      {
+        "text": "362",
+        "correct": false
+      },
+      {
+        "text": "292",
+        "correct": false
+      },
+      {
+        "text": "342",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "79. Обчисли: 240 + 185 = ?",
+    "answers": [
+      {
+        "text": "425",
+        "correct": true
+      },
+      {
+        "text": "445",
+        "correct": false
+      },
+      {
+        "text": "415",
+        "correct": false
+      },
+      {
+        "text": "420",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "80. Обчисли: 135 + 243 + 189 = ?",
+    "answers": [
+      {
+        "text": "547",
+        "correct": false
+      },
+      {
+        "text": "577",
+        "correct": false
+      },
+      {
+        "text": "572",
+        "correct": false
+      },
+      {
+        "text": "567",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "81. Обчисли: 290 − 184 = ?",
+    "answers": [
+      {
+        "text": "156",
+        "correct": false
+      },
+      {
+        "text": "116",
+        "correct": false
+      },
+      {
+        "text": "86",
+        "correct": false
+      },
+      {
+        "text": "106",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "82. Обчисли: 197 − 188 + 69 = ?",
+    "answers": [
+      {
+        "text": "78",
+        "correct": true
+      },
+      {
+        "text": "73",
+        "correct": false
+      },
+      {
+        "text": "88",
+        "correct": false
+      },
+      {
+        "text": "128",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "83. Обчисли: 269 + 213 = ?",
+    "answers": [
+      {
+        "text": "487",
+        "correct": false
+      },
+      {
+        "text": "472",
+        "correct": false
+      },
+      {
+        "text": "532",
+        "correct": false
+      },
+      {
+        "text": "482",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "84. Обчисли: 298 + 226 − 54 = ?",
+    "answers": [
+      {
+        "text": "460",
+        "correct": false
+      },
+      {
+        "text": "450",
+        "correct": false
+      },
+      {
+        "text": "490",
+        "correct": false
+      },
+      {
+        "text": "470",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "85. Обчисли: 197 + 75 = ?",
+    "answers": [
+      {
+        "text": "322",
+        "correct": false
+      },
+      {
+        "text": "262",
+        "correct": false
+      },
+      {
+        "text": "252",
+        "correct": false
+      },
+      {
+        "text": "272",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "86. Обчисли: 193 + 286 = ?",
+    "answers": [
+      {
+        "text": "479",
+        "correct": true
+      },
+      {
+        "text": "474",
+        "correct": false
+      },
+      {
+        "text": "529",
+        "correct": false
+      },
+      {
+        "text": "469",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "87. Обчисли: 263 + 291 − 284 = ?",
+    "answers": [
+      {
+        "text": "270",
+        "correct": true
+      },
+      {
+        "text": "260",
+        "correct": false
+      },
+      {
+        "text": "280",
+        "correct": false
+      },
+      {
+        "text": "320",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "88. Обчисли: 146 + 135 = ?",
+    "answers": [
+      {
+        "text": "276",
+        "correct": false
+      },
+      {
+        "text": "281",
+        "correct": true
+      },
+      {
+        "text": "301",
+        "correct": false
+      },
+      {
+        "text": "231",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "89. Обчисли: 224 − 175 + 240 = ?",
+    "answers": [
+      {
+        "text": "269",
+        "correct": false
+      },
+      {
+        "text": "299",
+        "correct": false
+      },
+      {
+        "text": "339",
+        "correct": false
+      },
+      {
+        "text": "289",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "90. Обчисли: 114 + 247 + 253 = ?",
+    "answers": [
+      {
+        "text": "614",
+        "correct": true
+      },
+      {
+        "text": "594",
+        "correct": false
+      },
+      {
+        "text": "634",
+        "correct": false
+      },
+      {
+        "text": "664",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "91. Обчисли: 155 + 24 − 40 = ?",
+    "answers": [
+      {
+        "text": "139",
+        "correct": true
+      },
+      {
+        "text": "129",
+        "correct": false
+      },
+      {
+        "text": "164",
+        "correct": false
+      },
+      {
+        "text": "89",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "92. Обчисли: 74 + 8 + 178 = ?",
+    "answers": [
+      {
+        "text": "310",
+        "correct": false
+      },
+      {
+        "text": "260",
+        "correct": true
+      },
+      {
+        "text": "285",
+        "correct": false
+      },
+      {
+        "text": "270",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "93. Обчисли: 40 + 102 + 69 = ?",
+    "answers": [
+      {
+        "text": "211",
+        "correct": true
+      },
+      {
+        "text": "201",
+        "correct": false
+      },
+      {
+        "text": "186",
+        "correct": false
+      },
+      {
+        "text": "221",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "94. Обчисли: 29 + 174 + 149 + 101 = ?",
+    "answers": [
+      {
+        "text": "448",
+        "correct": false
+      },
+      {
+        "text": "463",
+        "correct": false
+      },
+      {
+        "text": "453",
+        "correct": true
+      },
+      {
+        "text": "503",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "95. Обчисли: 170 + 98 + 41 + 120 = ?",
+    "answers": [
+      {
+        "text": "454",
+        "correct": false
+      },
+      {
+        "text": "404",
+        "correct": false
+      },
+      {
+        "text": "429",
+        "correct": true
+      },
+      {
+        "text": "434",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "96. Обчисли: 89 + 144 + 71 = ?",
+    "answers": [
+      {
+        "text": "304",
+        "correct": true
+      },
+      {
+        "text": "299",
+        "correct": false
+      },
+      {
+        "text": "354",
+        "correct": false
+      },
+      {
+        "text": "314",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "97. Обчисли: 135 + 28 + 198 = ?",
+    "answers": [
+      {
+        "text": "311",
+        "correct": false
+      },
+      {
+        "text": "356",
+        "correct": false
+      },
+      {
+        "text": "361",
+        "correct": true
+      },
+      {
+        "text": "386",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "98. Обчисли: 87 + 110 + 99 = ?",
+    "answers": [
+      {
+        "text": "246",
+        "correct": false
+      },
+      {
+        "text": "291",
+        "correct": false
+      },
+      {
+        "text": "296",
+        "correct": true
+      },
+      {
+        "text": "301",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "99. Обчисли: 194 + 80 − 158 + 111 = ?",
+    "answers": [
+      {
+        "text": "252",
+        "correct": false
+      },
+      {
+        "text": "177",
+        "correct": false
+      },
+      {
+        "text": "227",
+        "correct": true
+      },
+      {
+        "text": "237",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "100. Обчисли: 136 + 97 + 8 + 39 = ?",
+    "answers": [
+      {
+        "text": "230",
+        "correct": false
+      },
+      {
+        "text": "285",
+        "correct": false
+      },
+      {
+        "text": "305",
+        "correct": false
+      },
+      {
+        "text": "280",
+        "correct": true
+      }
+    ]
+  }
+]

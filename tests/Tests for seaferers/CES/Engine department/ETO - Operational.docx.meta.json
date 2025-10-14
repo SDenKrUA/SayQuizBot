@@ -1,0 +1,15 @@
+{
+  "test_name": "ETO - Operational",
+  "docx_path": "tests\\Tests for seaferers/CES/Engine department\\ETO - Operational.docx",
+  "updated_at_iso": "2025-10-14T10:48:32",
+  "regenerated": true,
+  "sources": {
+    "base_json": "tests\\Tests for seaferers/CES/Engine department\\ETO - Operational.json",
+    "custom_json": null
+  },
+  "counts": {
+    "base": 183,
+    "custom": 0,
+    "total": 183
+  }
+}

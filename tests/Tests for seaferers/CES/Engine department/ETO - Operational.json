@@ -1,0 +1,3845 @@
+[
+  {
+    "question": "1. If every switch in a network is connected to all other switches in a network, what is this network termed as?",
+    "answers": [
+      {
+        "text": "Star network",
+        "correct": false
+      },
+      {
+        "text": "Full-mesh network",
+        "correct": true
+      },
+      {
+        "text": "Multiple star network",
+        "correct": false
+      },
+      {
+        "text": "Hierarchical network",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "2. In terms of electrical units, what does the abbreviation Hz stand for?",
+    "answers": [
+      {
+        "text": "Frequency in Direct Current (DC)",
+        "correct": false
+      },
+      {
+        "text": "Measure for Resistance",
+        "correct": false
+      },
+      {
+        "text": "Frequency in Cycles per second",
+        "correct": true
+      },
+      {
+        "text": "Revolution per minute",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "3. Transducers are devices which translate the value of one measured value into diferent measurement units (for instance units of temperature to millivlots). What is the meant by the \"Range\" of a transducer?",
+    "answers": [
+      {
+        "text": "The type of measurement",
+        "correct": false
+      },
+      {
+        "text": "The maximum length of the connecting leads.",
+        "correct": false
+      },
+      {
+        "text": "The maximum output signal",
+        "correct": false
+      },
+      {
+        "text": "Maximum and minimum measurement",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "4. Regular (at least weekly) testing of the emergency generator must be performed to check:",
+    "answers": [
+      {
+        "text": "Its voltage/current and prime mover characteristics.",
+        "correct": false
+      },
+      {
+        "text": "compliance with the shipbuilder's recommendations.",
+        "correct": false
+      },
+      {
+        "text": "Its readiness to perform as specified.",
+        "correct": true
+      },
+      {
+        "text": "Its environmental noise factor during emergency fire-drills.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "5. Identify below type of digital data transmission waveform.",
+    "answers": [
+      {
+        "text": "Polar non-return to zero",
+        "correct": true
+      },
+      {
+        "text": "Unipolar return to zero",
+        "correct": false
+      },
+      {
+        "text": "Polar return to zero",
+        "correct": false
+      },
+      {
+        "text": "Unipolar non-return to zero",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "6. What are the essential elements of any radio system?",
+    "answers": [
+      {
+        "text": "Transmitter, Transmitting station, Receiving station, Receiver",
+        "correct": false
+      },
+      {
+        "text": "Transmitter, Transmitter antenna, Receiving antenna, Receiver",
+        "correct": true
+      },
+      {
+        "text": "Transmitter, Radio, Satellite dish, Receiver",
+        "correct": false
+      },
+      {
+        "text": "Transmitter, Satellite, Receiver",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "7. Which of the following is not a colour transmission standard for TV?",
+    "answers": [
+      {
+        "text": "ANSI",
+        "correct": true
+      },
+      {
+        "text": "PAL",
+        "correct": false
+      },
+      {
+        "text": "SECAM",
+        "correct": false
+      },
+      {
+        "text": "NTSC",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "8. What can be measured by means of a manometer?",
+    "answers": [
+      {
+        "text": "Pressure",
+        "correct": true
+      },
+      {
+        "text": "Strain",
+        "correct": false
+      },
+      {
+        "text": "Temperature",
+        "correct": false
+      },
+      {
+        "text": "Motion",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "9. Two alternators are operating in parallel at 75% load capacity, but one of them trips without any warning. What is the first action that should be taken?",
+    "answers": [
+      {
+        "text": "Restart and connect the tripped alternator immediately",
+        "correct": false
+      },
+      {
+        "text": "Check the circuit breaker of the tripped alternator",
+        "correct": false
+      },
+      {
+        "text": "Trip/stop all nonessential loads that are connected to the switchboard",
+        "correct": true
+      },
+      {
+        "text": "Start and connect the emergency alternator",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "10. This resistor has the value of 68 k ohm. Which colour code should be marked on the rings (assume ring d is the tolerance ring)?",
+    "answers": [
+      {
+        "text": "a. blue b. grey c. orange",
+        "correct": true
+      },
+      {
+        "text": "a. violet b. green c. yellow",
+        "correct": false
+      },
+      {
+        "text": "a. black b. red c. orange",
+        "correct": false
+      },
+      {
+        "text": "a. red b. black c. yellow",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "11. If the A.C. line current in a generator stator is doubled, the heating effect in the stator windings will:",
+    "answers": [
+      {
+        "text": "Half.",
+        "correct": false
+      },
+      {
+        "text": "Double.",
+        "correct": false
+      },
+      {
+        "text": "Quadruple",
+        "correct": true
+      },
+      {
+        "text": "Remain about the same.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "12. A 3-phase induction motor is rated at 200 A Full load current. Its initial direct- on-line starting current will be approximately:",
+    "answers": [
+      {
+        "text": "1000 A",
+        "correct": true
+      },
+      {
+        "text": "100 A",
+        "correct": false
+      },
+      {
+        "text": "200 A",
+        "correct": false
+      },
+      {
+        "text": "5000 A",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "13. Which group of electrical services are likely to be supplied from an emergency generator?",
+    "answers": [
+      {
+        "text": "Sound powered telephone system",
+        "correct": false
+      },
+      {
+        "text": "Steering gear and engine room alarm system",
+        "correct": true
+      },
+      {
+        "text": "Galley and air conditioning",
+        "correct": false
+      },
+      {
+        "text": "Engine room lighting and bow thruster",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "14. An antenna transmitter has Isotropic receive level (IRL) at -100 dBW. Receive antenna gain is 31 dB and line loss is 5.9 dB. What would Receive signal level (RSL) be?",
+    "answers": [
+      {
+        "text": "-125.1 dBW",
+        "correct": false
+      },
+      {
+        "text": "125.1 dBW",
+        "correct": false
+      },
+      {
+        "text": "-136.9 dBW",
+        "correct": false
+      },
+      {
+        "text": "-95.9 dBW",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "15. Which component does this graphical symbol illustrate?",
+    "answers": [
+      {
+        "text": "Pressure indicator, installed on panel/console",
+        "correct": true
+      },
+      {
+        "text": "Pressure relief valve, self-contained",
+        "correct": false
+      },
+      {
+        "text": "Pressure instument, installed locally",
+        "correct": false
+      },
+      {
+        "text": "PH analyzer",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "16. An electrical power emergency source in a ship is required because:",
+    "answers": [
+      {
+        "text": "It satisfies the need to be environmentally \"friendly\"",
+        "correct": false
+      },
+      {
+        "text": "In the event of main power failure, essential electrical and safety systems are available",
+        "correct": true
+      },
+      {
+        "text": "The ship's total load can be shared between main and emergency generators",
+        "correct": false
+      },
+      {
+        "text": "The main diesel generator(s) can be taken out of service for overhaul or repair",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "17. What is a ZENER BARRIER?",
+    "answers": [
+      {
+        "text": "A zener barrier is a device that allows the current to pass only one direction.",
+        "correct": false
+      },
+      {
+        "text": "A zener barrier is a diode bridge used in rectifiers.",
+        "correct": false
+      },
+      {
+        "text": "A zener barrier is a unit made to obtain intrinsic safety in installations for instrumentation in hazardous areas.",
+        "correct": true
+      },
+      {
+        "text": "A zener barrier is a device which limits the current drawn by an induction motor.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "18. With reference to Open Systems Interconnection (OSI) model, which layer level does a router operate on?",
+    "answers": [
+      {
+        "text": "Network layer",
+        "correct": true
+      },
+      {
+        "text": "Data link layer",
+        "correct": false
+      },
+      {
+        "text": "Transport layer",
+        "correct": false
+      },
+      {
+        "text": "Physical layer",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "19. Which of the following detectors is commonly used for sensing if a watertight steel door is closed or open?",
+    "answers": [
+      {
+        "text": "Strain gauge",
+        "correct": false
+      },
+      {
+        "text": "Limit switch",
+        "correct": true
+      },
+      {
+        "text": "Synchro",
+        "correct": false
+      },
+      {
+        "text": "Transducer",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "20. Electrical equipment has to operate over a certain voltage level in order to be defined as High Voltage. What are these voltage levels?",
+    "answers": [
+      {
+        "text": "440Volts ac or dc.",
+        "correct": false
+      },
+      {
+        "text": "1000Volts ac or 750Volts dc.",
+        "correct": false
+      },
+      {
+        "text": "1000Volts ac or 1500Volts dc.",
+        "correct": true
+      },
+      {
+        "text": "33,000Volts ac or dc.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "21. After main power is restored (following a blackout), a timed sequential restart of motor-driven auxiliaries is necessary to avoid:",
+    "answers": [
+      {
+        "text": "Over-frequency due to overspeed of generator",
+        "correct": false
+      },
+      {
+        "text": "Generator overload due to many motors starting at simultaneously",
+        "correct": true
+      },
+      {
+        "text": "Overloading creating earth faults",
+        "correct": false
+      },
+      {
+        "text": "Overvoltage due to current surges",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "22. When calibrating an instrument what is the most common second step in the procedure?",
+    "answers": [
+      {
+        "text": "Adjustment of span",
+        "correct": true
+      },
+      {
+        "text": "Check linearity",
+        "correct": false
+      },
+      {
+        "text": "Adjustment of Zero-point",
+        "correct": false
+      },
+      {
+        "text": "Adjustment of range",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "23. The insulation resistance (IR) to earth of a new galley hot-plate is measured to be 30 Mohm. When three identical hot-plates on the same supply are tested together their combined IR will be:",
+    "answers": [
+      {
+        "text": "30 Mohm",
+        "correct": false
+      },
+      {
+        "text": "3 Mohm",
+        "correct": false
+      },
+      {
+        "text": "10 Mohm",
+        "correct": true
+      },
+      {
+        "text": "90 Mohm",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "24. Which of the 4 figures shows the symbol for a PNP transistor?",
+    "answers": [
+      {
+        "text": "Figure 3.",
+        "correct": false
+      },
+      {
+        "text": "Figure 1.",
+        "correct": false
+      },
+      {
+        "text": "Figure 4.",
+        "correct": false
+      },
+      {
+        "text": "Figure 2.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "25. What is the resistance value of this resistor?",
+    "answers": [
+      {
+        "text": "2,3 k ohm",
+        "correct": false
+      },
+      {
+        "text": "1 M ohm",
+        "correct": true
+      },
+      {
+        "text": "230 k ohm",
+        "correct": false
+      },
+      {
+        "text": "68 k ohm",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "26. A new closed-circuit television (CCTV) camera is installed into the existing CCTV system. The monitor and DVR are not able to receive output from the new CCTV camera. How can this be rectified?",
+    "answers": [
+      {
+        "text": "Upgrade the digital video recorder (DVR)'s model type",
+        "correct": false
+      },
+      {
+        "text": "Replace cable of the CCTV camera to fibre-optics",
+        "correct": false
+      },
+      {
+        "text": "Adjust camera's output level (sync, white and colourburst) to existing system level",
+        "correct": true
+      },
+      {
+        "text": "Replace with a new camera",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "27. In terms of electronic hardware, what is the meaning of the abbreviation PCB?",
+    "answers": [
+      {
+        "text": "Printed Circuit Board",
+        "correct": true
+      },
+      {
+        "text": "Positive Current Biased",
+        "correct": false
+      },
+      {
+        "text": "Positive Colour Board",
+        "correct": false
+      },
+      {
+        "text": "Power Control Bridge",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "28. The two instruments necessary for generator synchronising are:",
+    "answers": [
+      {
+        "text": "Synchroscope and kVar-meter",
+        "correct": false
+      },
+      {
+        "text": "Amp-meter and volt-meter",
+        "correct": false
+      },
+      {
+        "text": "Voltmeter and synchroscope",
+        "correct": true
+      },
+      {
+        "text": "kW meter and frequency meter",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "29. Check-synchroniser equipment is often installed to:",
+    "answers": [
+      {
+        "text": "Ensure fair equal sharing between generators",
+        "correct": false
+      },
+      {
+        "text": "Prevent manual synchronising outside permitted limits",
+        "correct": true
+      },
+      {
+        "text": "Permit faster paralleling of generators",
+        "correct": false
+      },
+      {
+        "text": "Allow auto-synchronising to take place",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "30. On finding a person apparently unconscious in a High Voltage switch room, which of the following should be done?",
+    "answers": [
+      {
+        "text": "Trip all breakers and approach victim.",
+        "correct": false
+      },
+      {
+        "text": "Raise alarm, identify means of isolation and apply before approaching victim.",
+        "correct": true
+      },
+      {
+        "text": "Raise alarm then drag the victim clear so that they cannot reach live parts while receiving aid.",
+        "correct": false
+      },
+      {
+        "text": "Check if the victim is in contact with live parts and if not apply first aid.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "31. Which of the following letter combinations represents a flow indicating controller on a process and instrumentation diagram",
+    "answers": [
+      {
+        "text": "LIR",
+        "correct": false
+      },
+      {
+        "text": "FIC",
+        "correct": true
+      },
+      {
+        "text": "FLO",
+        "correct": false
+      },
+      {
+        "text": "FIR",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "32. What function is this operational amplifier circuit performing?",
+    "answers": [
+      {
+        "text": "Inverting amplifier",
+        "correct": true
+      },
+      {
+        "text": "Integrator",
+        "correct": false
+      },
+      {
+        "text": "Non-inverting amplifier",
+        "correct": false
+      },
+      {
+        "text": "Differentiator",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "33. A delta connected 3-phase A.C. induction motor is running normally at its rated current of 150 A when a single phasing fault (open circuit) occurs in one line. The likely outcome will be:",
+    "answers": [
+      {
+        "text": "Line currents: 75 A, 75 A, 75 A. Trip condition: no trip but speed falls.",
+        "correct": false
+      },
+      {
+        "text": "Line currents: 0 A, 150 A, 300 A. Trip condition: trip on overload.",
+        "correct": false
+      },
+      {
+        "text": "Line currents: 0 A, 180 A, 180 A. Trip condition: trip on overload.",
+        "correct": true
+      },
+      {
+        "text": "Line currents: 150 A,150 A,150 A. Trip condition: fuses blow on short circuit.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "34. High Voltage (HV) cables are smaller than low voltage cables for a given power rating. Why is this so?",
+    "answers": [
+      {
+        "text": "The HV cable uses Aluminium conductors and therefore requires them to be a smaller cross-sectional area.",
+        "correct": false
+      },
+      {
+        "text": "The HV cable uses higher quality copper conductors and therefore requires them to be a smaller cross-sectional area.",
+        "correct": false
+      },
+      {
+        "text": "The HV cable carries a smaller current and therefore requires less copper.",
+        "correct": true
+      },
+      {
+        "text": "The HV cable has a thinner wall of special insulation material.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "35. What will be the probable outcome, if the amplification is set too high on a temperature controller?",
+    "answers": [
+      {
+        "text": "The process will oscillate and get out of control",
+        "correct": true
+      },
+      {
+        "text": "The process response will be very slow",
+        "correct": false
+      },
+      {
+        "text": "The set-point will change",
+        "correct": false
+      },
+      {
+        "text": "Nothing",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "36. In installations of INTRINSICALLY SAFE equipment it is required that all cabling should be separated from non-intrinsically safe equipment, and (where colour coding is relied upon) to be of a special colour. What colour is that?",
+    "answers": [
+      {
+        "text": "Red",
+        "correct": false
+      },
+      {
+        "text": "Green/yellow",
+        "correct": false
+      },
+      {
+        "text": "Blue",
+        "correct": true
+      },
+      {
+        "text": "Orange",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "37. Use Kirchoff's voltage law and Ohm's law to calculate the voltage V2 across the resistance R2.",
+    "answers": [
+      {
+        "text": "4,5V",
+        "correct": true
+      },
+      {
+        "text": "0,75V",
+        "correct": false
+      },
+      {
+        "text": "2V",
+        "correct": false
+      },
+      {
+        "text": "6V",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "38. During regular inspection of alternator windings it is found that windings are always covered with a heavy oil film coming from the atmosphere surrounding the auxiliary engine. After cleaning with an approved solvent, what should be done?",
+    "answers": [
+      {
+        "text": "Improve material of intake air filters",
+        "correct": true
+      },
+      {
+        "text": "Take no additional action",
+        "correct": false
+      },
+      {
+        "text": "Reinsulate the windings after each cleaning",
+        "correct": false
+      },
+      {
+        "text": "Blank off intake air filters",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "39. In terms of instrumentation and measurement, what is an I/P Transducer?",
+    "answers": [
+      {
+        "text": "A transducer that converts a pressure to a proportional electric signal.",
+        "correct": false
+      },
+      {
+        "text": "A transducer that is inverting a pressure signal.",
+        "correct": false
+      },
+      {
+        "text": "A transducer that increases a pressure signal which is too low to give the desired effect.",
+        "correct": false
+      },
+      {
+        "text": "A transducer that converts a known electric current to a pressure proportional to the current.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "40. Which electronic component is this graphical symbol illustrating?",
+    "answers": [
+      {
+        "text": "Silicon controlled rectifier",
+        "correct": false
+      },
+      {
+        "text": "Zener diode",
+        "correct": true
+      },
+      {
+        "text": "Triac",
+        "correct": false
+      },
+      {
+        "text": "Transistor",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "41. This circuit consists of two capacitors, C(1) = 6 µF and C(2) = 12 µF, in series. Calculate the equivalent C(S) of the two capacitors.",
+    "answers": [
+      {
+        "text": "C(S) =18µF",
+        "correct": false
+      },
+      {
+        "text": "C(S)=1,5µF",
+        "correct": false
+      },
+      {
+        "text": "C(S) = 4 µF",
+        "correct": true
+      },
+      {
+        "text": "C(S) =2µF",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "42. With reference to Open Systems Interconnection (OSI) layer 1, the baseband medium type is indicated as \"100BASE-TX\". What does the term \"100BASE-TX\" mean?",
+    "answers": [
+      {
+        "text": "100Mbps over four pair of CAT3 cable",
+        "correct": false
+      },
+      {
+        "text": "100Mbps over two pair of CAT3 cable",
+        "correct": false
+      },
+      {
+        "text": "100Mbps over two pair of CAT5 cable",
+        "correct": true
+      },
+      {
+        "text": "100Mbps over four pair of CAT5 cable",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "43. Which of the following is not an impairment found in telecommunication transmission system which affects the end user?",
+    "answers": [
+      {
+        "text": "Phase distortion",
+        "correct": false
+      },
+      {
+        "text": "Radio distortion",
+        "correct": true
+      },
+      {
+        "text": "Noise",
+        "correct": false
+      },
+      {
+        "text": "Attenuation distortion",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "44. For ideal synchronising as the incomer circuit breaker contacts make, the phase angle difference between the incomer e.m.f. and the busbar voltage should be:",
+    "answers": [
+      {
+        "text": "0°",
+        "correct": true
+      },
+      {
+        "text": "30° behind",
+        "correct": false
+      },
+      {
+        "text": "30° ahead",
+        "correct": false
+      },
+      {
+        "text": "90° lag",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "45. Which Open Systems Interconnection (OSI) layer does Transmission Control Protocol (TCP) belong to?",
+    "answers": [
+      {
+        "text": "Network layer",
+        "correct": false
+      },
+      {
+        "text": "Data link",
+        "correct": false
+      },
+      {
+        "text": "Transport layer",
+        "correct": true
+      },
+      {
+        "text": "Physical layer",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "46. When a large motor load suddenly is disconnected from the switchboard and the generator is AVR controlled, what will the output voltage do?",
+    "answers": [
+      {
+        "text": "Initially rise, then reset to the set value.",
+        "correct": true
+      },
+      {
+        "text": "Remain approximately constant, due to governor action.",
+        "correct": false
+      },
+      {
+        "text": "Initially fall, then reset to the set value.",
+        "correct": false
+      },
+      {
+        "text": "Remain approximately constant, due to AVR action.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "47. It is possible to operate two similar generators in parallel at equal power (kW) but at different power factors. The generator with lower power factor will run:",
+    "answers": [
+      {
+        "text": "Slower due to increased current",
+        "correct": false
+      },
+      {
+        "text": "Cooler due to increased speed",
+        "correct": false
+      },
+      {
+        "text": "Hotter due to increased current",
+        "correct": true
+      },
+      {
+        "text": "Faster due to increased voltage",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "48. Personnel in a high voltage switchroom smell rotten eggs. What may this indicate?",
+    "answers": [
+      {
+        "text": "Problems with a gas (SF6) circuit breaker",
+        "correct": true
+      },
+      {
+        "text": "Arcing at badly coupled bus bars",
+        "correct": false
+      },
+      {
+        "text": "Problems with a vacuum circuit breaker",
+        "correct": false
+      },
+      {
+        "text": "Burning of insulation",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "49. During an azimuth antenna stabilization operation, the antenna was not able to pick up strong signals. What is the possible rectification?",
+    "answers": [
+      {
+        "text": "Check connection between antenna and gyroscope",
+        "correct": true
+      },
+      {
+        "text": "Check fuses of the control unit connecting to antenna",
+        "correct": false
+      },
+      {
+        "text": "Check for power supply to antenna",
+        "correct": false
+      },
+      {
+        "text": "Replace existing antenna with new one",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "50. Ship's generators must be synchronised before they can be connected to the same supply network. Prior to synchronising, the generator voltage and frequency are respectively adjusted by:",
+    "answers": [
+      {
+        "text": "Voltmeter and frequency meter",
+        "correct": false
+      },
+      {
+        "text": "Synchroscope and speed governor",
+        "correct": false
+      },
+      {
+        "text": "Speed governor and load power factor controller",
+        "correct": false
+      },
+      {
+        "text": "AVR and speed governor",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "51. What type of operation is conventional walkie talkie using?",
+    "answers": [
+      {
+        "text": "Full duplex",
+        "correct": false
+      },
+      {
+        "text": "Half-duplex",
+        "correct": true
+      },
+      {
+        "text": "Simplex",
+        "correct": false
+      },
+      {
+        "text": "Half-simplex",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "52. This block diagram illustrates an elementary control system. What is the common name for this type of system?",
+    "answers": [
+      {
+        "text": "Scmitt trigger",
+        "correct": false
+      },
+      {
+        "text": "Feed forward system",
+        "correct": false
+      },
+      {
+        "text": "Closed loop feed back system",
+        "correct": true
+      },
+      {
+        "text": "Open loop feed back system",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "53. Why is it important that a transmitter has been correctly installed at the correct location",
+    "answers": [
+      {
+        "text": "It must be easy to observe for troubleshooting",
+        "correct": false
+      },
+      {
+        "text": "The control system is depending on the best possible process signal",
+        "correct": true
+      },
+      {
+        "text": "Can be installed anywhere in the piping system I",
+        "correct": false
+      },
+      {
+        "text": "t is important to have easy access to the transmitter for maintenance",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "54. For two generators running in parallel, their share of additional load (kW) will be determined by the:",
+    "answers": [
+      {
+        "text": "Voltage droop setting on each AVR",
+        "correct": false
+      },
+      {
+        "text": "The power factor of the additional load",
+        "correct": false
+      },
+      {
+        "text": "The temperature difference between the generator rotors",
+        "correct": false
+      },
+      {
+        "text": "Governor droop settings on each prime mover",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "55. A ships 3 - phase a.c. electrical supply system has 440 V and 220 V sections. The effect of a single short circuit fault to earth on a 220 V line will cause which of the following earth lamp (under test mode) indications:",
+    "answers": [
+      {
+        "text": "In 440 V section: One lamp dim. In 220 V section: One lamp dim.",
+        "correct": false
+      },
+      {
+        "text": "In 440 V section: all lamps equally bright. In 220 V section: Two lamps bright one lamp dark.",
+        "correct": true
+      },
+      {
+        "text": "In 440 V section: All lamps equally bright. In 220 V section: One lamp dim.",
+        "correct": false
+      },
+      {
+        "text": "In 440 section: All lamps equally bright. In 220 section: All lamps dark.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "56. What is the purpose of the alternator reverse power trip?",
+    "answers": [
+      {
+        "text": "To prevent parallel operation if the excitation field voltage is reversed",
+        "correct": false
+      },
+      {
+        "text": "To give automatic disconnection of the circuit breaker when you are taking the alternator off the switchboard",
+        "correct": false
+      },
+      {
+        "text": "To prevent the alternator from \"motoring\" by being supplied power from other parallel alternator and thus being damaged",
+        "correct": true
+      },
+      {
+        "text": "To prevent the alternator from being paralleled if it is out of phase with the main switchboard",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "57. Which of the following options may be used as a brief summary of how to safely make high voltage equipment accessible?",
+    "answers": [
+      {
+        "text": "Disconnect, earth (ground), isolate",
+        "correct": false
+      },
+      {
+        "text": "Disconnect, isolate, earth (ground)",
+        "correct": true
+      },
+      {
+        "text": "Shed load, Earth (ground), disconnect, isolate",
+        "correct": false
+      },
+      {
+        "text": "Shed load, isolate. Earth (ground)",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "58. Which electronic component does this graphical symbol represent?",
+    "answers": [
+      {
+        "text": "Silicon controlled rectifier",
+        "correct": false
+      },
+      {
+        "text": "Diode",
+        "correct": false
+      },
+      {
+        "text": "Transistor",
+        "correct": true
+      },
+      {
+        "text": "Tunnel diode",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "59. When maintenance work is to be carried out on an electric motor driving a centrifugal water pump with automatic start, should you;",
+    "answers": [
+      {
+        "text": "Isolate the suction and delivery valves then inform the electrician that you are starting work.",
+        "correct": false
+      },
+      {
+        "text": "In conjunction with the senior watchkeeper and electrician, isolate valves, electrical supply, automatics and post 'Do not operate' signs before commencing work.",
+        "correct": true
+      },
+      {
+        "text": "Ascertain from the senior watchkeeper if it is okay to start work, isolate the valves then commence work.",
+        "correct": false
+      },
+      {
+        "text": "Set in local control, isolate the suction and delivery valves then commence work.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "60. Measuring instruments must be routinely calibrated. What is meant by instrument calibration?",
+    "answers": [
+      {
+        "text": "Adjusting size to fit process connection",
+        "correct": false
+      },
+      {
+        "text": "Comparing input and output values against a documented standard",
+        "correct": true
+      },
+      {
+        "text": "Turning gauge too an easy reading position",
+        "correct": false
+      },
+      {
+        "text": "Comparing two instruments of the same type",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "61. Before taking insulation resistance readings of generator windings the automatic voltage regulators should be isolated and all semiconductor short circuited or disconnected in order to:",
+    "answers": [
+      {
+        "text": "Protect insulation resistance tester and leads from being damaged",
+        "correct": false
+      },
+      {
+        "text": "Prevent operation of automatic voltage regulator during insulation testing",
+        "correct": false
+      },
+      {
+        "text": "Prevent charging of capacitive components within the automatic voltage regulator causing false regulation when generator restarts",
+        "correct": false
+      },
+      {
+        "text": "Prevent damage to sensitive electronic components from high voltage tester",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "62. This circuit consists of two resistances, R(1)= 12 ohm and R(2) = 6 ohm, connected in parallel. Calculate the equivalent value R(S) of the two resistances.",
+    "answers": [
+      {
+        "text": "R(S)= 4 ohm",
+        "correct": true
+      },
+      {
+        "text": "R(S)=2ohm",
+        "correct": false
+      },
+      {
+        "text": "R(S) =18 ohm",
+        "correct": false
+      },
+      {
+        "text": "R(S) =1,5 ohm",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "63. In measurement systems there is often a need to specify performance characteristics. One such characteristic may be referred to as 'dead band'. What is the definition of DEAD BAND?",
+    "answers": [
+      {
+        "text": "The largest difference in the output signal for the same change in the input signal.",
+        "correct": false
+      },
+      {
+        "text": "The change in the output signal produced by a certain change in the input signal.",
+        "correct": false
+      },
+      {
+        "text": "The change needed in the input signal to produce a change in the output signal.",
+        "correct": true
+      },
+      {
+        "text": "A missing electrical signal with no output.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "64. The figures show a graphical symbol for a particular electronic component and a typical operating characteristic for the same component. Which component do they belong to?",
+    "answers": [
+      {
+        "text": "Field effect transistor",
+        "correct": false
+      },
+      {
+        "text": "Zener diode",
+        "correct": false
+      },
+      {
+        "text": "Tunnel diode",
+        "correct": false
+      },
+      {
+        "text": "Triac",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "65. When paralleling two alternators they must have:",
+    "answers": [
+      {
+        "text": "Same phase rotation and voltage rating",
+        "correct": false
+      },
+      {
+        "text": "Same frequency, voltage and power factor",
+        "correct": false
+      },
+      {
+        "text": "Same voltage, phase sequence, phase angle and frequency",
+        "correct": true
+      },
+      {
+        "text": "Same number of phases, phase rotation and power rating",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "66. What type of operation is radio and television broadcasting using?",
+    "answers": [
+      {
+        "text": "Half-simplex",
+        "correct": false
+      },
+      {
+        "text": "Simplex",
+        "correct": true
+      },
+      {
+        "text": "Full duplex",
+        "correct": false
+      },
+      {
+        "text": "Half-duplex",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "67. Which of the following instruments is normally part of a control-loop?",
+    "answers": [
+      {
+        "text": "Gauge",
+        "correct": false
+      },
+      {
+        "text": "Transducer",
+        "correct": true
+      },
+      {
+        "text": "Indicator",
+        "correct": false
+      },
+      {
+        "text": "Plotter",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "68. The range of a transducer is 0-200 bar. The output signal is 4-20 mA. What is the span of the output signal?",
+    "answers": [
+      {
+        "text": "20 mA",
+        "correct": false
+      },
+      {
+        "text": "16 mA",
+        "correct": true
+      },
+      {
+        "text": "24 mA",
+        "correct": false
+      },
+      {
+        "text": "4 mA",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "69. A digital transmission line is suffering from attenuation and is badly distorted. What is the corrective measure to be taken?",
+    "answers": [
+      {
+        "text": "Install repeaters",
+        "correct": true
+      },
+      {
+        "text": "Replace the transmission line with a new one",
+        "correct": false
+      },
+      {
+        "text": "Install a new coder",
+        "correct": false
+      },
+      {
+        "text": "Replace the controller with a new one",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "70. Which of the following detectors would you choose for measuring the torque of a steel shaft?",
+    "answers": [
+      {
+        "text": "Ultrasonic gauge",
+        "correct": false
+      },
+      {
+        "text": "Synchro",
+        "correct": false
+      },
+      {
+        "text": "Pyrometer",
+        "correct": false
+      },
+      {
+        "text": "Strain gauge",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "71. This circuit consists of two resistances, R1 = 6 ohm and R2 = 12 ohm , connected in series. Calculate the equivalent resistance R(S) .",
+    "answers": [
+      {
+        "text": "R(S) =18 ohm",
+        "correct": true
+      },
+      {
+        "text": "R(S) = 4 ohm",
+        "correct": false
+      },
+      {
+        "text": "R(S) =1,5 ohm",
+        "correct": false
+      },
+      {
+        "text": "R(S) = 72 ohm",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "72. Which electronic component or system of components does this graphical symbol illustrate ?",
+    "answers": [
+      {
+        "text": "Battery charger",
+        "correct": false
+      },
+      {
+        "text": "Low pass filter",
+        "correct": false
+      },
+      {
+        "text": "Auto transformer",
+        "correct": false
+      },
+      {
+        "text": "Inverter",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "73. During a routine testing of the Public Address and General Alarm (PAGA) system, alarm could not be heard in some rooms in the accommodation area when alarm is activated. What is the possible rectification?",
+    "answers": [
+      {
+        "text": "Replace all loudspeakers in the affected rooms",
+        "correct": false
+      },
+      {
+        "text": "Replace all cable connections in the affected rooms",
+        "correct": false
+      },
+      {
+        "text": "Check the target loudspeaker loop is connected to the PAGA controller",
+        "correct": true
+      },
+      {
+        "text": "Check the Digital Signal Processing (DSP) volume setting is adequate",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "74. Alteration of the excitation voltage (or field current) of one alternator operating in parallel, will cause following change in that alternator's output:",
+    "answers": [
+      {
+        "text": "Frequency",
+        "correct": false
+      },
+      {
+        "text": "Active load (kW)",
+        "correct": false
+      },
+      {
+        "text": "None of the mentioned alternatives",
+        "correct": false
+      },
+      {
+        "text": "Reactive load (kVAR)",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "75. The speed of ship's generator is regulated by the governor. A 10% reduction in generator speed occurs due to a faulty governor. The likely consequence for all motors powered from this generator is to:",
+    "answers": [
+      {
+        "text": "Increase motor power by about 10%",
+        "correct": false
+      },
+      {
+        "text": "Reduce motor speed by about 10%",
+        "correct": true
+      },
+      {
+        "text": "Increase motor speed by about 10%",
+        "correct": false
+      },
+      {
+        "text": "Reduce motor volt drop by about 10%",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "76. An important quantity which is useful in circuit analysis is known as conductance G (Siemens). Which of the formulas A to D expresses the conductance for this circuit?",
+    "answers": [
+      {
+        "text": "G = 2 R",
+        "correct": false
+      },
+      {
+        "text": "G = R * V",
+        "correct": false
+      },
+      {
+        "text": "G = I / R",
+        "correct": false
+      },
+      {
+        "text": "G = 1 / R",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "77. Which of the following is not a method of conveying signals from a switching node to another?",
+    "answers": [
+      {
+        "text": "Telephone",
+        "correct": true
+      },
+      {
+        "text": "Co-axial cable",
+        "correct": false
+      },
+      {
+        "text": "Radio",
+        "correct": false
+      },
+      {
+        "text": "Fibre optic cable",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "78. What is the standard impedance for Community Antenna TV (CATV), coaxial cable and TV sets?",
+    "answers": [
+      {
+        "text": "50 ohm",
+        "correct": false
+      },
+      {
+        "text": "100 ohm",
+        "correct": false
+      },
+      {
+        "text": "75 ohm",
+        "correct": true
+      },
+      {
+        "text": "60 ohm",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "79. Under normal conditions, the electric power for services supplied from the emergency switchboard is supplied from:",
+    "answers": [
+      {
+        "text": "An emergency battery charger.",
+        "correct": false
+      },
+      {
+        "text": "Emergency batteries",
+        "correct": false
+      },
+      {
+        "text": "A compressed air driven generator.",
+        "correct": false
+      },
+      {
+        "text": "The main generating plant.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "80. A thermistor may be used to measure temperature. Which of the following descriptions most accurately describes this device?",
+    "answers": [
+      {
+        "text": "Capacitance probe",
+        "correct": false
+      },
+      {
+        "text": "Platinium wire resistor",
+        "correct": false
+      },
+      {
+        "text": "Junction of two dissimilar metals",
+        "correct": false
+      },
+      {
+        "text": "Temperature sensitive semi-conductor",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "81. This graphical symbol is a logic gate with truth table. Which gate?",
+    "answers": [
+      {
+        "text": "OR",
+        "correct": true
+      },
+      {
+        "text": "AND",
+        "correct": false
+      },
+      {
+        "text": "NAND",
+        "correct": false
+      },
+      {
+        "text": "NOR",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "82. Electrical generators must provide electrical power at a steady, regulated voltage. Automatic voltage regulators (AVR) are used to control the output voltage of alternators at varying load conditions. The AVR achieves this function by:",
+    "answers": [
+      {
+        "text": "Varying the excitation field strength by regulating excitation voltage/current",
+        "correct": true
+      },
+      {
+        "text": "All of the mentioned alternatives",
+        "correct": false
+      },
+      {
+        "text": "Supplying variable current to compounding and no load transformers in the alternator stator winding circuit",
+        "correct": false
+      },
+      {
+        "text": "Regulating the voltage signal to the engine governor to regulate the speed to the desired load condition",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "83. Which type of temperature sensors are shown on the picture?",
+    "answers": [
+      {
+        "text": "Thermocouple sensors",
+        "correct": false
+      },
+      {
+        "text": "Thermistor type PTC",
+        "correct": false
+      },
+      {
+        "text": "Resistance sensors",
+        "correct": true
+      },
+      {
+        "text": "Thermistors type NTC",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "84. What is the Emergency Position Indicating Radio Beacon (EPIRB) frequency used by the Global Maritime Distress and Safety System (GMDSS)?",
+    "answers": [
+      {
+        "text": "600 MHz",
+        "correct": false
+      },
+      {
+        "text": "406 MHz",
+        "correct": true
+      },
+      {
+        "text": "518 MHz",
+        "correct": false
+      },
+      {
+        "text": "256 MHz",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "85. A radar is showing targets in wrong places. The gyroscope is showing correct heading and radar is in relative bearing display mode. How can we rectify this?",
+    "answers": [
+      {
+        "text": "Disconnect the gyroscope",
+        "correct": false
+      },
+      {
+        "text": "Reboot the radar computer display",
+        "correct": false
+      },
+      {
+        "text": "Re-adjust/initialize the heading alignment of the radar",
+        "correct": true
+      },
+      {
+        "text": "Radar is spoilt and supplier needs to be contacted",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "86. A diode is used to convert AC to DC. What term is it is usually referred to as?",
+    "answers": [
+      {
+        "text": "Regulator",
+        "correct": false
+      },
+      {
+        "text": "Controller",
+        "correct": false
+      },
+      {
+        "text": "Rectifier",
+        "correct": true
+      },
+      {
+        "text": "Alternator",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "87. When manually paralleling two alternators the pointer of the synchroscope may slowly stop rotating and remain stopped in one position before the circuit breaker is closed. This would indicate:",
+    "answers": [
+      {
+        "text": "The incoming alternator is in phase with the switchboard, but the frequency is not the same",
+        "correct": false
+      },
+      {
+        "text": "The synchroscope is not functioning properly and should be checked",
+        "correct": false
+      },
+      {
+        "text": "The voltage of the incoming alternator is the same as that of the main switchboard",
+        "correct": false
+      },
+      {
+        "text": "The frequency of the incoming alternator is the same as that of the main switchboard",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "88. With reference to OSI or Open Systems Interconnection model, what are the software layers?",
+    "answers": [
+      {
+        "text": "Session, Transport, Presentation",
+        "correct": false
+      },
+      {
+        "text": "Session, Presentation, Application",
+        "correct": true
+      },
+      {
+        "text": "Session, Application, Network",
+        "correct": false
+      },
+      {
+        "text": "Session, Transport, Network",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "89. What is the working frequency of Navigational Telex (Navtex)?",
+    "answers": [
+      {
+        "text": "398 kHz",
+        "correct": false
+      },
+      {
+        "text": "518 kHz",
+        "correct": true
+      },
+      {
+        "text": "720 kHz",
+        "correct": false
+      },
+      {
+        "text": "600 kHz",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "90. What determines the power factor of an alternator when it is connected singularly to the switchboard?",
+    "answers": [
+      {
+        "text": "Number of pairs of pole coils in the excitation winding",
+        "correct": false
+      },
+      {
+        "text": "The load connected to the switchboard",
+        "correct": true
+      },
+      {
+        "text": "The generated voltage and AVR setting",
+        "correct": false
+      },
+      {
+        "text": "The excitation voltage",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "91. A 450 volt 3 phase brushless alternator will have the following combination of items mounted on the rotor:",
+    "answers": [
+      {
+        "text": "3 phase excitation winding/rectifier bank/main field winding",
+        "correct": true
+      },
+      {
+        "text": "Excitation field winding/main field winding",
+        "correct": false
+      },
+      {
+        "text": "1 phase excitation field winding/rectifier bank/main field winding",
+        "correct": false
+      },
+      {
+        "text": "3 phase excitation winding/ main field winding",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "92. The function of the fuses in a motor starter circuit is to provide:",
+    "answers": [
+      {
+        "text": "Overload protection.",
+        "correct": false
+      },
+      {
+        "text": "Over voltage protection.",
+        "correct": false
+      },
+      {
+        "text": "Short circuit protection.",
+        "correct": true
+      },
+      {
+        "text": "Under voltage protection.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "93. Generators must be synchronised before they can operate in parallel. During synchronising, the incoming generator should be running slightly \"fast\" compared to the bus bar frequency. This is to ensure that the:",
+    "answers": [
+      {
+        "text": "Most rapid synchronising action is achieved",
+        "correct": false
+      },
+      {
+        "text": "Incomers reverse power trip is tested",
+        "correct": false
+      },
+      {
+        "text": "Incoming machine picks up as a generator",
+        "correct": true
+      },
+      {
+        "text": "Incomer picks up as a motor",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "94. Salinometers are often used to monitor water supplies.The most common type of sensing device they use is:",
+    "answers": [
+      {
+        "text": "Inductor capsule",
+        "correct": false
+      },
+      {
+        "text": "Electrodes",
+        "correct": true
+      },
+      {
+        "text": "Capacitance probe",
+        "correct": false
+      },
+      {
+        "text": "Strain gauge",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "95. For digital television, what are the four (4) colour components that make up the colour video signal?",
+    "answers": [
+      {
+        "text": "Red, yellow, blue, luminance",
+        "correct": false
+      },
+      {
+        "text": "Red, green, blue, yellow",
+        "correct": false
+      },
+      {
+        "text": "Red, green, blue, luminance",
+        "correct": true
+      },
+      {
+        "text": "Red, yellow, blue, white",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "96. A ship has an electrical system rated at 690 Volts. Which voltage level is this?",
+    "answers": [
+      {
+        "text": "Low voltage.",
+        "correct": true
+      },
+      {
+        "text": "Intermediate voltage.",
+        "correct": false
+      },
+      {
+        "text": "Medium voltage.",
+        "correct": false
+      },
+      {
+        "text": "High voltage.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "97. The correct time to synchronise is usually taken to be when the synchroscope reaches the \"5 to 12\" position and is rotating slowly clockwise. This to allow for:",
+    "answers": [
+      {
+        "text": "Synchroscope error",
+        "correct": false
+      },
+      {
+        "text": "Generator phase difference error",
+        "correct": false
+      },
+      {
+        "text": "Synchroscope pointer time lag",
+        "correct": false
+      },
+      {
+        "text": "Circuit breaker operating time",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "98. Thermistors are temperature sensitive devices. A positive temperature coefficient thermistor will typically have",
+    "answers": [
+      {
+        "text": "Relatively linear characteristic",
+        "correct": false
+      },
+      {
+        "text": "Inaccurate measurement",
+        "correct": false
+      },
+      {
+        "text": "Relatively non linear characteristic",
+        "correct": true
+      },
+      {
+        "text": "Variable reliability",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "99. What does a generic data frame consist of with reference to data transmission?",
+    "answers": [
+      {
+        "text": "Flag pattern, address field, control field, text, block check",
+        "correct": true
+      },
+      {
+        "text": "Flag pattern, address field, text, block check",
+        "correct": false
+      },
+      {
+        "text": "Flag pattern, address field, control field, text, modulation check",
+        "correct": false
+      },
+      {
+        "text": "Flag pattern, address field, control field, text, block check, modulation check",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "100. Which electronic component does this graphical symbol represent?",
+    "answers": [
+      {
+        "text": "Capacitor, 3.3 uF",
+        "correct": false
+      },
+      {
+        "text": "Electric heater, 3.3 kilowatts",
+        "correct": false
+      },
+      {
+        "text": "Resistor, 3300 ohms",
+        "correct": true
+      },
+      {
+        "text": "Inductive reactor, 3.3 kH",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "101. Which component does this graphical symbol illustrate?",
+    "answers": [
+      {
+        "text": "Thermocouple",
+        "correct": false
+      },
+      {
+        "text": "Potentiometer",
+        "correct": false
+      },
+      {
+        "text": "Resistance temperature sensor",
+        "correct": true
+      },
+      {
+        "text": "Triac",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "102. With reference to OSI or Open Systems Interconnection model, what are the hardware layers?",
+    "answers": [
+      {
+        "text": "Physical, Data link, Network, Transport",
+        "correct": true
+      },
+      {
+        "text": "Physical, Network, Presentation, Application",
+        "correct": false
+      },
+      {
+        "text": "Physical, Data link, Application, Session",
+        "correct": false
+      },
+      {
+        "text": "Physical, Session, Presentation, Transport",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "103. For local-area network (LAN) system, which layer does Logic link control and Media access control belong to in the Open Systems Interconnection (OSI) model?",
+    "answers": [
+      {
+        "text": "Network",
+        "correct": false
+      },
+      {
+        "text": "Transport",
+        "correct": false
+      },
+      {
+        "text": "Session",
+        "correct": false
+      },
+      {
+        "text": "Data link",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "104. The earth lamps (under test mode) in a 3-phase system indicate as follows: Red= bright Yellow= dark Blue= dim . Which fault condition shown as red - yellow - blue is correct?",
+    "answers": [
+      {
+        "text": "light earth - hard earth - no fault",
+        "correct": false
+      },
+      {
+        "text": "hard earth - light earth - no fault",
+        "correct": false
+      },
+      {
+        "text": "no fault - hard earth - light earth",
+        "correct": true
+      },
+      {
+        "text": "light earth - no fault - hard earth",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "105. Which of the following voltage levels would be regarded as high voltage on board a ship?",
+    "answers": [
+      {
+        "text": "6.6kV",
+        "correct": true
+      },
+      {
+        "text": "690V",
+        "correct": false
+      },
+      {
+        "text": "440V",
+        "correct": false
+      },
+      {
+        "text": "220V",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "106. An earth fault exists on the blue line of a 100 A bilge pump circuit. A second earth fault occurs on the yellow line of a 10 A ventilation fan circuit. Both systems are supplied from the ship's 440V supply. The likely outcome is that:",
+    "answers": [
+      {
+        "text": "An open circuit occurs between earth fault and both motors trip out",
+        "correct": false
+      },
+      {
+        "text": "A short circuit occurs between earth faults and the ventilation fan fuse blows",
+        "correct": true
+      },
+      {
+        "text": "A short circuit occurs between earth fault and the bilge pump fuse blows",
+        "correct": false
+      },
+      {
+        "text": "Both motors trip out on overload",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "107. When measuring level of liquids with a differential pressure meter, the name of the sensing device is:",
+    "answers": [
+      {
+        "text": "Capacitance probe",
+        "correct": false
+      },
+      {
+        "text": "Float",
+        "correct": false
+      },
+      {
+        "text": "Positive displacement tube",
+        "correct": false
+      },
+      {
+        "text": "Pressure diaphragm",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "108. P = U x I x Root of 3) x cos (fi) What is the formula for I ?",
+    "answers": [
+      {
+        "text": "Formula 4",
+        "correct": false
+      },
+      {
+        "text": "Formula 3",
+        "correct": false
+      },
+      {
+        "text": "Formula 1",
+        "correct": true
+      },
+      {
+        "text": "Formula 2",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "109. Generators work on the principle of electromagnetic induction. The internal e.m.f. generated in the phase windings of an a.c. generator is controlled by:",
+    "answers": [
+      {
+        "text": "The diesel speed, magnetising force and load current.",
+        "correct": false
+      },
+      {
+        "text": "The internal volt drop and the residual magnetism.",
+        "correct": false
+      },
+      {
+        "text": "The diesel speed and excitation current.",
+        "correct": true
+      },
+      {
+        "text": "The internal volt drop and the load current.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "110. Two reference points for pressure exist, absolute zero and atmospheric pressure. What is the common name pressures measured relative to atmospheric pressure?",
+    "answers": [
+      {
+        "text": "Absolute pressure",
+        "correct": false
+      },
+      {
+        "text": "Gauge pressure",
+        "correct": true
+      },
+      {
+        "text": "Pressure drop",
+        "correct": false
+      },
+      {
+        "text": "Atmospheric pressure",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "111. The physical size of a resistor is an indicator of a particular specification. What is it?",
+    "answers": [
+      {
+        "text": "Tolerance",
+        "correct": false
+      },
+      {
+        "text": "Resistivity",
+        "correct": false
+      },
+      {
+        "text": "Total resistance",
+        "correct": false
+      },
+      {
+        "text": "Power dissipation capability",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "112. What type of component does this graphical symbol illustrate?",
+    "answers": [
+      {
+        "text": "Pressure switch",
+        "correct": false
+      },
+      {
+        "text": "Pressure relief valve",
+        "correct": false
+      },
+      {
+        "text": "Pressure-reducing regulator.",
+        "correct": true
+      },
+      {
+        "text": "Flow controller",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "113. Which of the following alternatives summarise the benefits of using high voltage on ships?",
+    "answers": [
+      {
+        "text": "More efficient transformers and electrical machines",
+        "correct": false
+      },
+      {
+        "text": "Smaller conductors, insulators and transformers",
+        "correct": false
+      },
+      {
+        "text": "Smaller cables and better power factors",
+        "correct": false
+      },
+      {
+        "text": "Smaller conductors, machines and switchgear",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "114. An echo sounder is showing irregular measurements. Which of the following is not a possible cause?",
+    "answers": [
+      {
+        "text": "Low sensitivity of transducer",
+        "correct": false
+      },
+      {
+        "text": "Marine growth on transducer",
+        "correct": false
+      },
+      {
+        "text": "Seabed is out of range",
+        "correct": true
+      },
+      {
+        "text": "Low reflectivity from the seabed",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "115. What type of signal output is derived from a NiCr/Ni thermocouple?",
+    "answers": [
+      {
+        "text": "mV.",
+        "correct": true
+      },
+      {
+        "text": "Ohm.",
+        "correct": false
+      },
+      {
+        "text": "Watt",
+        "correct": false
+      },
+      {
+        "text": "mA.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "116. Which electronic component or system of components is this graphical symbol illustrating?",
+    "answers": [
+      {
+        "text": "Cathode ray tube",
+        "correct": false
+      },
+      {
+        "text": "Flip-flop",
+        "correct": false
+      },
+      {
+        "text": "Electronic counter",
+        "correct": false
+      },
+      {
+        "text": "Operational amplifier",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "117. What is the main difference between a THERMOSTAT and a TEMPERATURE TRANSMITTER, if any?",
+    "answers": [
+      {
+        "text": "The temperature transmitter is a digital component while the thermostat is an analogue component.",
+        "correct": false
+      },
+      {
+        "text": "There is no difference.",
+        "correct": false
+      },
+      {
+        "text": "The thermostat gives out an analogue signal depending on the switch setting. The temperature transmitter gives out a binary signal depending on the temperature.",
+        "correct": false
+      },
+      {
+        "text": "The thermostat has one or more contacts (open or closed) depending on the temperature/setting. The temperature transmitter converts a temperature signal to an electric signal.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "118. Which of the following is not a form of multiple access to a communication satellite?",
+    "answers": [
+      {
+        "text": "Carrier-sense multiple access",
+        "correct": true
+      },
+      {
+        "text": "Frequency-division multiple access",
+        "correct": false
+      },
+      {
+        "text": "Demand-assigned multiple access",
+        "correct": false
+      },
+      {
+        "text": "Time-division multiple access",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "119. The internal e.m.f. generated in the phase windings of a lightly loaded a.c. generator is controlled by:",
+    "answers": [
+      {
+        "text": "The prime mover and load current.",
+        "correct": false
+      },
+      {
+        "text": "The internal volt drop and the load current.",
+        "correct": false
+      },
+      {
+        "text": "The internal volt drop and the residual magnetism.",
+        "correct": false
+      },
+      {
+        "text": "The prime mover speed and excitation current.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "120. Which of the following is not a basic local-area network (LAN) topology?",
+    "answers": [
+      {
+        "text": "Bus",
+        "correct": false
+      },
+      {
+        "text": "Star",
+        "correct": false
+      },
+      {
+        "text": "Ring",
+        "correct": false
+      },
+      {
+        "text": "Delta",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "121. When measuring flow of fluids with a fixed area flow meter, the name of the sensing device is:",
+    "answers": [
+      {
+        "text": "Turbine rotor",
+        "correct": false
+      },
+      {
+        "text": "Positive displacement rotor",
+        "correct": false
+      },
+      {
+        "text": "Float",
+        "correct": false
+      },
+      {
+        "text": "Orifice plate",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "122. In a 4-bit binary code, what step number does \"1011\" represent?",
+    "answers": [
+      {
+        "text": "11",
+        "correct": true
+      },
+      {
+        "text": "8",
+        "correct": false
+      },
+      {
+        "text": "10",
+        "correct": false
+      },
+      {
+        "text": "12",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "123. With reference to OSI or Open Systems Interconnection model, what is the 4th layer of data communication?",
+    "answers": [
+      {
+        "text": "Network layer",
+        "correct": false
+      },
+      {
+        "text": "Transport layer",
+        "correct": true
+      },
+      {
+        "text": "Session layer",
+        "correct": false
+      },
+      {
+        "text": "Link layer",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "124. Personnel in a high voltage switchroom smell ozone. Which of the following is the likely cause?",
+    "answers": [
+      {
+        "text": "Air circuit breaker problems",
+        "correct": false
+      },
+      {
+        "text": "Transformer overload",
+        "correct": false
+      },
+      {
+        "text": "Arcing at badly connected bus bars",
+        "correct": true
+      },
+      {
+        "text": "Vacuum circuit breaker problems",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "125. Which of the following is not noise found during data transmission?",
+    "answers": [
+      {
+        "text": "Crosstalk",
+        "correct": false
+      },
+      {
+        "text": "Attenuation",
+        "correct": true
+      },
+      {
+        "text": "Thermal",
+        "correct": false
+      },
+      {
+        "text": "Intermodulation",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "126. This is the graphical symbol and truth table for a logic gate. Which gate?",
+    "answers": [
+      {
+        "text": "AND",
+        "correct": false
+      },
+      {
+        "text": "NAND",
+        "correct": false
+      },
+      {
+        "text": "NOR",
+        "correct": true
+      },
+      {
+        "text": "OR",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "127. Resistance thermometers are often installed in a thermo-well. How will installation of the instrument affect measurement accuracy?",
+    "answers": [
+      {
+        "text": "Will only result in mechanical problems",
+        "correct": false
+      },
+      {
+        "text": "Will have a minor influence on the measurement",
+        "correct": false
+      },
+      {
+        "text": "Wrong installation will result in a major deviation in measurement",
+        "correct": true
+      },
+      {
+        "text": "No effects at all",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "128. Which of the following letter combinations represents a temperature controller on a process and instrumentation diagram?",
+    "answers": [
+      {
+        "text": "FIC",
+        "correct": false
+      },
+      {
+        "text": "TC",
+        "correct": true
+      },
+      {
+        "text": "TIC",
+        "correct": false
+      },
+      {
+        "text": "PIC",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "129. With reference to Open Systems Interconnection (OSI) layers, which layer(s) uses encapsulation?",
+    "answers": [
+      {
+        "text": "Layer 1 and 2 only",
+        "correct": false
+      },
+      {
+        "text": "All layers except layer 1 and 2",
+        "correct": false
+      },
+      {
+        "text": "All layers except layer 1",
+        "correct": true
+      },
+      {
+        "text": "Layer 1 only",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "130. It is common practice to connect a resistor over an alarm contact (see diagram) in many applications. Why is this connection used?",
+    "answers": [
+      {
+        "text": "To avoid sparks on the contacts when opening and closing.",
+        "correct": false
+      },
+      {
+        "text": "To stabilise power consumption.",
+        "correct": false
+      },
+      {
+        "text": "To monitor the cable/wires for break.",
+        "correct": true
+      },
+      {
+        "text": "Enable measuring the total resistance of the circuit.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "131. What is \"encapsulation\" data protocol?",
+    "answers": [
+      {
+        "text": "Putting data blocks into original forms",
+        "correct": false
+      },
+      {
+        "text": "Breaking up of data message into blocks of bounded size",
+        "correct": false
+      },
+      {
+        "text": "Adding of header and control information in front of the text and parity information behind the text",
+        "correct": true
+      },
+      {
+        "text": "Transmission of information in sequence",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "132. Due to failure of one of the carbon brushes the excitation voltage is lost on one alternator that is operating in parallel. What will happen to that alternator?",
+    "answers": [
+      {
+        "text": "Completely lose its share of the load causing the auxiliary engine to speed up",
+        "correct": true
+      },
+      {
+        "text": "Try to take all the load and so trip the main circuit breaker",
+        "correct": false
+      },
+      {
+        "text": "Continue to share the active load (kW) but have very high reactive load (kVAR)",
+        "correct": false
+      },
+      {
+        "text": "Overload due to reduced voltage output and increased current",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "133. PT-100 sensors are some times used with 3 or 4 wires. What is the reason for this?",
+    "answers": [
+      {
+        "text": "Because of power-consumption.",
+        "correct": false
+      },
+      {
+        "text": "Higher measuring accuracy.",
+        "correct": true
+      },
+      {
+        "text": "For fault indication.",
+        "correct": false
+      },
+      {
+        "text": "Higher mechanical strength of the cable.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "134. When unloading a generator, it is necessary to gradually decrease the load in order to avoid:",
+    "answers": [
+      {
+        "text": "Undue overspeeding/minimise stress and wear of the unit.",
+        "correct": true
+      },
+      {
+        "text": "Undue overload on the switchboard.",
+        "correct": false
+      },
+      {
+        "text": "Undue temperature rise.",
+        "correct": false
+      },
+      {
+        "text": "Undue overcurrent.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "135. With two alternators running in parallel, and one is to be disconnected. The first step is to:",
+    "answers": [
+      {
+        "text": "Make sure the load is evenly shared",
+        "correct": false
+      },
+      {
+        "text": "Remove the load from the alternator to be stopped",
+        "correct": true
+      },
+      {
+        "text": "Trip the main circuit breaker",
+        "correct": false
+      },
+      {
+        "text": "Increase the frequency on the switchboard",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "136. Which electronic component does this graphical symbol represent?",
+    "answers": [
+      {
+        "text": "Capacitor",
+        "correct": true
+      },
+      {
+        "text": "Resistance",
+        "correct": false
+      },
+      {
+        "text": "Temperature sensor",
+        "correct": false
+      },
+      {
+        "text": "Transformer",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "137. Which electronic component does this graphical symbol illustrate?",
+    "answers": [
+      {
+        "text": "Silicon controlled rectifier",
+        "correct": false
+      },
+      {
+        "text": "Diode Field Effect",
+        "correct": false
+      },
+      {
+        "text": "Transistor",
+        "correct": false
+      },
+      {
+        "text": "Bipolar transistor",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "138. When calibrating an instrument what is the most common first step in the procedure ?",
+    "answers": [
+      {
+        "text": "Adjustment of linearity",
+        "correct": false
+      },
+      {
+        "text": "Adjustment of range",
+        "correct": false
+      },
+      {
+        "text": "Adjustment of Zero-point",
+        "correct": true
+      },
+      {
+        "text": "Adjustment of span",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "139. With reference to data transmission, what does the term propagation time mean?",
+    "answers": [
+      {
+        "text": "Time taken for signal to travel from transmitter to receiver",
+        "correct": true
+      },
+      {
+        "text": "Time taken by transmitter to pick up signal from sensor",
+        "correct": false
+      },
+      {
+        "text": "Signal processing time",
+        "correct": false
+      },
+      {
+        "text": "Time delay before signal is transmitted",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "140. Some equipment may be marked with the following symbol: What does it mean?",
+    "answers": [
+      {
+        "text": "Explosion proof.",
+        "correct": false
+      },
+      {
+        "text": "Internally explosion proof.",
+        "correct": false
+      },
+      {
+        "text": "Intrinsically safe.",
+        "correct": true
+      },
+      {
+        "text": "Not safe in gas dangerous area.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "141. After successful synchronising an incoming machine the kW and kVar loading are respectively transferred by the following controls:",
+    "answers": [
+      {
+        "text": "Voltage regulator and synchroscope",
+        "correct": false
+      },
+      {
+        "text": "Speed governor and load power factor",
+        "correct": false
+      },
+      {
+        "text": "Current regulator and voltage regulator",
+        "correct": false
+      },
+      {
+        "text": "Speed governor and voltage regulator",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "142. Narrow and jagged black/white lines are found on a closed-circuit television (CCTV) monitor. What is the possible cause for this interference?",
+    "answers": [
+      {
+        "text": "Interference from Uninterruptible Power System (UPS)",
+        "correct": true
+      },
+      {
+        "text": "Cable is not properly terminated",
+        "correct": false
+      },
+      {
+        "text": "Interference from camera",
+        "correct": false
+      },
+      {
+        "text": "Camera lens is dirty",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "143. Which function is this operational amplifier performing?",
+    "answers": [
+      {
+        "text": "Differentiator",
+        "correct": false
+      },
+      {
+        "text": "Non-inverting amplifier",
+        "correct": true
+      },
+      {
+        "text": "Integrator",
+        "correct": false
+      },
+      {
+        "text": "Inverting amplifier",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "144. Which device does this graphical symbol illustrate?",
+    "answers": [
+      {
+        "text": "Local level controller with indicator",
+        "correct": false
+      },
+      {
+        "text": "Low carbon incinerator",
+        "correct": false
+      },
+      {
+        "text": "Remote level controller with indicator",
+        "correct": true
+      },
+      {
+        "text": "Level switch for centre-tank",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "145. Which of the following systems will include a D/P transmitter in the control-loop",
+    "answers": [
+      {
+        "text": "Pressure",
+        "correct": true
+      },
+      {
+        "text": "Smoke indication",
+        "correct": false
+      },
+      {
+        "text": "Temperature",
+        "correct": false
+      },
+      {
+        "text": "Oil mist",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "146. What is the following type of modulation called?",
+    "answers": [
+      {
+        "text": "Amplitude modulation",
+        "correct": true
+      },
+      {
+        "text": "Phase modulation",
+        "correct": false
+      },
+      {
+        "text": "Digital modulation",
+        "correct": false
+      },
+      {
+        "text": "Frequency modulation",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "147. The power requirements for the excitation winding/circuit for a 3-phase alternator operating at rated output power are supplied by:",
+    "answers": [
+      {
+        "text": "The main switchboard via a three phase rectifier",
+        "correct": false
+      },
+      {
+        "text": "The alternators output itself via the automatic voltage regulator and the prime mover",
+        "correct": true
+      },
+      {
+        "text": "Independent battery supply with the AVR",
+        "correct": false
+      },
+      {
+        "text": "Independent power supply and rectifier unit",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "148. Which electronic component does this graphical symbol represent?",
+    "answers": [
+      {
+        "text": "Auto transformer,10kVA",
+        "correct": false
+      },
+      {
+        "text": "Variable electrical heater, 10 kilo-watts",
+        "correct": false
+      },
+      {
+        "text": "Variable inductive reactor",
+        "correct": false
+      },
+      {
+        "text": "Potentiometer, 10 kilo-ohms",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "149. A 450 volt, 859 kW rated generator has not been in operation for several weeks. Prior to starting, insulation resistance readings are taken. The minimum acceptable insulation resistance reading on the main stator winding to allow you to proceed with running the generator is:",
+    "answers": [
+      {
+        "text": "1000 Ohms",
+        "correct": false
+      },
+      {
+        "text": "10 Ohms",
+        "correct": false
+      },
+      {
+        "text": "1 000 000 Ohms",
+        "correct": true
+      },
+      {
+        "text": "10 000 Ohms",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "150. This circuit is a logic gate with two input signals, A and B, and one output signal Q. Which type of logic function does the gate perform?",
+    "answers": [
+      {
+        "text": "AND gate",
+        "correct": false
+      },
+      {
+        "text": "NOR gate",
+        "correct": true
+      },
+      {
+        "text": "OR gate",
+        "correct": false
+      },
+      {
+        "text": "NAND gate",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "151. Which of the following is not used for error detection and error connection in data transmission?",
+    "answers": [
+      {
+        "text": "Forward-acting error correction",
+        "correct": false
+      },
+      {
+        "text": "Phase shift key check",
+        "correct": true
+      },
+      {
+        "text": "Error correction with feedback channel",
+        "correct": false
+      },
+      {
+        "text": "Cyclic redundancy check",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "152. When calibrating a pressure transducer we have to adjust both SPAN and ZERO. Please identify in the order of how these adjustments should be done.",
+    "answers": [
+      {
+        "text": "The order of adjustment is of no importance.",
+        "correct": false
+      },
+      {
+        "text": "First Span adjustment and then Zero adjustment. After that Span setting should be checked again.",
+        "correct": false
+      },
+      {
+        "text": "First Zero adjustment and the Span adjustment. Then Zero should be rechecked.",
+        "correct": true
+      },
+      {
+        "text": "First Span adjustment and then Zero adjustment. Then do not adjust anything.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "153. What type of radio carrier modulation is below showing?",
+    "answers": [
+      {
+        "text": "Phase modulation",
+        "correct": true
+      },
+      {
+        "text": "Digital modulation",
+        "correct": false
+      },
+      {
+        "text": "Frequency modulation",
+        "correct": false
+      },
+      {
+        "text": "Amplitude modulation",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "154. An echo sounder is found to have no echo sounding picture on display. Supply power is checked to be available. What could be cause of missing display?",
+    "answers": [
+      {
+        "text": "Transducer is contaminated with marine growth and requires cleaning",
+        "correct": false
+      },
+      {
+        "text": "Fault display",
+        "correct": false
+      },
+      {
+        "text": "Loose or damaged cable connection in transducer",
+        "correct": true
+      },
+      {
+        "text": "Radar is turned off",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "155. What is the difference between a PRESSURE SWITCH and a PRESSURE TRANSMITTER, if any?",
+    "answers": [
+      {
+        "text": "The pressure switch has contact(s) that will change between open and closed position.The pressure transmitter converts a pressure signal into an electric signal.",
+        "correct": true
+      },
+      {
+        "text": "The pressure switch gives out a digital signal dependent on pressure and temperature.The pressure transmitter converts a pressure signal to a digital signal.",
+        "correct": false
+      },
+      {
+        "text": "There is no difference.",
+        "correct": false
+      },
+      {
+        "text": "The pressure switch gives out an analogue signal depending on the switch setting.The pressure transmitter gives out a binary signal depending on the pressure.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "156. This circuit is widely used for rectification of AC into DC. Which of the diagrams is correct for the out- put voltage when the input voltage is sine-shaped as shown?",
+    "answers": [
+      {
+        "text": "Figure 4",
+        "correct": false
+      },
+      {
+        "text": "Figure 2",
+        "correct": false
+      },
+      {
+        "text": "Figure 1",
+        "correct": true
+      },
+      {
+        "text": "Figure 3",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "157. Which of the following is not a transmission medium?",
+    "answers": [
+      {
+        "text": "Fibre-optics",
+        "correct": false
+      },
+      {
+        "text": "Bandwidth",
+        "correct": true
+      },
+      {
+        "text": "Satellite",
+        "correct": false
+      },
+      {
+        "text": "Coaxial",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "158. In terms of instrumentation and measurement, what is a digital signal?",
+    "answers": [
+      {
+        "text": "A signal indicating Revolutions per minute (RPM)",
+        "correct": false
+      },
+      {
+        "text": "A signal with discrete levels such as 0 = \"low\" and 1 = \"High\"",
+        "correct": true
+      },
+      {
+        "text": "The reading of a multimeter when indicating voltage, current or resistance.",
+        "correct": false
+      },
+      {
+        "text": "A signal used by multimeters to measure resistance.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "159. When 3 phase alternators are operating in parallel, it is very important that the reactive load is evenly shared so that the total alternator loads are evenly shared. If the total alternator load is the vector sum of active and reactive loads, which side of the vector diagram (power triangle) shown represents the reactive load?",
+    "answers": [
+      {
+        "text": "(Y)",
+        "correct": true
+      },
+      {
+        "text": "Either (X) or (Y)",
+        "correct": false
+      },
+      {
+        "text": "None of the mentioned alternatives",
+        "correct": false
+      },
+      {
+        "text": "(X)",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "160. Great care must be taken when manually paralleling two or more alternators. At which point would you engage the main circuit breaker of the incoming alternator when paralleling two alternators?",
+    "answers": [
+      {
+        "text": "With the pointer of the synchronizer stopped at any position and both synchronizing lamps bright (on)",
+        "correct": false
+      },
+      {
+        "text": "With the pointer of the synchroscope stopped at 0 (12 O'clock) or synchronising lights bright (3 bright lamps)",
+        "correct": false
+      },
+      {
+        "text": "With the pointer of the synchroscope moving slowly clockwise and almost at 0ř (12 O'clock) or synchronizing lamps dark (off) (Three dark lamps)",
+        "correct": true
+      },
+      {
+        "text": "With the pointer of the synchroscope rotating fast and both synchronizing lamps flashing on and off",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "161. A motor is protected by a thermal overcurrent relay. After tripping on overload it will not be possible to reset the overcurrent relay immediately because the:",
+    "answers": [
+      {
+        "text": "Bimetallic strips need time to cool down",
+        "correct": true
+      },
+      {
+        "text": "Starter isolator automatically applies an interlock.",
+        "correct": false
+      },
+      {
+        "text": "Line contactor spring has to be reset",
+        "correct": false
+      },
+      {
+        "text": "Oil dash-pot has to be reset.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "162. Which of the following letter combinations represents a level indicating controller on a process and instrumentation diagram",
+    "answers": [
+      {
+        "text": "LIR",
+        "correct": false
+      },
+      {
+        "text": "CIL",
+        "correct": false
+      },
+      {
+        "text": "LIC",
+        "correct": true
+      },
+      {
+        "text": "CIR",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "163. Thermocouples are often used for measuring temperatures. Which of the following descriptions explains the principle of operation of a thermocouple?",
+    "answers": [
+      {
+        "text": "A junction between two dissimilar metals that generates a small voltage with temperature.",
+        "correct": true
+      },
+      {
+        "text": "A quartz crystal that changes its resonant frequency with temperature.",
+        "correct": false
+      },
+      {
+        "text": "A semi-conductor device that exhibits a negative coefficient of resistance with temperature.",
+        "correct": false
+      },
+      {
+        "text": "A resistance device that exhibits a positive coefficient of resistance with temperature.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "164. Measurement and transmission of electronic values may be in the form of digital or analogue signals. What is an analogue signal?",
+    "answers": [
+      {
+        "text": "A measure of electric current or voltage",
+        "correct": false
+      },
+      {
+        "text": "A stable electric signal.",
+        "correct": false
+      },
+      {
+        "text": "A continually variable electric signal.",
+        "correct": true
+      },
+      {
+        "text": "A measure of voltage using an oscilloscope.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "165. The circuit consists of two inductors, L(1) = 6 H and L(2) = 12H, connected in parallel. Calculate the equivalent L(S) of the two inductors.",
+    "answers": [
+      {
+        "text": "L(S) = 18 H",
+        "correct": false
+      },
+      {
+        "text": "L(S) = 1,5 H",
+        "correct": false
+      },
+      {
+        "text": "L(S) = 0,667H",
+        "correct": false
+      },
+      {
+        "text": "L(S) = 4 H",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "166. Some areas of ships require that any electrical equipment used must be intrinsically safe. What is meant by being intrinsically safe?",
+    "answers": [
+      {
+        "text": "Having water resistance properties",
+        "correct": false
+      },
+      {
+        "text": "Having a special wiring system",
+        "correct": false
+      },
+      {
+        "text": "Having type approval certification",
+        "correct": false
+      },
+      {
+        "text": "Inability to produce enough energy to ignite a gas (explode)",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "167. A Community Antenna TV (CATV) is suffering from carrier noise Measurements have been picked up for the carrier and noise signal to be 1V and 1mV respectively. What is the carrier to noise signal in dBmV?",
+    "answers": [
+      {
+        "text": "-3 dBmV",
+        "correct": false
+      },
+      {
+        "text": "3 dBmV",
+        "correct": false
+      },
+      {
+        "text": "60 dBmV",
+        "correct": true
+      },
+      {
+        "text": "-60 dBmV",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "168. In measurement systems, which of the listed sensors is suitable for physical displacement?",
+    "answers": [
+      {
+        "text": "Thermocouple",
+        "correct": false
+      },
+      {
+        "text": "Strain gauge",
+        "correct": true
+      },
+      {
+        "text": "Thermistor",
+        "correct": false
+      },
+      {
+        "text": "Pt 500",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "169. Which diagram is the symbol for a THYRISTOR?",
+    "answers": [
+      {
+        "text": "Figure 1.",
+        "correct": false
+      },
+      {
+        "text": "Figure 3.",
+        "correct": false
+      },
+      {
+        "text": "Figure 4.",
+        "correct": false
+      },
+      {
+        "text": "Figure 2.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "170. Which of the following is not a generic form of radio carrier modulation?",
+    "answers": [
+      {
+        "text": "Digital modulation",
+        "correct": true
+      },
+      {
+        "text": "Amplitude modulation",
+        "correct": false
+      },
+      {
+        "text": "Frequency modulation",
+        "correct": false
+      },
+      {
+        "text": "Phase modulation",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "171. The international overseas ship telephone frequency is at 10kHz. What is the equivalent wavelength?",
+    "answers": [
+      {
+        "text": "10 m",
+        "correct": false
+      },
+      {
+        "text": "30,000 m",
+        "correct": true
+      },
+      {
+        "text": "3000 m",
+        "correct": false
+      },
+      {
+        "text": "m",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "172. Which of the following is not a reason for using Very Small Aperture Terminal (VSAT) networks?",
+    "answers": [
+      {
+        "text": "High bandwidth efficiency",
+        "correct": true
+      },
+      {
+        "text": "Provide quality telecommunication connectivity where other means are not available",
+        "correct": false
+      },
+      {
+        "text": "Bypass telephone companies with a completely private network",
+        "correct": false
+      },
+      {
+        "text": "Economic alternative to establish a data network, especially if traffic is to/from a central facility",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "173. Which one of the following is not a step in the development of a pulse code modulation signal from an analogue signal?",
+    "answers": [
+      {
+        "text": "Quantization",
+        "correct": false
+      },
+      {
+        "text": "Modulation",
+        "correct": true
+      },
+      {
+        "text": "Coding",
+        "correct": false
+      },
+      {
+        "text": "Sampling",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "174. Consider generator 1 and 2 to be initially working in parallel. If prime-mover 2 suffers a total fuel loss what is the likely outcome?",
+    "answers": [
+      {
+        "text": "No.2 generator trips on reverse power",
+        "correct": true
+      },
+      {
+        "text": "No.1 machine overspeeds and trips out on overload",
+        "correct": false
+      },
+      {
+        "text": "No.1 machine overloads and trips out on overspeed",
+        "correct": false
+      },
+      {
+        "text": "Generator set 2 trips on reverse speed",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "175. A resistor has three red bands. If they all carry information about resistance value as opposed to tolerance, what is the indicated resistance?",
+    "answers": [
+      {
+        "text": "2200 ohm",
+        "correct": true
+      },
+      {
+        "text": "222 ohm",
+        "correct": false
+      },
+      {
+        "text": "220 ohm",
+        "correct": false
+      },
+      {
+        "text": "22 ohm",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "176. A second alternator has just been synchronized onto the main switchboard, and it is necessary to equally share the load between the \"running\" and incoming alternators. What should be done first?",
+    "answers": [
+      {
+        "text": "Adjust voltage rheostat for the incoming alternator on the front of the switchboard",
+        "correct": false
+      },
+      {
+        "text": "Trip the circuit breaker of the incoming alternator and check the voltage and speed adjustments before trying again",
+        "correct": false
+      },
+      {
+        "text": "Lower the governor speed controller of the incoming alternator and increase the governor speed controller of the alternator already on the switchboard",
+        "correct": false
+      },
+      {
+        "text": "Raise the governor speed controller of the incoming alternator and reduce the governor speed controller of the alternator already on the switchboard",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "177. Radio frequency signals can carry information from one place to another if they are modulated. There are several ways to modulate a carrier. Which modulating method is illustrated here?",
+    "answers": [
+      {
+        "text": "Frequency modulation (FM)",
+        "correct": false
+      },
+      {
+        "text": "Amplitude modulation (AM)",
+        "correct": true
+      },
+      {
+        "text": "Pulse-width modulation (PWM)",
+        "correct": false
+      },
+      {
+        "text": "Pulse-code modulation (PCM)",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "178. The figures show a graphical symbol for a particular electronic component and a typical operating characteristic for the same. Which component Which component does the graphical symbol and operating characteristic belong to?",
+    "answers": [
+      {
+        "text": "Tunnel diode",
+        "correct": false
+      },
+      {
+        "text": "Thyristor",
+        "correct": false
+      },
+      {
+        "text": "Zener diode",
+        "correct": false
+      },
+      {
+        "text": "Transistor",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "179. During routine checking of alarm functions of main and auxiliary equipment, some setpoints are cancelled due to a mistake. What is the appropriate routine to ensure correct setpoints are set?",
+    "answers": [
+      {
+        "text": "Set the set points at maximum/minimum level so that they will never be activated",
+        "correct": false
+      },
+      {
+        "text": "Ask your colleague if he remembers the correct setpoint",
+        "correct": false
+      },
+      {
+        "text": "Consult with the instruction manual for the equipment in question for correct values.",
+        "correct": true
+      },
+      {
+        "text": "Check from previous records for correct values",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "180. Which two methods are fibre-optic cable terminated by?",
+    "answers": [
+      {
+        "text": "Connectors and glanding",
+        "correct": false
+      },
+      {
+        "text": "Splicing and glanding",
+        "correct": false
+      },
+      {
+        "text": "Glanding and soldering",
+        "correct": false
+      },
+      {
+        "text": "Splicing and connectors",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "181. Bright dots are scattered at random extending from the centre to the edge of the Radar display. What could be the possible cause?",
+    "answers": [
+      {
+        "text": "Obstruction e.g. mast located in the path of the radar",
+        "correct": false
+      },
+      {
+        "text": "Interference from another radar of same frequency within the vicinity",
+        "correct": true
+      },
+      {
+        "text": "Dirt on the radar",
+        "correct": false
+      },
+      {
+        "text": "Indirect echo from a passing ship",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "182. What is the function of a gyroscope?",
+    "answers": [
+      {
+        "text": "It is used to indicate the position of rudders",
+        "correct": false
+      },
+      {
+        "text": "It is used to provide bearing and distance from ships and other targets",
+        "correct": false
+      },
+      {
+        "text": "It is used to indicate the degree to which two generators are synchronized to each other",
+        "correct": false
+      },
+      {
+        "text": "It is used for north-seeking and meridian settling",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "183. Test",
+    "answers": [
+      {
+        "text": "W",
+        "correct": false
+      },
+      {
+        "text": "E",
+        "correct": true
+      },
+      {
+        "text": "R",
+        "correct": false
+      },
+      {
+        "text": "T",
+        "correct": false
+      }
+    ]
+  }
+]
