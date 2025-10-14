@@ -1,176 +1,81 @@
-import logging
-import aiofiles
-import aiofiles.os
-import asyncio
-from logging import Handler, Formatter
-from typing import Optional
+# utils/logger.py
 import os
+import logging
+from logging.handlers import RotatingFileHandler
+from pathlib import Path
 
-class AsyncFileHandler(Handler):
-    """Асинхронний обробник для запису логів у файл"""
-    
-    def __init__(self, filename: str, encoding: str = 'utf-8', mode: str = 'a'):
-        super().__init__()
-        self.filename = filename
-        self.encoding = encoding
-        self.mode = mode
-        self._file = None
-        self._lock = asyncio.Lock()
-        
-    async def _ensure_file_open(self):
-        """Відкриває файл асинхронно"""
-        if self._file is None:
-            self._file = await aiofiles.open(self.filename, self.mode, encoding=self.encoding)
-            
-    async def emit(self, record):
-        """Асинхронний запис логу"""
-        try:
-            async with self._lock:
-                await self._ensure_file_open()
-                message = self.format(record)
-                await self._file.write(message + '\n')
-                await self._file.flush()
-        except Exception as e:
-            print(f"Logging error: {e}")
-            
-    async def close(self):
-        """Асинхронне закриття файлу"""
-        if self._file:
-            await self._file.close()
-            self._file = None
+# === Env ===
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
+LOG_FILE = os.getenv("LOG_FILE", "").strip()  # приклад: /data/logs/bot.log або пусто
 
-class AsyncStreamHandler(Handler):
-    """Асинхронний обробник для виводу в консоль"""
-    
-    def __init__(self):
-        super().__init__()
-        
-    async def emit(self, record):
-        """Асинхронний вивід в консоль"""
-        try:
-            message = self.format(record)
-            print(message)
-        except Exception as e:
-            print(f"Console logging error: {e}")
+# === Формат логів ===
+LOG_FORMAT = "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
-class AsyncLogger:
-    """Асинхронний логгер"""
-    
-    def __init__(self, name: str, level: int = logging.INFO):
-        self.logger = logging.getLogger(name)
-        self.logger.setLevel(level)
-        self.handlers = []
-        
-    def add_handler(self, handler):
-        """Додає обробник"""
-        self.handlers.append(handler)
-        self.logger.addHandler(handler)
-        
-    async def debug(self, message: str):
-        """Асинхронний debug запис"""
-        await self._log_async(logging.DEBUG, message)
-        
-    async def info(self, message: str):
-        """Асинхронний info запис"""
-        await self._log_async(logging.INFO, message)
-        
-    async def warning(self, message: str):
-        """Асинхронний warning запис"""
-        await self._log_async(logging.WARNING, message)
-        
-    async def error(self, message: str):
-        """Асинхронний error запис"""
-        await self._log_async(logging.ERROR, message)
-        
-    async def critical(self, message: str):
-        """Асинхронний critical запис"""
-        await self._log_async(logging.CRITICAL, message)
-        
-    async def _log_async(self, level: int, message: str):
-        """Асинхронний запис логу"""
-        # Використовуємо executor для синхронного виклику logging
-        loop = asyncio.get_event_loop()
-        await loop.run_in_executor(None, self.logger.log, level, message)
-        
-    async def close(self):
-        """Асинхронне закриття всіх обробників"""
-        for handler in self.handlers:
-            if hasattr(handler, 'close') and callable(handler.close):
-                await handler.close()
-
-async def setup_async_logger() -> AsyncLogger:
+def _ensure_parent_dir(path_str: str) -> None:
     """
-    Асинхронна ініціалізація логгера
+    Створює батьківську теку для файла, якщо вона відсутня.
     """
-    # Створюємо папку для логів асинхронно
-    await aiofiles.os.makedirs("logs", exist_ok=True)
-    
-    # Форматер
-    formatter = Formatter(
-        "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S"
+    if not path_str:
+        return
+    p = Path(path_str)
+    if p.parent and not p.parent.exists():
+        p.parent.mkdir(parents=True, exist_ok=True)
+
+def _build_console_handler(level: int) -> logging.Handler:
+    ch = logging.StreamHandler()
+    ch.setLevel(level)
+    ch.setFormatter(logging.Formatter(LOG_FORMAT, datefmt=DATE_FORMAT))
+    return ch
+
+def _build_file_handler(path_str: str, level: int) -> logging.Handler:
+    """
+    Створює обертовий file handler:
+      - maxBytes ~ 5 MB на файл
+      - backupCount 3 (разом ~20 MB)
+    """
+    _ensure_parent_dir(path_str)
+    fh = RotatingFileHandler(
+        path_str,
+        maxBytes=5 * 1024 * 1024,
+        backupCount=3,
+        encoding="utf-8",
     )
-    
-    # Створюємо асинхронний логгер
-    async_logger = AsyncLogger("test_bot")
-    
-    # Додаємо асинхронний файловий обробник
-    file_handler = AsyncFileHandler("logs/bot.log", encoding="utf-8")
-    file_handler.setFormatter(formatter)
-    file_handler.setLevel(logging.INFO)
-    async_logger.add_handler(file_handler)
-    
-    # Додаємо асинхронний консольний обробник
-    console_handler = AsyncStreamHandler()
-    console_handler.setFormatter(formatter)
-    console_handler.setLevel(logging.INFO)
-    async_logger.add_handler(console_handler)
-    
-    return async_logger
+    fh.setLevel(level)
+    fh.setFormatter(logging.Formatter(LOG_FORMAT, datefmt=DATE_FORMAT))
+    return fh
 
-# Синхронна версія для зворотної сумісності
-def setup_logger():
+def setup_logging() -> None:
     """
-    Синхронна ініціалізація логгера (для зворотної сумісності)
+    Налаштовує root-логгер один раз. Без дублювання хендлерів при повторному імпорті.
+    Виклич у bot.py якомога раніше (після load_dotenv()).
     """
-    os.makedirs("logs", exist_ok=True)
-    
-    logger = logging.getLogger("test_bot")
-    logger.setLevel(logging.INFO)
-    
-    # Очищаємо старі обробники
-    for handler in logger.handlers[:]:
-        logger.removeHandler(handler)
-    
-    # Додаємо файловий обробник
-    file_handler = logging.FileHandler("logs/bot.log", encoding="utf-8")
-    file_handler.setFormatter(logging.Formatter(
-        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    ))
-    logger.addHandler(file_handler)
-    
-    # Додаємо консольний обробник
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(logging.Formatter(
-        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    ))
-    logger.addHandler(console_handler)
-    
-    return logger
+    root = logging.getLogger()
+    if getattr(root, "_sayquiz_configured", False):
+        return
 
-# Глобальний асинхронний логгер
-_async_logger = None
+    level = getattr(logging, LOG_LEVEL, logging.INFO)
+    root.setLevel(level)
 
-async def get_async_logger() -> AsyncLogger:
-    """Отримуємо глобальний асинхронний логгер"""
-    global _async_logger
-    if _async_logger is None:
-        _async_logger = await setup_async_logger()
-    return _async_logger
+    # Прибираємо існуючі хендлери, якщо вони є
+    for h in list(root.handlers):
+        root.removeHandler(h)
 
-async def close_async_logger():
-    """Закриваємо асинхронний логгер"""
-    global _async_logger
-    if _async_logger:
-        await _async_logger.close()
-        _async_logger = None
+    if LOG_FILE:
+        handler = _build_file_handler(LOG_FILE, level)
+    else:
+        handler = _build_console_handler(level)
+
+    root.addHandler(handler)
+    root._sayquiz_configured = True  # маркер, щоб не конфігурувати двічі
+
+    # Опційно: зменшити балакучість сторонніх бібліотек
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.getLogger("apscheduler").setLevel(logging.WARNING)
+    logging.getLogger("telegram").setLevel(logging.INFO)
+
+# Стандартна точка входу при імпорті
+setup_logging()
+
+# Експортуємо зручний логгер для модулів
+logger = logging.getLogger("sayquiz")
