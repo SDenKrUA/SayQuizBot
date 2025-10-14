@@ -1,19 +1,19 @@
-# render.yaml — інфра для Render.com
-# Створює Background Worker і підключає персистентний диск /data.
+# render.yaml — інфра для Render.com (безкоштовний план)
+# Створює Background Worker і безкоштовний диск /data.
 
 services:
   - type: worker
     name: say-quiz-bot
     env: python
+    plan: free          # <<< ДОДАНО — вибір безкоштовного плану
     buildCommand: |
       pip install --upgrade pip
       pip install -r requirements.txt
     startCommand: python bot.py
 
-    # Значення секретів додаси у Render → Environment (UI)
     envVars:
       - key: BOT_TOKEN
-        value: "CHANGE_ME"         # тимчасове значення, щоб Render не лаявся
+        value: "CHANGE_ME"
       - key: LANG
         value: "uk"
       - key: ENABLE_MEDIA
@@ -26,10 +26,9 @@ services:
         value: "sqlite:////data/stats.db"
       - key: LOG_LEVEL
         value: "INFO"
-      # - key: LOG_FILE
-      #   value: "/data/logs/bot.log"
 
     disk:
       name: data
       mountPath: /data
-      sizeGB: 5
+      sizeGB: 1
+      plan: free        # <<< ДОДАНО — диск також безкоштовний
