@@ -1,0 +1,36 @@
+# render.yaml — інфра для Render.com
+# Це створить Background Worker і підключить персистентний диск /data.
+
+services:
+  - type: worker
+    name: say-quiz-bot
+    env: python
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: python bot.py
+
+    # Перемінні середовища: секрети НЕ класти в репо.
+    # Після деплою додаси їх через Dashboard → Environment.
+    envVars:
+      - key: BOT_TOKEN        # додаси вручну в Dashboard
+      - key: LANG
+        value: uk
+      - key: ENABLE_MEDIA
+        value: "1"
+      - key: OWNER_IDS
+        value: "5798500887"
+      - key: TESTS_ROOT
+        value: /data/tests      # збереження тестів на диску
+      - key: DB_URL
+        value: sqlite:////data/stats.db
+      - key: LOG_LEVEL
+        value: INFO
+      # - key: LOG_FILE        # опціонально, якщо хочеш файлові логи
+      #   value: /data/logs/bot.log
+
+    # Персистентний диск для тестів/медіа/БД
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 5
