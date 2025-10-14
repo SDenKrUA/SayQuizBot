@@ -1,11 +1,10 @@
-# render.yaml — інфра для Render.com (безкоштовний план)
-# Створює Background Worker і безкоштовний диск /data.
+# render.yaml — інфра для Render.com (Free plan)
 
 services:
   - type: worker
     name: say-quiz-bot
     env: python
-    plan: free          # <<< ДОДАНО — вибір безкоштовного плану
+    plan: free
     buildCommand: |
       pip install --upgrade pip
       pip install -r requirements.txt
@@ -26,9 +25,10 @@ services:
         value: "sqlite:////data/stats.db"
       - key: LOG_LEVEL
         value: "INFO"
+      # - key: LOG_FILE
+      #   value: "/data/logs/bot.log"
 
     disk:
       name: data
       mountPath: /data
       sizeGB: 1
-      plan: free        # <<< ДОДАНО — диск також безкоштовний
