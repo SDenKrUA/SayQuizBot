@@ -160,6 +160,8 @@ async def _start_addq_flow(update: Update, context: ContextTypes.DEFAULT_TYPE, *
         "step": "question",
         "data": {
             "answers": [],
+            "topics": [],        # нове поле
+            "explanation": "",   # нове поле
             "target_test": target_test,
             "target_test_base": _strip_custom_suffix(target_test),
             "target_dir": target_dir or TESTS_DIR,
@@ -237,8 +239,25 @@ async def addq_req_cancel_cb(update: Update, context: ContextTypes.DEFAULT_TYPE)
     await query.message.reply_text("❎ Скасовано. Ви можете повернутися до тесту.")
 
 # ====== Основний майстер кроків ======
+def _parse_topics_line(text: str) -> list[str]:
+    """
+    Парсить рядок тем, розділених комами/крапкою з комою/слешем.
+    Порожні та крапки відкидаються.
+    """
+    raw = text.strip()
+    if not raw or raw in {"-", "—", "_", "без тем", "без темы", "no", "none", "skip"}:
+        return []
+    # розділювачі: кома/крапка з комою/слеш/вертикальна риска
+    parts = _re.split(r"[;,/|]", raw)
+    out = []
+    for p in parts:
+        v = p.strip()
+        if v and v != ".":
+            out.append(v)
+    return out
+
 async def handle_add_question_step(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Крок сценарію додавання питання (текст/варіанти/медіа)"""
+    """Крок сценарію додавання питання (текст/варіанти/теми/пояснення/медіа)"""
     # ⛔️ ГАРД: якщо активний флоу «Додати окремий файл», не перехоплюємо ні текст, ні медіа
     vip_single = context.user_data.get("vip_single") or {}
     if vip_single.get("await_index") or vip_single.get("await_file"):
@@ -368,21 +387,53 @@ async def handle_add_question_step(update: Update, context: ContextTypes.DEFAULT
         idx = int(text) - 1
         if idx < len(data["answers"]):
             data["answers"][idx]["correct"] = True
-            flow["step"] = "media"
-            kb = InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton("Без файлу", callback_data="addq_skip")],
-                    [InlineKeyboardButton("❎ Скасувати", callback_data="addq_cancel")],
-                ]
-            )
+            # 🔹 НОВЕ: після правильного — питаємо теми
+            flow["step"] = "topics"
             await update.message.reply_text(
-                "📎 Надішліть **фото/MP3/MP4/PDF/DOC/DOCX/XLSX** або натисніть «Без файлу», щоб завершити.",
-                reply_markup=kb
+                "🏷 Додайте теми (через кому), або напишіть «-» щоб пропустити.\n"
+                "Напр.: `насоси, механіка, змащення`",
+                reply_markup=_addq_cancel_kb()
             )
             print(f"[ADD_Q] user={user_id} marked correct={text}")
         return
 
-    # === КРОК 7: МЕДІА (фото/аудіо/відео/документ) або пропуск ===
+    # === КРОК 7: TOPICS ===
+    if step == "topics":
+        topics = _parse_topics_line(text or "")
+        data["topics"] = topics
+        flow["step"] = "explanation"
+        await update.message.reply_text(
+            "📝 Введіть пояснення до питання (або «-» щоб пропустити).",
+            reply_markup=_addq_cancel_kb()
+        )
+        print(f"[ADD_Q] user={user_id} topics={topics}")
+        return
+
+    # === КРОК 8: EXPLANATION ===
+    if step == "explanation":
+        expl = (text or "").strip() if text else ""
+        if expl in {"-", "—", "_", "без пояснення", "без объяснения", "no", "none", "skip"}:
+            expl = ""
+        if len(expl) > MAX_TEXT_LEN:
+            await update.message.reply_text(f"❌ Пояснення має бути до {MAX_TEXT_LEN} символів.",
+                                            reply_markup=_addq_cancel_kb())
+            return
+        data["explanation"] = expl
+        flow["step"] = "media"
+        kb = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("Без файлу", callback_data="addq_skip")],
+                [InlineKeyboardButton("❎ Скасувати", callback_data="addq_cancel")],
+            ]
+        )
+        await update.message.reply_text(
+            "📎 Надішліть **фото/MP3/MP4/PDF/DOC/DOCX/XLSX** або натисніть «Без файлу», щоб завершити.",
+            reply_markup=kb
+        )
+        print(f"[ADD_Q] user={user_id} explanation_set len={len(expl)}")
+        return
+
+    # === КРОК 9: МЕДІА (фото/аудіо/відео/документ) або пропуск ===
     if step == "media":
         target_dir = data.get("target_dir") or TESTS_DIR
         target_is_custom = _is_custom_test(data.get("target_test"))
@@ -589,13 +640,29 @@ async def _finalize_and_save_question(data: dict, context: ContextTypes.DEFAULT_
     target_dir = data.get("target_dir") or TESTS_DIR
     base_name = data.get("target_test_base") or data.get("target_test") or "Custom"
 
+    # нові поля
+    topics_list = data.get("topics") or []
+    if not isinstance(topics_list, list):
+        topics_list = []
+    # фільтр пустих
+    topics_list = [str(x).strip() for x in topics_list if str(x).strip()]
+
+    explanation = str(data.get("explanation", "") or "")
+    if len(explanation) > MAX_TEXT_LEN:
+        explanation = explanation[:MAX_TEXT_LEN]
+
     sanitized_answers = [
         {"text": str(a.get("text", "")), "correct": bool(a.get("correct", False))}
         for a in answers_list
     ]
 
     # ⚠️ ВАЖЛИВО: НЕ додаємо у JSON посилань на медіа (за домовленістю)
-    question_obj = {"question": question_text, "answers": sanitized_answers}
+    question_obj = {
+        "question": question_text,
+        "answers": sanitized_answers,
+        "topics": topics_list,
+        "explanation": explanation
+    }
 
     # КУДИ ПИШЕМО:
     json_path = data.get("json_save_path")
