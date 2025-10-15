@@ -1,3 +1,4 @@
+
 import os
 import re
 from dotenv import load_dotenv
@@ -181,23 +182,8 @@ def main():
     # =======================
     if g("vip_edit_add_single_file_start"):
         app.add_handler(CallbackQueryHandler(g("vip_edit_add_single_file_start"), pattern=r"^vip_edit_addfile\|\d+$"), group=0)
-    if g("vip_handle_single_index_text"):
-        app.add_handler(
-            MessageHandler(
-                (filters.TEXT & ~filters.COMMAND) & ~filters.Regex(r"^➕ Додати питання$"),
-                g("vip_handle_single_index_text")
-            ),
-            group=0
-        )
-    if g("vip_handle_single_media_file"):
-        app.add_handler(
-            MessageHandler(
-                filters.Document.ALL | filters.PHOTO | filters.VIDEO | filters.AUDIO,
-                g("vip_handle_single_media_file")
-            ),
-            group=0
-        )
 
+    # --- Майстер додавання питання (ПЕРЕД VIP медіа/цифрами) ---
     app.add_handler(MessageHandler(filters.Regex(r"^➕ Додати питання$"), handle_add_question), group=0)
     app.add_handler(
         MessageHandler(
@@ -215,6 +201,27 @@ def main():
     app.add_handler(CallbackQueryHandler(addq_req_send_cb, pattern=r"^addq_req_send$"), group=0)
     app.add_handler(CallbackQueryHandler(addq_req_cancel_cb, pattern=r"^addq_req_cancel$"), group=0)
     app.add_handler(CallbackQueryHandler(addq_cancel_cb, pattern=r"^addq_cancel$"), group=0)
+
+    # --- Тепер VIP обробники, що можуть конфліктувати з майстром ---
+    if g("vip_handle_single_index_text"):
+        app.add_handler(
+            MessageHandler(
+                # Звужено: лише «чисті» числа (номер питання)
+                filters.TEXT & ~filters.COMMAND & filters.Regex(r"^\d+$"),
+                g("vip_handle_single_index_text")
+            ),
+            group=0
+        )
+
+    if g("vip_handle_single_media_file"):
+        # Перенесено НИЖЧЕ за майстра додавання питання
+        app.add_handler(
+            MessageHandler(
+                filters.Document.ALL | filters.PHOTO | filters.VIDEO | filters.AUDIO,
+                g("vip_handle_single_media_file")
+            ),
+            group=0
+        )
 
     if g("vip_trusted_handle_username_text"):
         app.add_handler(MessageHandler(filters.Regex(USERNAME_REGEX), g("vip_trusted_handle_username_text")), group=0)
@@ -274,7 +281,7 @@ def main():
     if g("vip_choose_folder"):
         app.add_handler(CallbackQueryHandler(g("vip_choose_folder"), pattern=r"^vip_choose_folder$"), group=1)
     if g("vip_nav_open"):
-        app.add_handler(CallbackQueryHandler(g("vip_open\|"), pattern=r"^vip_open\|"), group=1)
+        app.add_handler(CallbackQueryHandler(g("vip_nav_open"), pattern=r"^vip_open\|"), group=1)
     if g("vip_nav_up"):
         app.add_handler(CallbackQueryHandler(g("vip_up"), pattern=r"^vip_up$"), group=1)
     if g("vip_choose_here"):
@@ -325,9 +332,9 @@ def main():
     if g("vip_trusted_requests_decline_one"):
         app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_decline_one"), pattern=r"^vip_tr_req_decline\|\d+\|\d+$"), group=1)
     if g("vip_trusted_requests_accept_all"):
-        app.add_handler(CallbackQueryHandler(g("vip_tr_req_accept_all\|\d+$"), pattern=r"^vip_tr_req_accept_all\|\d+$"), group=1)
+        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_accept_all"), pattern=r"^vip_tr_req_accept_all\|\d+$"), group=1)
     if g("vip_trusted_requests_decline_all"):
-        app.add_handler(CallbackQueryHandler(g("vip_tr_req_decline_all\|\d+$"), pattern=r"^vip_tr_req_decline_all\|\d+$"), group=1)
+        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_decline_all"), pattern=r"^vip_tr_req_decline_all\|\d+$"), group=1)
 
     app.add_handler(MessageHandler(filters.Regex(r"^(📥 Завантажити весь тест)$"), handle_download_test), group=1)
     app.add_handler(MessageHandler(filters.Regex(MAIN_MENU_REGEX), handle_main_menu), group=1)

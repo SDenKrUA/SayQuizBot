@@ -40,6 +40,18 @@ _IMG_EXT_ANIM = {".gif"}
 _AUDIO_EXTS    = {".mp3", ".wav", ".ogg", ".m4a", ".aac", ".flac"}
 _VIDEO_INLINE  = {".mp4"}
 
+# ===== ГАРД: активний майстер додавання питання? =====
+def _is_addq_active(context: ContextTypes.DEFAULT_TYPE) -> bool:
+    try:
+        if context.user_data.get("add_question_active"):
+            return True
+        flow = context.user_data.get("add_question")
+        if isinstance(flow, dict) and flow.get("step"):
+            return True
+    except Exception:
+        pass
+    return False
+
 def _get_chat_id(src: Any) -> int:
     if isinstance(src, Update) and src.effective_chat:
         return src.effective_chat.id
@@ -416,6 +428,11 @@ def _match_topic_filter(q: dict, topic: str) -> bool:
     return any(isinstance(tp, str) and tp.strip().lower() == topic.strip().lower() for tp in tps)
 
 async def handle_test_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    # ⛔ Не втручаємось під час майстра додавання питання
+    if _is_addq_active(context):
+        logger.info("[TEST] Ignored test_settings during add_question flow")
+        return
+
     choice = (update.message.text or "").strip()
     total_questions = context.user_data.get("total_questions", 0)
     if choice == "🔙 Назад":
@@ -473,11 +490,21 @@ async def handle_test_settings(update: Update, context: ContextTypes.DEFAULT_TYP
     await _show_question(update, context, order[0])
 
 async def handle_custom_test_count(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    # ⛔ Не чіпаємо числа під час майстра додавання питання
+    if _is_addq_active(context):
+        logger.info("[TEST] Ignored custom_count during add_question flow")
+        return
+    # Обробляємо лише, якщо дійсно очікуємо число для 'власної кількості'
+    if not context.user_data.get("awaiting_custom_count"):
+        logger.info("[TEST] Ignored number because awaiting_custom_count is False")
+        return
+
     text = (update.message.text or "").strip()
     try:
         n = int(text)
     except ValueError:
         await update.message.reply_text("Введіть число — кількість питань.", reply_markup=main_menu())
+        context.user_data.pop("awaiting_custom_count", None)
         return
 
     total_questions = context.user_data.get("total_questions", 0)
