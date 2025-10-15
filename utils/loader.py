@@ -323,3 +323,50 @@ def build_listing_for_path(tree: dict, path: List[str]) -> Tuple[List[str], List
     subfolders = sorted(list(node["subdirs"].keys()))
     tests = list(node["tests"])
     return subfolders, tests, node["dir"]
+
+
+# ====== ДОДАНО: збір усіх topics по каталогу ======
+def collect_all_topics_for_all_tests(root_dir: str = TESTS_ROOT) -> List[str]:
+    """
+    Пройдеться по всіх *.json тестах (окрім службових) і збере унікальні topics.
+    Повертає відсортований список (case-insensitive).
+    """
+    topics_set = set()
+
+    for dirpath, dirnames, filenames in os.walk(root_dir):
+        # пропускаємо приховані теки
+        dirnames[:] = [d for d in dirnames if not _is_hidden_name(d)]
+
+        for fn in filenames:
+            if _is_hidden_name(fn):
+                continue
+            if not fn.lower().endswith(".json"):
+                continue
+            if _is_ignored_json(fn):
+                continue
+
+            path = os.path.join(dirpath, fn)
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+            except Exception:
+                continue
+
+            items = []
+            if isinstance(data, list):
+                items = data
+            elif isinstance(data, dict) and isinstance(data.get("items"), list):
+                items = data["items"]
+
+            for q in items:
+                if not isinstance(q, dict):
+                    continue
+                tps = q.get("topics")
+                if isinstance(tps, list):
+                    for tp in tps:
+                        if isinstance(tp, str):
+                            tp_clean = tp.strip()
+                            if tp_clean:
+                                topics_set.add(tp_clean)
+
+    return sorted(topics_set, key=str.lower)

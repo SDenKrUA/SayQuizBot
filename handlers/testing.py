@@ -27,25 +27,18 @@ from utils.formatting import format_question_text
 from handlers.statistics_db import save_user_result_db
 from utils.i18n import t
 
-# для браузера папок (на випадок «Назад» у нього)
 from utils.keyboards import browse_menu
 from utils.loader import discover_tests_hierarchy, build_listing_for_path
 
-# для «Мій кабінет»
 from handlers.office import office_buttons_handler
-
-# ✅ NEW: робота з помилками в БД
 from handlers.statistics_db import add_wrong_answer
 
 logger = logging.getLogger("test_bot.testing")
 
-# ========= Допоміжні =========
-
-# Які розширення відправляємо інлайном і як саме
-_IMG_EXT_PHOTO = {".jpg", ".jpeg", ".png", ".webp"}  # фото
-_IMG_EXT_ANIM = {".gif"}                              # анімація
-_AUDIO_EXTS    = {".mp3", ".wav", ".ogg", ".m4a", ".aac", ".flac"}  # аудіо (inline)
-_VIDEO_INLINE  = {".mp4"}                             # лише mp4 інлайном
+_IMG_EXT_PHOTO = {".jpg", ".jpeg", ".png", ".webp"}
+_IMG_EXT_ANIM = {".gif"}
+_AUDIO_EXTS    = {".mp3", ".wav", ".ogg", ".m4a", ".aac", ".flac"}
+_VIDEO_INLINE  = {".mp4"}
 
 def _get_chat_id(src: Any) -> int:
     if isinstance(src, Update) and src.effective_chat:
@@ -84,8 +77,6 @@ def _detect_media(q: dict, base_dir: Optional[str]) -> Tuple[str, Optional[str]]
         return mtype, os.path.join(base_dir, path)
     return mtype, path
 
-# ---------- Плейсхолдер (PNG 1x1) ----------
-
 def _placeholder_png_bytes() -> bytes:
     b64 = (
         b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAA'
@@ -98,8 +89,6 @@ def _bio_with_name(data: bytes, filename: str) -> io.BytesIO:
     bio.name = filename
     return bio
 
-# ---------- Побудова підписів ----------
-
 def _compose_caption_testing(
     q: dict,
     step_idx: int,
@@ -110,7 +99,7 @@ def _compose_caption_testing(
     bar = get_progress_bar(step_idx + 1, total_in_session)
     progress = f"{step_idx + 1}/{total_in_session}"
     body = format_question_text(
-        q, highlight=highlight, hide_correct_on_wrong=hide_correct_on_wrong
+        q, highlight=highlight, hide_correct_on_wrong=hide_correct_on_wrong, mode="testing"
     )
     return f"{bar}\n{progress}\n\n{body}"
 
@@ -122,7 +111,7 @@ def _compose_caption_learning(
 ) -> str:
     bar = get_progress_bar(step_idx + 1, total_in_session)
     body = format_question_text(
-        q, highlight=highlight, hide_correct_on_wrong=False
+        q, highlight=highlight, hide_correct_on_wrong=False, mode="learning"
     )
     return f"{bar}\n\n{body}"
 
@@ -132,15 +121,6 @@ def _open_media_bio(path: str, filename: str) -> io.BytesIO:
     return _bio_with_name(data, filename)
 
 def _decide_inline_kind_and_filename(media_type: str, media_path: str) -> Tuple[str, str]:
-    """
-    Повертає ('photo'|'animation'|'video'|'audio'|'document', filename)
-    згідно з вимогами:
-      - фото: .jpg .jpeg .png .webp → photo
-      - gif → animation
-      - відео: лише .mp4 → video, інші → document
-      - аудіо: усі перераховані → audio
-      - document → document
-    """
     base = os.path.basename(media_path)
     stem, ext = os.path.splitext(base)
     ext_low = (ext or "").lower()
@@ -161,7 +141,6 @@ def _decide_inline_kind_and_filename(media_type: str, media_path: str) -> Tuple[
         use_ext = ext_low if ext_low in _AUDIO_EXTS else ".mp3"
         return "audio", f"{stem or 'audio'}{use_ext}"
 
-    # документ
     return "document", f"{stem or 'file'}{ext_low or '.bin'}"
 
 def _build_input_media(media_type: str, media_path: str, caption: str):
@@ -295,8 +274,6 @@ def _save_answer_and_score(context: ContextTypes.DEFAULT_TYPE, q_index: int, cho
         context.user_data["current_streak"] = 0
     return is_ok, correct
 
-# ---------- Формування розбору помилок ----------
-
 def _letter(idx: Optional[int]) -> str:
     return "ABCD"[idx] if isinstance(idx, int) and 0 <= idx < 4 else "?"
 
@@ -366,8 +343,6 @@ def _build_wrong_details_text(questions: List[dict], wrong_pairs: List[Tuple[int
     flush()
     return chunks
 
-# ---------- Показ результатів (без автоспаму помилками) ----------
-
 async def show_results(
     chat_id: int,
     context: ContextTypes.DEFAULT_TYPE,
@@ -375,11 +350,6 @@ async def show_results(
     user_id: Optional[int] = None,
     username: Optional[str] = None,
 ) -> None:
-    """
-    ❗ ОНОВЛЕНО:
-    - Більше НЕ надсилаємо автоматично великий розбір помилок.
-    - Користувач бачить результат + кнопки. Детальний розбір — за кнопкою «📊 Детальна статистика».
-    """
     test_name = context.user_data.get("current_test", "Невідомий тест")
     order = context.user_data.get("order", []) or []
     total = len(order)
@@ -415,8 +385,6 @@ async def show_results(
     except Exception as e:
         logger.warning("[TESTING] result send failed: %s", e)
 
-    # ❌ Вимкнено автоспам з детальними помилками — див. detailed_stats_handler()
-
     context.user_data["last_result"] = {
         "test_name": test_name,
         "score": score,
@@ -439,11 +407,18 @@ async def _finish_test_and_save(source, context: ContextTypes.DEFAULT_TYPE) -> N
 
 # ========= Публічні хендлери (ТЕСТ) =========
 
+def _match_topic_filter(q: dict, topic: str) -> bool:
+    if not topic:
+        return True
+    tps = q.get("topics")
+    if not isinstance(tps, list):
+        return False
+    return any(isinstance(tp, str) and tp.strip().lower() == topic.strip().lower() for tp in tps)
+
 async def handle_test_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
     choice = (update.message.text or "").strip()
     total_questions = context.user_data.get("total_questions", 0)
     if choice == "🔙 Назад":
-        # Повертаємось у меню режимів ТЕСТУ, чистимо mode, глушимо test_selection
         context.user_data["suppress_test_select_once"] = True
         context.user_data.pop("mode", None)
         context.user_data.pop("awaiting_custom_count", None)
@@ -452,8 +427,14 @@ async def handle_test_settings(update: Update, context: ContextTypes.DEFAULT_TYP
             t(lang, "menu_main", test=context.user_data.get("current_test", "Тест")),
             reply_markup=main_menu()
         )
-        logger.info("[TESTING][BACK] from test settings -> main menu (mode cleared, suppressed)")
         return
+
+    # Формуємо пул із урахуванням topic_filter
+    topic = context.user_data.get("topic_filter")
+    questions = context.user_data.get("questions", [])
+    pool = [i for i in range(total_questions) if 0 <= i < len(questions) and _match_topic_filter(questions[i], topic)] if topic else list(range(total_questions))
+    if not pool:
+        pool = list(range(total_questions))
 
     if choice.startswith("🔟"):
         count = 10
@@ -467,14 +448,15 @@ async def handle_test_settings(update: Update, context: ContextTypes.DEFAULT_TYP
             "Питання будуть обрані в роздріб по всім питанням з тесту"
         )
         context.user_data["awaiting_custom_count"] = True
+        # Збережемо останній підрахований pool, щоб не рахувати двічі
+        context.user_data["__pool_cache"] = pool
         return
     else:
         return
 
-    count = max(1, min(count, total_questions))
-    pool = list(range(total_questions))
+    count = max(1, min(count, len(pool)))
     if count >= len(pool):
-        order = pool
+        order = pool[:]
         random.shuffle(order)
     else:
         order = random.sample(pool, count)
@@ -486,6 +468,7 @@ async def handle_test_settings(update: Update, context: ContextTypes.DEFAULT_TYP
     context.user_data["wrong_pairs"] = []
     context.user_data["current_streak"] = 0
     context.user_data["start_time"] = datetime.now()
+    context.user_data.pop("__pool_cache", None)
 
     await _show_question(update, context, order[0])
 
@@ -496,12 +479,21 @@ async def handle_custom_test_count(update: Update, context: ContextTypes.DEFAULT
     except ValueError:
         await update.message.reply_text("Введіть число — кількість питань.", reply_markup=main_menu())
         return
-    total_questions = context.user_data.get("total_questions", 0)
-    n = max(1, min(n, total_questions))
 
-    pool = list(range(total_questions))
+    total_questions = context.user_data.get("total_questions", 0)
+    questions = context.user_data.get("questions", [])
+    topic = context.user_data.get("topic_filter")
+
+    pool = context.user_data.pop("__pool_cache", None)
+    if not isinstance(pool, list):
+        pool = [i for i in range(total_questions) if 0 <= i < len(questions) and _match_topic_filter(questions[i], topic)] if topic else list(range(total_questions))
+        if not pool:
+            pool = list(range(total_questions))
+
+    n = max(1, min(n, len(pool)))
+
     if n >= len(pool):
-        order = pool
+        order = pool[:]
         random.shuffle(order)
     else:
         order = random.sample(pool, n)
@@ -538,7 +530,6 @@ async def answer_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     is_ok, _correct_idx = _save_answer_and_score(context, q_index, choice)
 
-    # ✅ NEW: якщо помилка — збережемо її у БД для «Мої помилки»
     if not is_ok:
         try:
             test_name = context.user_data.get("current_test")
@@ -635,18 +626,12 @@ async def retry_wrong_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
     await _show_question(query, context, order[0])
 
 async def detailed_stats_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """
-    ❗ ОНОВЛЕНО:
-    - Виводимо статистику + НИЖЧЕ — усі неправильні питання поточної або останньої сесії.
-    - Без окремих довгих повідомлень наприкінці тесту.
-    """
     query = update.callback_query
     try:
         await query.answer()
     except Exception:
         pass
 
-    # 1) Спершу визначимо джерело wrong_pairs + заголовок
     live_total = len(context.user_data.get("order", []) or [])
     wrong_pairs = None
     title = None
@@ -670,7 +655,6 @@ async def detailed_stats_handler(update: Update, context: ContextTypes.DEFAULT_T
         )
         wrong_pairs = list(last.get("wrong_pairs", []))
 
-    # 2) Побудуємо текст «неправильних питань»
     questions = context.user_data.get("questions", []) or []
     chunks = _build_wrong_details_text(questions, wrong_pairs or [])
 
@@ -678,14 +662,12 @@ async def detailed_stats_handler(update: Update, context: ContextTypes.DEFAULT_T
         await query.message.reply_text(title + "\n❌ Немає неправильних відповідей.", parse_mode=None)
         return
 
-    # 3) Надішлемо перше повідомлення з заголовком + перший chunk
     first = f"{title}\n❌ Неправильні відповіді (розбір):\n\n{chunks[0]}"
     try:
         await query.message.reply_text(first)
     except Exception as e:
         logger.warning("[TESTING] send detailed first failed: %s", e)
 
-    # 4) Якщо залишились ще частини — надішлемо продовження
     for chunk in chunks[1:]:
         try:
             await query.message.reply_text("Продовження розбору помилок:\n\n" + chunk)
@@ -701,8 +683,6 @@ async def back_to_menu_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     for k in ("mode", "order", "step", "score", "wrong_pairs", "start_time", "current_streak", "last_msg_id", "last_media_type"):
         context.user_data.pop(k, None)
     await query.message.reply_text("Повернення до меню тесту.", reply_markup=main_menu())
-
-# ========= Універсальне «⛔ Скасувати» =========
 
 async def cancel_session_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
@@ -728,33 +708,21 @@ async def cancel_session_handler(update: Update, context: ContextTypes.DEFAULT_T
     except Exception:
         await query.message.reply_text("Повернення до меню.", reply_markup=main_menu())
 
-# ========= ГЛОБАЛЬНИЙ «Назад» =========
-
 async def back_text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """
-    Єдиний текстовий обробник «🔙/⬅️ Назад».
-    ВАЖЛИВО: ставимо suppress-флаг, щоб test_selection НЕ обробляв цей же апдейт.
-    """
     txt = (update.message.text or "").strip()
     if txt not in {"🔙 Назад", "⬅️ Назад"}:
         return
 
-    # «Мій кабінет»
     if context.user_data.get("in_office"):
         context.user_data["suppress_test_select_once"] = True
         await office_buttons_handler(update, context)
-        logger.info("[BACK] office -> delegated (suppressed)")
         return
 
     mode = context.user_data.get("mode")
     order = context.user_data.get("order") or []
-    awaiting_custom_count = context.user_data.get("awaiting_custom_count")
 
-    # ✔ 1) Ми знаходимось у меню налаштувань тесту (mode=='test', але сесія ще не стартувала)
     if mode == "test" and not order:
-        # Якщо чекали «власну кількість» — скасуємо
         context.user_data.pop("awaiting_custom_count", None)
-        # Очистимо режим, щоб не блокувати браузер та інші екрани
         context.user_data.pop("mode", None)
         context.user_data["suppress_test_select_once"] = True
         lang = context.bot_data.get("lang", "uk")
@@ -762,10 +730,8 @@ async def back_text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             t(lang, "menu_main", test=context.user_data.get("current_test", "Тест")),
             reply_markup=main_menu()
         )
-        logger.info("[BACK] from test settings -> main menu (mode cleared, suppressed)")
         return
 
-    # 2) Активний тест — повертаємося до меню режимів тесту
     if mode == "test" and order:
         for k in ("mode", "order", "step", "score", "wrong_pairs", "start_time", "current_streak", "last_msg_id", "last_media_type"):
             context.user_data.pop(k, None)
@@ -775,10 +741,8 @@ async def back_text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             t(lang, "menu_main", test=context.user_data.get("current_test", "Тест")),
             reply_markup=main_menu()
         )
-        logger.info("[BACK] test session -> main menu (suppressed)")
         return
 
-    # 3) Навчання — в меню режимів
     if mode == "learning":
         context.user_data["suppress_test_select_once"] = True
         lang = context.bot_data.get("lang", "uk")
@@ -786,10 +750,8 @@ async def back_text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             t(lang, "menu_main", test=context.user_data.get("current_test", "Тест")),
             reply_markup=main_menu()
         )
-        logger.info("[BACK] learning -> main menu (suppressed)")
         return
 
-    # 4) Браузер розділів: піднятися вгору і показати вузол
     path = context.user_data.get("browse_path")
     if isinstance(path, list):
         if path:
@@ -808,8 +770,6 @@ async def back_text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             header,
             reply_markup=browse_menu(path or [], subfolders, tests)
         )
-        logger.info("[BACK] browser up (suppressed)")
         return
 
-    # 5) Якщо нічого з вище — нічого не робимо
     return

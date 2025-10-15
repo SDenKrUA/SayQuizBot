@@ -1,50 +1,75 @@
 import html
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Any, Optional, Tuple, List
+
+def _escape(s: str) -> str:
+    return html.escape(s or "")
+
+def _format_topics(topics: List[str]) -> str:
+    """Рендер маленьких 'тегів' перед питанням."""
+    if not topics:
+        return ""
+    chips = " ".join(f"<code>#{html.escape(t)}</code>" for t in topics[:10])
+    return f"{chips}\n\n"
+
+def _format_explanation(expl: str) -> str:
+    if not expl:
+        return ""
+    return f"\n💡 <i>{_escape(expl)}</i>\n"
 
 def format_question_text(
     q: Dict[str, Any],
     highlight: Optional[Tuple[int, bool]] = None,
     hide_correct_on_wrong: bool = False,
-    show_correct_if_no_highlight: bool = False
+    show_correct_if_no_highlight: bool = False,
+    *,
+    mode: str = "testing",         # "testing" | "learning"
+    show_topics: bool = True
 ) -> str:
     """
     Форматує текст питання з HTML розміткою.
 
-    Args:
-        q: Словник з даними питання
-        highlight: Кортеж (індекс обраної відповіді, чи правильна)
-        hide_correct_on_wrong: Чи приховувати правильну відповідь при помилці
-        show_correct_if_no_highlight: Якщо True і highlight=None — показувати правильну відповідь (виділяти жирним + ✅)
-
-    Returns:
-        Відформатований HTML текст
+    Параметри (беквард-сумісно з твоїм кодом):
+      - highlight: (picked_index, picked_is_correct) або None
+      - hide_correct_on_wrong: якщо True — при помилці не підсвічуємо правильну
+      - show_correct_if_no_highlight: коли highlight=None, показати правильну (для пошуку/передперегляду)
+      - mode: "testing" -> explanation показується після вибору;
+              "learning" -> explanation показується завжди
+      - show_topics: показувати topics над питанням
     """
-    text = f"<b>{html.escape(q.get('question',''))}</b>\n\n"
-    letters = ["A", "B", "C", "D"]
+    parts: List[str] = []
 
+    # --- ТЕМИ (теги) ---
+    topics = q.get("topics") if isinstance(q.get("topics"), list) else []
+    if show_topics and topics:
+        parts.append(_format_topics(topics))
+
+    # --- ТЕКСТ ПИТАННЯ ---
+    parts.append(f"<b>{_escape(q.get('question',''))}</b>\n\n")
+
+    # --- ВАРІАНТИ ---
+    letters = ["A", "B", "C", "D"]  # у тебе клавіатура під 4 варіанти
     picked_idx = None
     picked_is_correct = None
     if highlight is not None:
         picked_idx, picked_is_correct = highlight
 
-    # Визначимо індекс правильної відповіді (для обох форматів)
     answers = q.get("answers", [])
+    # Визначаємо індекс правильної відповіді (для формату [{text,correct}])
     correct_idx = None
     if isinstance(answers, list) and answers:
-        for i, a in enumerate(answers[:4]):
+        for i, a in enumerate(answers[:len(letters)]):
             if isinstance(a, dict) and a.get("correct"):
                 correct_idx = i
                 break
     else:
-        # альтернативні формати
+        # альтернативні історичні формати (якщо раптом)
         correct_idx = q.get("answer")
 
     for i, a in enumerate(answers or []):
         if i >= len(letters):
             break
 
-        letter = letters[i]
-        # Витягнути текст відповіді
+        # Витягуємо текст варіанту
         if isinstance(a, dict):
             ans_text = a.get("text") or a.get("answer") or a.get("value") or a.get("content") or ""
             if not isinstance(ans_text, str):
@@ -52,7 +77,7 @@ def format_question_text(
         else:
             ans_text = str(a)
 
-        ans_text = html.escape(ans_text)
+        ans_text = _escape(ans_text)
         is_correct = (i == correct_idx)
 
         emoji = ""
@@ -69,19 +94,24 @@ def format_question_text(
                 if not picked_is_correct:
                     bold = False
         else:
-            # Режим без highlight (наприклад, показ з пошуку)
+            # Режим без вибору (наприклад, у пошуку/передперегляді)
             if show_correct_if_no_highlight and is_correct:
                 bold = True
                 emoji = "✅"
 
-        if bold:
-            line = f"{emoji} <b>{letter}) {ans_text}</b>"
+        prefix = f"{letters[i]}) "
+        line = f"{emoji} <b>{prefix}{ans_text}</b>" if bold else f"{emoji} {prefix}{ans_text}"
+        parts.append(line + "\n")
+
+    # --- ПОЯСНЕННЯ ---
+    explanation = q.get("explanation") or ""
+    if explanation:
+        if mode == "learning":
+            # завжди у навчанні
+            parts.append(_format_explanation(explanation))
         else:
-            line = f"{emoji} {letter}) {ans_text}"
+            # у тестуванні — тільки після відповіді
+            if highlight is not None:
+                parts.append(_format_explanation(explanation))
 
-        text += line + "\n\n"
-
-    if highlight is not None and q.get("explanation"):
-        text += f"\n💡 <i>{html.escape(q['explanation'])}</i>\n"
-
-    return text
+    return "".join(parts)

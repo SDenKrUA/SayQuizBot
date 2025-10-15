@@ -101,6 +101,9 @@ from handlers.owner_panel import (
     owner_text_entry,     # введення нової назви теки (тільки reply)
 )
 
+# --- НОВЕ: фільтр за темами ---
+from handlers.topics import topics_start, topics_cb
+
 logger = setup_logger()
 
 # --- Регекси для меню/ввідних форматів ---
@@ -120,6 +123,7 @@ async def set_commands(application):
         BotCommand("office", "Мій кабінет"),
         BotCommand("wrong_answers", "Мої помилки"),
         BotCommand("owner", "Адмін-панель (власник)"),
+        BotCommand("topics", "Фільтр за темами"),  # ⬅️ додано
     ]
     await application.bot.set_my_commands(commands)
 
@@ -170,11 +174,11 @@ def main():
     app.add_handler(CommandHandler("office", office_open))
     app.add_handler(CommandHandler("wrong_answers", wrong_answers_cmd))
     app.add_handler(CommandHandler("owner", owner_entry))
+    app.add_handler(CommandHandler("topics", topics_start))  # ⬅️ додано
 
     # =======================
     # Group 0: ВУЗЬКІ/ПРІОРИТЕТНІ
     # =======================
-    # ⚠️ ВАЖЛИВО: VIP single-file спершу (щоб не перехоплював майстер додавання питання)
     if g("vip_edit_add_single_file_start"):
         app.add_handler(CallbackQueryHandler(g("vip_edit_add_single_file_start"), pattern=r"^vip_edit_addfile\|\d+$"), group=0)
     if g("vip_handle_single_index_text"):
@@ -194,7 +198,6 @@ def main():
             group=0
         )
 
-    # Далі — майстер додавання питання
     app.add_handler(MessageHandler(filters.Regex(r"^➕ Додати питання$"), handle_add_question), group=0)
     app.add_handler(
         MessageHandler(
@@ -213,7 +216,6 @@ def main():
     app.add_handler(CallbackQueryHandler(addq_req_cancel_cb, pattern=r"^addq_req_cancel$"), group=0)
     app.add_handler(CallbackQueryHandler(addq_cancel_cb, pattern=r"^addq_cancel$"), group=0)
 
-    # Інші VIP і службові (залишаємо, як були)
     if g("vip_trusted_handle_username_text"):
         app.add_handler(MessageHandler(filters.Regex(USERNAME_REGEX), g("vip_trusted_handle_username_text")), group=0)
     if g("vip_wipe_media_start"):
@@ -230,7 +232,6 @@ def main():
     app.add_handler(CallbackQueryHandler(stop_search_cb, pattern=r"^stop_search$"), group=1)
     app.add_handler(MessageHandler(filters.Regex(r"^👤 Мій кабінет$"), office_open), group=1)
 
-    # кнопка Адмін-панель з «Мій кабінет»
     app.add_handler(MessageHandler(filters.Regex(r"^👑 Адмін-панель$"), owner_entry), group=1)
 
     app.add_handler(CallbackQueryHandler(add_cancel_cb, pattern=r"^add_cancel\|(folder|test)$"), group=1)
@@ -244,7 +245,6 @@ def main():
     app.add_handler(MessageHandler(filters.Regex(r"^Мої питання$"), office_my_questions), group=1)
     app.add_handler(MessageHandler(filters.Regex(r"^Мої помилки$"), wrong_answers_cmd), group=1)
 
-    # ⛔ ВАЖЛИВО: перейменування тек — тільки reply-відповідь (не блокує інші тексти)
     app.add_handler(MessageHandler(filters.REPLY & filters.TEXT & ~filters.COMMAND, owner_text_entry), group=1)
 
     if g("vip_img_upload"):
@@ -274,9 +274,9 @@ def main():
     if g("vip_choose_folder"):
         app.add_handler(CallbackQueryHandler(g("vip_choose_folder"), pattern=r"^vip_choose_folder$"), group=1)
     if g("vip_nav_open"):
-        app.add_handler(CallbackQueryHandler(g("vip_nav_open"), pattern=r"^vip_open\|"), group=1)
+        app.add_handler(CallbackQueryHandler(g("vip_open\|"), pattern=r"^vip_open\|"), group=1)
     if g("vip_nav_up"):
-        app.add_handler(CallbackQueryHandler(g("vip_nav_up"), pattern=r"^vip_up$"), group=1)
+        app.add_handler(CallbackQueryHandler(g("vip_up"), pattern=r"^vip_up$"), group=1)
     if g("vip_choose_here"):
         app.add_handler(CallbackQueryHandler(g("vip_choose_here"), pattern=r"^vip_choose_here$"), group=1)
     if g("vip_create_root"):
@@ -293,11 +293,9 @@ def main():
     if g("vip_edit_add_images_from_menu"):
         app.add_handler(CallbackQueryHandler(g("vip_edit_add_images_from_menu"), pattern=r"^vip_edit_addimgs\|\d+$"), group=1)
 
-    # 🔹 Перейти до тесту
     if g("vip_go_to_test"):
         app.add_handler(CallbackQueryHandler(g("vip_go_to_test"), pattern=r"^vip_go\|\d+$"), group=1)
 
-    # 🔹 ЗМІНИТИ РОЗДІЛ (move flow)
     if g("vip_edit_move_open"):
         app.add_handler(CallbackQueryHandler(g("vip_edit_move_open"), pattern=r"^vip_edit_move\|\d+$"), group=1)
     if g("vip_move_open"):
@@ -337,6 +335,9 @@ def main():
     app.add_handler(MessageHandler(filters.Regex(r"^📝 Тест з улюблених$"), start_favorites_test), group=1)
     app.add_handler(MessageHandler(filters.Regex(r"^(🔙 Назад|⬅️ Назад)$"), back_text_handler), group=1)
 
+    # НОВЕ: callback для вибору/очистки тем
+    app.add_handler(CallbackQueryHandler(topics_cb, pattern=r"^topic\|"), group=1)
+
     # 3) Learning
     app.add_handler(MessageHandler(filters.Regex(r"^(\d+-\d+)$"), handle_learning_range), group=1)
     app.add_handler(MessageHandler(filters.Regex(r"^🔢 Власний діапазон$"), handle_learning_range), group=1)
@@ -356,8 +357,8 @@ def main():
     # 5) /start через кнопку
     app.add_handler(MessageHandler(filters.Regex(r"^🔙 Обрати інший тест$"), cmd_start), group=2)
 
-    # 6) Динамічний вибір тесту (останній) — ВАЖЛИВО: block=False
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_test_selection, block=False), group=2)
+    # 6) Динамічний вибір тесту (останній)
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_test_selection), group=2)
 
     # --- Callback handlers (квіз) ---
     app.add_handler(CallbackQueryHandler(answer_handler, pattern=r"^ans\|\d+\|\d+$"))
