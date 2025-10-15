@@ -356,8 +356,8 @@ def main():
     # 5) /start через кнопку
     app.add_handler(MessageHandler(filters.Regex(r"^🔙 Обрати інший тест$"), cmd_start), group=2)
 
-    # 6) Динамічний вибір тесту (останній)
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_test_selection), group=2)
+    # 6) Динамічний вибір тесту (останній) — ВАЖЛИВО: block=False
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_test_selection, block=False), group=2)
 
     # --- Callback handlers (квіз) ---
     app.add_handler(CallbackQueryHandler(answer_handler, pattern=r"^ans\|\d+\|\d+$"))
