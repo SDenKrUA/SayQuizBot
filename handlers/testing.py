@@ -3,6 +3,7 @@ import io
 import random
 import logging
 import base64
+import re
 from datetime import datetime
 from typing import Optional, Tuple, Any, List
 
@@ -39,18 +40,6 @@ _IMG_EXT_PHOTO = {".jpg", ".jpeg", ".png", ".webp"}
 _IMG_EXT_ANIM = {".gif"}
 _AUDIO_EXTS    = {".mp3", ".wav", ".ogg", ".m4a", ".aac", ".flac"}
 _VIDEO_INLINE  = {".mp4"}
-
-# ===== ГАРД: активний майстер додавання питання? =====
-def _is_addq_active(context: ContextTypes.DEFAULT_TYPE) -> bool:
-    try:
-        if context.user_data.get("add_question_active"):
-            return True
-        flow = context.user_data.get("add_question")
-        if isinstance(flow, dict) and flow.get("step"):
-            return True
-    except Exception:
-        pass
-    return False
 
 def _get_chat_id(src: Any) -> int:
     if isinstance(src, Update) and src.effective_chat:
@@ -101,6 +90,54 @@ def _bio_with_name(data: bytes, filename: str) -> io.BytesIO:
     bio.name = filename
     return bio
 
+# --- «Повітря» та відступи ---
+
+def _ensure_question_answers_gap(body: str) -> str:
+    if not body:
+        return body
+    # нормалізуємо перенос
+    i = body.find("\n")
+    if i == -1:
+        return body + "\n"
+    if i + 1 < len(body) and body[i + 1] == "\n":
+        return body if body.endswith("\n") else (body + "\n")
+    out = body[: i + 1] + "\n" + body[i + 1 :]
+    return out if out.endswith("\n") else (out + "\n")
+
+def _is_option_line(s: str) -> bool:
+    s = s.lstrip()
+    if len(s) < 3:
+        return False
+    head = s[:3]
+    letters = ("A", "B", "C", "D", "А", "Б", "В", "Г")
+    digits  = ("1", "2", "3", "4")
+    return (
+        (head[0] in letters and head[1] in (".", ")") and head[2] == " ")
+        or (head[0] in digits and head[1] in (".", ")") and head[2] == " ")
+    )
+
+def _add_spacing_between_options(body: str) -> str:
+    if not body:
+        return body
+    lines = body.splitlines()
+    out: List[str] = []
+    for i, line in enumerate(lines):
+        out.append(line)
+        if _is_option_line(line):
+            if i + 1 < len(lines) and _is_option_line(lines[i + 1]):
+                out.append("")
+    return "\n".join(out) + ("\n" if not body.endswith("\n") else "")
+
+def _with_spacing(body: str) -> str:
+    """Працює і з \\n, і з <br> — зберігає відступи після виділення відповіді."""
+    if not body:
+        return body
+    s = body.replace("\r\n", "\n").replace("\r", "\n")
+    s = re.sub(r"(?i)<br\s*/?>", "\n", s)  # <br> → \n
+    s = _ensure_question_answers_gap(s)
+    s = _add_spacing_between_options(s)
+    return s
+
 def _compose_caption_testing(
     q: dict,
     step_idx: int,
@@ -113,6 +150,7 @@ def _compose_caption_testing(
     body = format_question_text(
         q, highlight=highlight, hide_correct_on_wrong=hide_correct_on_wrong, mode="testing"
     )
+    body = _with_spacing(body)
     return f"{bar}\n{progress}\n\n{body}"
 
 def _compose_caption_learning(
@@ -125,6 +163,7 @@ def _compose_caption_learning(
     body = format_question_text(
         q, highlight=highlight, hide_correct_on_wrong=False, mode="learning"
     )
+    body = _with_spacing(body)
     return f"{bar}\n\n{body}"
 
 def _open_media_bio(path: str, filename: str) -> io.BytesIO:
@@ -428,11 +467,6 @@ def _match_topic_filter(q: dict, topic: str) -> bool:
     return any(isinstance(tp, str) and tp.strip().lower() == topic.strip().lower() for tp in tps)
 
 async def handle_test_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    # ⛔ Не втручаємось під час майстра додавання питання
-    if _is_addq_active(context):
-        logger.info("[TEST] Ignored test_settings during add_question flow")
-        return
-
     choice = (update.message.text or "").strip()
     total_questions = context.user_data.get("total_questions", 0)
     if choice == "🔙 Назад":
@@ -490,21 +524,11 @@ async def handle_test_settings(update: Update, context: ContextTypes.DEFAULT_TYP
     await _show_question(update, context, order[0])
 
 async def handle_custom_test_count(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    # ⛔ Не чіпаємо числа під час майстра додавання питання
-    if _is_addq_active(context):
-        logger.info("[TEST] Ignored custom_count during add_question flow")
-        return
-    # Обробляємо лише, якщо дійсно очікуємо число для 'власної кількості'
-    if not context.user_data.get("awaiting_custom_count"):
-        logger.info("[TEST] Ignored number because awaiting_custom_count is False")
-        return
-
     text = (update.message.text or "").strip()
     try:
         n = int(text)
     except ValueError:
         await update.message.reply_text("Введіть число — кількість питань.", reply_markup=main_menu())
-        context.user_data.pop("awaiting_custom_count", None)
         return
 
     total_questions = context.user_data.get("total_questions", 0)

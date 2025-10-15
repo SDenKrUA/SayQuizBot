@@ -5,7 +5,10 @@ import logging
 import io
 import os
 import base64
+import re
 from datetime import datetime
+from typing import List
+
 from telegram import (
     Update,
     InputMediaPhoto,
@@ -70,6 +73,52 @@ def _pick_media_for_question(q: dict) -> tuple[str, str | None]:
         if q.get("image"):
             return "image", q["image"]
         return "none", None
+
+# ===================== «Повітря» та відступи =====================
+
+def _ensure_question_answers_gap(body: str) -> str:
+    if not body:
+        return body
+    i = body.find("\n")
+    if i == -1:
+        return body + "\n"
+    if i + 1 < len(body) and body[i + 1] == "\n":
+        return body if body.endswith("\n") else (body + "\n")
+    out = body[: i + 1] + "\n" + body[i + 1 :]
+    return out if out.endswith("\n") else (out + "\n")
+
+def _is_option_line(s: str) -> bool:
+    s = s.lstrip()
+    if len(s) < 3:
+        return False
+    head = s[:3]
+    letters = ("A", "B", "C", "D", "А", "Б", "В", "Г")
+    digits  = ("1", "2", "3", "4")
+    return (
+        (head[0] in letters and head[1] in (".", ")") and head[2] == " ")
+        or (head[0] in digits and head[1] in (".", ")") and head[2] == " ")
+    )
+
+def _add_spacing_between_options(body: str) -> str:
+    if not body:
+        return body
+    lines = body.splitlines()
+    out: List[str] = []
+    for i, line in enumerate(lines):
+        out.append(line)
+        if _is_option_line(line):
+            if i + 1 < len(lines) and _is_option_line(lines[i + 1]):
+                out.append("")
+    return "\n".join(out) + ("\n" if not body.endswith("\n") else "")
+
+def _with_spacing(body: str) -> str:
+    if not body:
+        return body
+    s = body.replace("\r\n", "\n").replace("\r", "\n")
+    s = re.sub(r"(?i)<br\s*/?>", "\n", s)  # <br> → \n
+    s = _ensure_question_answers_gap(s)
+    s = _add_spacing_between_options(s)
+    return s
 
 # ===================== ГВАРДИ СТАНУ =====================
 
@@ -302,8 +351,11 @@ async def send_current_question(chat_id, context, edit_from_query=None):
     context.user_data["current_q_index"] = q_index
     q = questions[q_index]
 
+    # Формуємо підпис з «повітрям» як у тестуванні
     progress = get_progress_bar(step + 1, len(order))
-    caption = f"{progress}\n\n" + format_question_text(q, mode="learning")
+    body = format_question_text(q, mode="learning")
+    body = _with_spacing(body)
+    caption = f"{progress}\n\n{body}"
 
     markup = build_options_markup(q_index, two_columns=True)
 
