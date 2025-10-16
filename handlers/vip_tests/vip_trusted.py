@@ -6,7 +6,7 @@ from telegram.ext import ContextTypes
 
 from .vip_storage import (
     _load_owners, _save_owners,
-    get_meta_for_rel, save_meta_for_rel,
+    get_meta_for_rel,
     list_trusted_display,
     add_trusted_username, remove_trusted_by_key,
     list_pending_display, accept_pending_by_key, decline_pending_by_key,
@@ -15,29 +15,37 @@ from .vip_storage import (
 
 log = logging.getLogger("test_bot.vip_trusted")
 
-# локальний нормалізатор username — щоб уникнути залежності від vip_storage.usernamestr
-def _normalize_username(s: str) -> str | None:
-    if not s:
-        return None
-    s = s.strip()
-    if s.startswith("@"):
-        s = s[1:]
-    s = s.replace("@", "").strip()
-    if not s:
-        return None
-    # Дозволяємо класичний телеграм-username
-    if re.fullmatch(r"[A-Za-z0-9_]{3,32}", s):
-        return s
-    return None
+# ========= helpers: single-message editing =========
+
+def _set_panel_msg(context: ContextTypes.DEFAULT_TYPE, mid: int, chat_id: int) -> None:
+    context.user_data["vip_trusted_msg_id"] = mid
+    context.user_data["vip_trusted_chat_id"] = chat_id
+
+def _get_panel_msg(context: ContextTypes.DEFAULT_TYPE) -> tuple[int | None, int | None]:
+    return context.user_data.get("vip_trusted_msg_id"), context.user_data.get("vip_trusted_chat_id")
+
+async def _edit_panel(update: Update, context: ContextTypes.DEFAULT_TYPE, text: str, kb: InlineKeyboardMarkup) -> None:
+    """
+    Редагуємо ОДНЕ повідомлення панелі довірених. Якщо немає msg_id — fallback на reply_text.
+    """
+    msg_id, chat_id = _get_panel_msg(context)
+    if msg_id and chat_id:
+        try:
+            await context.bot.edit_message_text(
+                chat_id=chat_id,
+                message_id=msg_id,
+                text=text,
+                reply_markup=kb,
+                parse_mode=None  # без Markdown, щоб не ламати довгі списки
+            )
+            return
+        except Exception as e:
+            log.debug("[TRUSTED] edit failed, fallback to reply: %s", e)
+    # fallback — нове повідомлення + оновлюємо pin для наступних редагувань
+    m = await update.effective_message.reply_text(text, reply_markup=kb)
+    _set_panel_msg(context, m.message_id, m.chat_id)
 
 def _trusted_panel_kb(idx: int, rel: str | None = None) -> InlineKeyboardMarkup:
-    """
-    Панель «Довірені користувачі» з кнопками:
-    - Додати довірених
-    - Видалити довірених
-    - Запити (N)
-    - Назад до редагування
-    """
     rows = [
         [InlineKeyboardButton("➕ Додати довірених", callback_data=f"vip_trusted_add|{idx}")],
         [InlineKeyboardButton("➖ Видалити довірених", callback_data=f"vip_trusted_remove|{idx}")]
@@ -48,9 +56,26 @@ def _trusted_panel_kb(idx: int, rel: str | None = None) -> InlineKeyboardMarkup:
     rows.append([InlineKeyboardButton("🔙 Назад до редагування", callback_data=f"vip_edit|{idx}")])
     return InlineKeyboardMarkup(rows)
 
+# локальний нормалізатор username
+def _normalize_username(s: str) -> str | None:
+    if not s:
+        return None
+    s = s.strip()
+    if s.startswith("@"):
+        s = s[1:]
+    s = s.replace("@", "").strip()
+    if not s:
+        return None
+    if re.fullmatch(r"[A-Za-z0-9_]{3,32}", s):
+        return s
+    return None
+
+# ========= open panel =========
+
 async def vip_trusted_open(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
+
     idx_str = (query.data.split("|", 1)[1] if "|" in query.data else "").strip()
     try:
         idx = int(idx_str)
@@ -73,9 +98,10 @@ async def vip_trusted_open(update: Update, context: ContextTypes.DEFAULT_TYPE) -
     if not isinstance(trusted_unames, list):
         trusted_unames = []
 
-    # контекст панелі довірених
+    # пам’ятаємо який індекс/rel відкрито + яку панель редагуємо
     context.user_data["vip_trusted_idx"] = idx
     context.user_data["vip_trusted_rel"] = rel
+    _set_panel_msg(context, query.message.message_id, query.message.chat_id)
 
     listing = list_trusted_display(trusted_ids, trusted_unames)
     if listing:
@@ -84,19 +110,37 @@ async def vip_trusted_open(update: Update, context: ContextTypes.DEFAULT_TYPE) -
         text = f"👥 Довірені користувачі для «{item['name']}»: (порожньо)\n\n"
 
     text += "Щоб додати, натисни «➕ Додати довірених» або просто надішли @username / числовий ID у чат."
-    await query.message.reply_text(text, reply_markup=_trusted_panel_kb(idx, rel))
+    await _edit_panel(update, context, text, _trusted_panel_kb(idx, rel))
+
+# ========= add trusted =========
 
 async def vip_trusted_add_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
+
     idx_str = (query.data.split("|", 1)[1] if "|" in query.data else "").strip()
     try:
         idx = int(idx_str)
     except ValueError:
         return
+
+    # збережемо позицію панелі
+    _set_panel_msg(context, query.message.message_id, query.message.chat_id)
+
     context.user_data["vip_trusted_idx"] = idx
     context.user_data["awaiting_vip_trusted_username"] = True
-    await query.message.reply_text("✍️ Введіть @username або числовий ID користувача для додавання у довірені:")
+
+    kb = InlineKeyboardMarkup([
+        [InlineKeyboardButton("🔙 Назад", callback_data=f"vip_trusted|{idx}")],
+        [InlineKeyboardButton("❎ Скасувати", callback_data=f"vip_edit|{idx}")],
+    ])
+
+    await _edit_panel(
+        update, context,
+        "✍️ Введіть @username або числовий ID користувача для додавання у довірені:\n\n"
+        "Надішліть це як звичайне текстове повідомлення в чаті.",
+        kb
+    )
 
 def _looks_like_user_identifier(s: str) -> bool:
     if not s:
@@ -117,6 +161,19 @@ def _resolve_target_idx_for_text(context: ContextTypes.DEFAULT_TYPE) -> int | No
             return 0
     return None
 
+async def _refresh_panel_list(update: Update, context: ContextTypes.DEFAULT_TYPE, idx: int) -> None:
+    """Після змін — перерисовуємо список довірених у тій же панелі."""
+    items = context.user_data.get("vip_mytests") or []
+    if not (0 <= idx < len(items)):
+        await update.message.reply_text("❌ Тест не знайдено або не вибрано.")
+        return
+    item = items[idx]
+    rel = item["rel"]
+    meta = get_meta_for_rel(rel)
+    listing = list_trusted_display(meta.get("trusted", []), meta.get("trusted_usernames", []))
+    text = f"👥 Довірені для «{item['name']}»:\n{listing or '(порожньо)'}"
+    await _edit_panel(update, context, text, _trusted_panel_kb(idx, rel))
+
 async def _do_add_trusted_by_idx(idx: int, val: str, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     items = context.user_data.get("vip_mytests") or []
     if not (0 <= idx < len(items)):
@@ -126,7 +183,6 @@ async def _do_add_trusted_by_idx(idx: int, val: str, update: Update, context: Co
     item = items[idx]
     rel = item["rel"]
 
-    # Визначаємо — це ID чи @username
     if val.startswith("@"):
         uname = _normalize_username(val)
         if not uname:
@@ -138,7 +194,6 @@ async def _do_add_trusted_by_idx(idx: int, val: str, update: Update, context: Co
         else:
             await update.message.reply_text(f"ℹ️ @{uname} вже є у списку довірених.")
     else:
-        # числовий ID
         try:
             uid = int(val)
         except ValueError:
@@ -156,24 +211,13 @@ async def _do_add_trusted_by_idx(idx: int, val: str, update: Update, context: Co
             _save_owners(owners)
             await update.message.reply_text(f"✅ Додано до довірених: ID:{uid}")
 
-    # Готово
     context.user_data.pop("awaiting_vip_trusted_username", None)
-
-    # Показуємо оновлений список
-    meta = get_meta_for_rel(rel)
-    listing = list_trusted_display(meta.get("trusted", []), meta.get("trusted_usernames", []))
-    kb = _trusted_panel_kb(idx, rel)
-    await update.message.reply_text(
-        f"👥 Довірені для «{item['name']}»:\n{listing or '(порожньо)'}",
-        reply_markup=kb
-    )
+    await _refresh_panel_list(update, context, idx)
 
 async def vip_trusted_handle_username_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """
-    Додає @username/ID до довірених:
-      - якщо відкрито панель довірених або натиснуто «➕»;
-      - якщо в офісі і рівно один тест — додаємо в нього;
-      - якщо тестів кілька — просимо вибрати тест інлайн-кнопкою.
+    Додає @username/ID до довірених. Текстом (reply).
+    Після успіху — редагує панель довірених тим самим повідомленням.
     """
     text = (update.message.text or "").strip()
     if not _looks_like_user_identifier(text):
@@ -192,10 +236,10 @@ async def vip_trusted_handle_username_text(update: Update, context: ContextTypes
         await _do_add_trusted_by_idx(idx if idx is not None else context.user_data.get("vip_trusted_idx", 0), val, update, context)
         return
 
-    # Якщо ми тут — користувач у «Мій кабінет», тестів кілька → запропонувати вибір
+    # Якщо кілька тестів — запропонувати вибір (це нове повідомлення, але подальша робота з панеллю буде edit)
     items = context.user_data.get("vip_mytests") or []
     if not items:
-        return  # поза офісом — не перехоплюємо
+        return
 
     rows = []
     for i, it in enumerate(items):
@@ -203,7 +247,6 @@ async def vip_trusted_handle_username_text(update: Update, context: ContextTypes
     await update.message.reply_text("Оберіть тест, до якого додати довіреного користувача:", reply_markup=InlineKeyboardMarkup(rows))
 
 async def vip_trusted_pick_target(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Callback від вибору тесту для додавання @username/ID."""
     query = update.callback_query
     await query.answer()
     parts = query.data.split("|", 2)
@@ -219,7 +262,10 @@ async def vip_trusted_pick_target(update: Update, context: ContextTypes.DEFAULT_
         await query.message.reply_text("❌ Тест не знайдено.")
         return
 
-    # сформуємо "update-like" API (бо _do_add_trusted_by_idx очікує update.message)
+    # збережемо позицію панелі (на випадок якщо не було)
+    _set_panel_msg(context, query.message.message_id, query.message.chat_id)
+
+    # проксі-апдейт для перевикористання логіки
     class _MsgProxy:
         def __init__(self, msg):
             self.chat_id = msg.chat_id
@@ -229,15 +275,12 @@ async def vip_trusted_pick_target(update: Update, context: ContextTypes.DEFAULT_
     proxy_update = type("ProxyUpdate", (), {"message": _MsgProxy(query.message)})()
     await _do_add_trusted_by_idx(idx, val, proxy_update, context)
 
+# ========= remove trusted =========
+
 async def vip_trusted_remove_open(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """
-    Відкриває список довірених для видалення.
-    Тепер показуємо по можливості ОБ'ЄДНАНІ кнопки: «ID:xxx + @name»,
-    що видаляють і ID, і @username одночасно.
-    Одиночні записи (лише ID або лише @) показуються окремо.
-    """
     query = update.callback_query
     await query.answer()
+
     idx_str = (query.data.split("|", 1)[1] if "|" in query.data else "").strip()
     try:
         idx = int(idx_str)
@@ -249,6 +292,9 @@ async def vip_trusted_remove_open(update: Update, context: ContextTypes.DEFAULT_
         await query.message.reply_text("❌ Тест не знайдено.")
         return
 
+    # збережемо позицію панелі
+    _set_panel_msg(context, query.message.message_id, query.message.chat_id)
+
     item = items[idx]
     rel = item["rel"]
     meta = get_meta_for_rel(rel)
@@ -257,8 +303,7 @@ async def vip_trusted_remove_open(update: Update, context: ContextTypes.DEFAULT_
 
     rows: list[list[InlineKeyboardButton]] = []
 
-    # 1) Спробуємо спарити по індексу — це відповідає випадку прийняття pending,
-    #    коли і ID, і username додаються одночасно та у відповідному порядку.
+    # Парні записи (ID + @) — якщо вони йдуть синхронно
     pair_count = min(len(trusted_ids), len(trusted_unames))
     used_id_idx = set()
     used_un_idx = set()
@@ -274,7 +319,7 @@ async def vip_trusted_remove_open(update: Update, context: ContextTypes.DEFAULT_
         used_id_idx.add(i)
         used_un_idx.add(i)
 
-    # 2) Залишкові «тільки ID»
+    # Лише ID
     for j, uid in enumerate(trusted_ids):
         if j in used_id_idx:
             continue
@@ -285,7 +330,7 @@ async def vip_trusted_remove_open(update: Update, context: ContextTypes.DEFAULT_
             )
         ])
 
-    # 3) Залишкові «тільки @username»
+    # Лише username
     for k, uname in enumerate(trusted_unames):
         if k in used_un_idx:
             continue
@@ -297,15 +342,10 @@ async def vip_trusted_remove_open(update: Update, context: ContextTypes.DEFAULT_
         ])
 
     rows.append([InlineKeyboardButton("🔙 Назад", callback_data=f"vip_trusted|{idx}")])
-    await query.message.reply_text("Оберіть кого видалити зі списку довірених:", reply_markup=InlineKeyboardMarkup(rows))
+
+    await _edit_panel(update, context, "Оберіть кого видалити зі списку довірених:", InlineKeyboardMarkup(rows))
 
 async def vip_trusted_remove_do(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """
-    Обробляє видалення:
-    - id:<uid> — видаляє лише ID
-    - uname:<name> — видаляє лише username
-    - both:<uid>:<name> — видаляє і ID, і username одночасно
-    """
     query = update.callback_query
     await query.answer()
     parts = (query.data.split("|", 2) if "|" in query.data else [])
@@ -322,30 +362,27 @@ async def vip_trusted_remove_do(update: Update, context: ContextTypes.DEFAULT_TY
         await query.message.reply_text("❌ Тест не знайдено.")
         return
 
+    # збережемо позицію панелі
+    _set_panel_msg(context, query.message.message_id, query.message.chat_id)
+
     item = items[idx]
     rel = item["rel"]
 
-    # Розбір payload
-    kind, key = None, None
     if payload.startswith("both:"):
-        # both:<uid>:<uname>
         rest = payload[5:]
         try:
             uid_str, uname = rest.split(":", 1)
         except ValueError:
             await query.message.reply_text("❌ Невірний параметр видалення.")
             return
-
-        # Видаляємо обидва
         ok1 = remove_trusted_by_key(rel, "id", uid_str)
         ok2 = remove_trusted_by_key(rel, "uname", uname)
-        if ok1 or ok2:
-            await query.message.reply_text("✅ Видалено зі списку довірених (ID та @username).")
-        else:
-            await query.message.reply_text("ℹ️ Вказаного користувача не знайдено у списку.")
-        await vip_trusted_open(update, context)
+        note = "✅ Видалено зі списку довірених (ID та @username)." if (ok1 or ok2) else "ℹ️ Вказаного користувача не знайдено у списку."
+        await _refresh_panel_list(query, context, idx)
+        await query.message.reply_text(note)
         return
 
+    kind, key = None, None
     if payload.startswith("id:"):
         kind, key = "id", payload[3:]
     elif payload.startswith("uname:"):
@@ -356,28 +393,18 @@ async def vip_trusted_remove_do(update: Update, context: ContextTypes.DEFAULT_TY
         return
 
     done = remove_trusted_by_key(rel, kind, key)
-    if done:
-        await query.message.reply_text("✅ Видалено зі списку довірених.")
-    else:
-        await query.message.reply_text("ℹ️ Вказаного користувача не знайдено у списку.")
+    await _refresh_panel_list(query, context, idx)
+    await query.message.reply_text("✅ Видалено зі списку довірених." if done else "ℹ️ Вказаного користувача не знайдено у списку.")
 
-    await vip_trusted_open(update, context)
+# ========= requests (pending) =========
 
-# ================== БЛОК «ЗАПИТИ» ==================
-
-def _requests_kb(idx: int, rel: str, pending_len: int) -> InlineKeyboardMarkup:
-    """
-    Клавіатура для екрана запитів:
-    - для кожного запиту окремо: ✅/✖
-    - внизу: «Підтвердити всі», «Відхилити всі», «Назад»
-    """
+def _requests_kb(idx: int, rel: str) -> InlineKeyboardMarkup:
     meta = get_meta_for_rel(rel)
     pend = list(meta.get("pending", []))
     rows = []
     for i, req in enumerate(pend):
         uname = req.get("username") or "-"
         uid = req.get("user_id") or "-"
-        # ВАЖЛИВО: шорт-нейми під bot.py:
         rows.append([
             InlineKeyboardButton(f"✅ @{uname}", callback_data=f"vip_tr_req_accept|{idx}|{i}"),
             InlineKeyboardButton(f"✖ ID:{uid}", callback_data=f"vip_tr_req_decline|{idx}|{i}"),
@@ -388,9 +415,9 @@ def _requests_kb(idx: int, rel: str, pending_len: int) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(rows)
 
 async def vip_trusted_requests_open(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Відкрити екран зі списком запитів."""
     query = update.callback_query
     await query.answer()
+
     idx_str = (query.data.split("|", 1)[1] if "|" in query.data else "").strip()
     try:
         idx = int(idx_str)
@@ -402,17 +429,20 @@ async def vip_trusted_requests_open(update: Update, context: ContextTypes.DEFAUL
         await query.message.reply_text("❌ Тест не знайдено.")
         return
 
+    # збережемо позицію панелі
+    _set_panel_msg(context, query.message.message_id, query.message.chat_id)
+
     item = items[idx]
     rel = item["rel"]
     meta = get_meta_for_rel(rel)
     pend = list(meta.get("pending", []))
 
     if not pend:
-        await query.message.reply_text("📭 Запитів наразі немає.", reply_markup=_trusted_panel_kb(idx, rel))
+        await _edit_panel(update, context, "📭 Запитів наразі немає.", _trusted_panel_kb(idx, rel))
         return
 
     header = f"📥 Запити на доступ до «{item['name']}»:\n\n" + list_pending_display(pend)
-    await query.message.reply_text(header, reply_markup=_requests_kb(idx, rel, len(pend)))
+    await _edit_panel(update, context, header, _requests_kb(idx, rel))
 
 async def vip_trusted_requests_accept_one(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
@@ -467,6 +497,7 @@ async def vip_trusted_requests_decline_one(update: Update, context: ContextTypes
 async def vip_trusted_requests_accept_all(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
+
     idx_str = (query.data.split("|", 1)[1] if "|" in query.data else "").strip()
     try:
         idx = int(idx_str)
@@ -491,6 +522,7 @@ async def vip_trusted_requests_accept_all(update: Update, context: ContextTypes.
 async def vip_trusted_requests_decline_all(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
+
     idx_str = (query.data.split("|", 1)[1] if "|" in query.data else "").strip()
     try:
         idx = int(idx_str)

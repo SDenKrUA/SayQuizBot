@@ -11,17 +11,43 @@ from .vip_storage import (
     _load_owners, _save_owners, _relative_to_tests, _refresh_catalogs, _cleanup_empty_dirs
 )
 from utils.export_docx import _safe_filename
-from utils.loader import IGNORED_JSON_SUFFIXES, discover_tests, discover_tests_hierarchy, build_listing_for_path
-from utils.keyboards import browse_menu
+from utils.loader import IGNORED_JSON_SUFFIXES, discover_tests, discover_tests_hierarchy
 
 logger = logging.getLogger("test_bot.vip_move")
 
-# --- Допоміжне ---
+# ========= helpers: single-message editing for MOVE =========
+
+def _set_move_msg(context: ContextTypes.DEFAULT_TYPE, mid: int, chat_id: int) -> None:
+    context.user_data["vip_move_msg_id"] = mid
+    context.user_data["vip_move_chat_id"] = chat_id
+
+def _get_move_msg(context: ContextTypes.DEFAULT_TYPE) -> tuple[int | None, int | None]:
+    return context.user_data.get("vip_move_msg_id"), context.user_data.get("vip_move_chat_id")
+
+async def _edit_move_panel(update: Update, context: ContextTypes.DEFAULT_TYPE, text: str, kb: InlineKeyboardMarkup) -> None:
+    """
+    Редагуємо ОДНЕ повідомлення для сценарію «перемістити тест».
+    Якщо ще немає закріпленого message_id — створимо повідомлення і запам’ятаємо його.
+    """
+    msg_id, chat_id = _get_move_msg(context)
+    if msg_id and chat_id:
+        try:
+            await context.bot.edit_message_text(
+                chat_id=chat_id,
+                message_id=msg_id,
+                text=text,
+                reply_markup=kb
+            )
+            return
+        except Exception as e:
+            logger.debug("[MOVE] edit failed, fallback to reply: %s", e)
+    m = await update.effective_message.reply_text(text, reply_markup=kb)
+    _set_move_msg(context, m.message_id, m.chat_id)
+
+# --- Допоміжне ----
 
 def _is_test_json(filename: str) -> bool:
-    """
-    True, якщо це звичайний тестовий JSON (без службових суфіксів).
-    """
+    """True, якщо це звичайний тестовий JSON (без службових суфіксів)."""
     if not filename.lower().endswith(".json"):
         return False
     low = filename.lower()
@@ -29,25 +55,6 @@ def _is_test_json(filename: str) -> bool:
         if low.endswith(suf):
             return False
     return True
-
-def _tree_has_any_useful_files(root_dir: str) -> bool:
-    """
-    Перевіряє, чи є у піддереві root_dir:
-      - хоч один "тестовий" JSON (не службовий),
-      - або будь-які інші файли.
-    Якщо нічого — False (можна видаляти як порожнє дерево).
-    """
-    try:
-        for _cur, _dirs, files in os.walk(root_dir):
-            for fn in files:
-                if _is_test_json(fn):
-                    return True
-                # будь-який файл також означає «не порожньо»
-                return True
-        return False
-    except Exception:
-        # обережність: краще не видаляти, якщо сталася помилка
-        return True
 
 def _safe_rmtree(path: str) -> None:
     if not os.path.isdir(path):
@@ -67,47 +74,9 @@ def _safe_rmtree(path: str) -> None:
         except Exception:
             pass
 
-def _is_empty_dir(path: str) -> bool:
-    try:
-        return os.path.isdir(path) and len(os.listdir(path)) == 0
-    except Exception:
-        return False
+# --- Локальний браузер тек для режиму «перемістити тест» (з idx) ---
 
-def _prune_empty_branch_up_to_root(start_dir: str) -> None:
-    """
-    Підіймається вгору від start_dir і видаляє ВСІ порожні теки,
-    доки не дійде до TESTS_ROOT (його не чіпає).
-    """
-    try:
-        cur = start_dir
-        tests_root_abs = os.path.abspath(TESTS_ROOT)
-        while True:
-            if not os.path.isdir(cur):
-                break
-            # якщо не порожньо — зупиняємось
-            try:
-                if os.listdir(cur):
-                    break
-            except Exception:
-                break
-
-            # порожня тека — видаляємо
-            try:
-                os.rmdir(cur)
-            except Exception:
-                # на випадок прав — спробуємо агресивно
-                _safe_rmtree(cur)
-
-            parent = os.path.dirname(cur)
-            if not parent or os.path.abspath(parent) == tests_root_abs or parent == cur:
-                break
-            cur = parent
-    except Exception as e:
-        logger.warning("Prune upward failed: %s", e)
-
-# --- Локальний браузер тек для режиму «перемістити тест» (свій префікс) ---
-
-def _move_browser_kb(path):
+def _move_browser_kb(path, idx: int) -> InlineKeyboardMarkup:
     """
     Браузер тек для релокації:
       - показує лише «справжні» розділи;
@@ -115,6 +84,7 @@ def _move_browser_kb(path):
           * назва каталогу збігається з base-name будь-якого тестового JSON у тій самій теці,
           * або починається з '#' / '_' (альтернативні каталоги зображень),
           * або закінчується на '.comments'.
+      - завжди має «Скасувати» → повернення до меню редагування тесту.
     """
     abs_dir = os.path.join(TESTS_ROOT, *path) if path else TESTS_ROOT
     try:
@@ -151,17 +121,18 @@ def _move_browser_kb(path):
     rows = [[InlineKeyboardButton(f"📁 {name}", callback_data=f"vip_move_open|{name}")] for name in subdirs]
     ctrl = []
     if path:
-        ctrl.append(InlineKeyboardButton("⬆️ Назад", callback_data="vip_move_up"))
+        ctrl.append(InlineKeyboardButton("⬅️ Назад (вгору)", callback_data="vip_move_up"))
     ctrl.append(InlineKeyboardButton("✅ Обрати тут", callback_data="vip_move_choose_here"))
     rows.append(ctrl)
+    rows.append([InlineKeyboardButton("❎ Скасувати", callback_data=f"vip_edit|{idx}")])
     return InlineKeyboardMarkup(rows)
 
-# --- ПУБЛІЧНІ ХЕНДЛЕРИ ---
+# --- ПУБЛІЧНІ ХЕНДЛЕРИ (ONE-MESSAGE FLOW) ---
 
 async def vip_edit_move_open(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """
-    Старт меню перенесення тесту.
-    Зберігає item у context.user_data['vip_move_item'] і показує короткі інструкції.
+    Старт меню перенесення тесту (ONE-MESSAGE).
+    Зберігає item у context.user_data['vip_move_item'] та idx у 'vip_move_idx'.
     """
     query = update.callback_query
     await query.answer()
@@ -186,49 +157,68 @@ async def vip_edit_move_open(update: Update, context: ContextTypes.DEFAULT_TYPE)
         await query.message.reply_text("🔒 Лише власник може переносити тест в інший розділ.")
         return
 
+    # зберігаємо стан «move»
     context.user_data["vip_move_item"] = items[idx]
     context.user_data["vip_move_browse_path"] = []
+    context.user_data["vip_move_idx"] = idx
+    _set_move_msg(context, query.message.message_id, query.message.chat_id)
 
     kb = InlineKeyboardMarkup([
-        [InlineKeyboardButton("📁 Розділ існує", callback_data=f"vip_move_pick|{idx}")],
-        [InlineKeyboardButton("➕ Створити розділ", callback_data=f"vip_edit|{idx}")],
+        [InlineKeyboardButton("🗂 Обрати наявний розділ", callback_data=f"vip_move_pick|{idx}")],
+        [InlineKeyboardButton("❎ Скасувати", callback_data=f"vip_edit|{idx}")],
     ])
-    await query.message.reply_text(
+    await _edit_move_panel(
+        update, context,
         "ℹ️ Якщо потрібного розділу ще немає — спочатку створіть його у дереві тестів, "
         "потім поверніться сюди й перемістіть тест.\n\n"
         "Що робимо зараз?",
-        reply_markup=kb
+        kb
     )
 
 async def vip_move_pick(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Відкрити браузер тек для вибору цільового розділу перенесення."""
+    """Відкрити браузер тек для вибору цільового розділу (ONE-MESSAGE)."""
     query = update.callback_query
     await query.answer()
-    context.user_data["vip_move_browse_path"] = context.user_data.get("vip_move_browse_path") or []
-    kb = _move_browser_kb(context.user_data["vip_move_browse_path"])
-    await query.message.reply_text("Оберіть цільовий розділ:", reply_markup=kb)
+
+    # фіксуємо повідомлення панелі
+    _set_move_msg(context, query.message.message_id, query.message.chat_id)
+
+    path = context.user_data.get("vip_move_browse_path") or []
+    idx = context.user_data.get("vip_move_idx", 0)
+    kb = _move_browser_kb(path, idx)
+    await _edit_move_panel(update, context, "📂 Оберіть цільовий розділ:", kb)
 
 async def vip_move_open(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Відкрити підпапку в режимі перенесення (клік по '📁 name')."""
+    """Відкрити підпапку в режимі перенесення (ONE-MESSAGE)."""
     query = update.callback_query
     await query.answer()
+
     name = (query.data.split("|", 1)[1] if "|" in query.data else "").strip()
     path = context.user_data.get("vip_move_browse_path") or []
     path.append(name)
     context.user_data["vip_move_browse_path"] = path
-    kb = _move_browser_kb(path)
-    await query.message.reply_text("Оберіть цільовий розділ:", reply_markup=kb)
+
+    _set_move_msg(context, query.message.message_id, query.message.chat_id)
+
+    idx = context.user_data.get("vip_move_idx", 0)
+    kb = _move_browser_kb(path, idx)
+    await _edit_move_panel(update, context, "📂 Оберіть цільовий розділ:", kb)
 
 async def vip_move_up(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Піднятись вгору в режимі перенесення."""
+    """Піднятись вгору в режимі перенесення (ONE-MESSAGE)."""
     query = update.callback_query
     await query.answer()
+
     path = context.user_data.get("vip_move_browse_path") or []
     if path:
         path.pop()
     context.user_data["vip_move_browse_path"] = path
-    kb = _move_browser_kb(path)
-    await query.message.reply_text("Оберіть цільовий розділ:", reply_markup=kb)
+
+    _set_move_msg(context, query.message.message_id, query.message.chat_id)
+
+    idx = context.user_data.get("vip_move_idx", 0)
+    kb = _move_browser_kb(path, idx)
+    await _edit_move_panel(update, context, "📂 Оберіть цільовий розділ:", kb)
 
 async def vip_move_choose_here(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """
@@ -239,13 +229,15 @@ async def vip_move_choose_here(update: Update, context: ContextTypes.DEFAULT_TYP
       - переносимо docx і docx.meta
       - оновлюємо _owners.json ключ (rel)
       - оновлюємо каталоги
-      - видаляємо порожню гілку директорій уверх до TESTS_ROOT
-      - відразу надсилаємо ОНОВЛЕНУ клавіатуру дерева тестів
+      - чистимо порожні теки уверх до TESTS_ROOT
+      - редагуємо поточне повідомлення панелі на фінальний результат
+      - БЕЗ додаткових reply у чат (залишаємося в тому ж меню)
     """
     query = update.callback_query
     await query.answer()
 
     item = context.user_data.get("vip_move_item")
+    idx = context.user_data.get("vip_move_idx", 0)
     if not item:
         await query.message.reply_text("⚠️ Немає активного файлу для збереження.")
         return
@@ -259,8 +251,12 @@ async def vip_move_choose_here(update: Update, context: ContextTypes.DEFAULT_TYP
     os.makedirs(new_dir, exist_ok=True)
     new_path = os.path.join(new_dir, f"{name}.json")
 
+    # фіксуємо повідомлення панелі
+    _set_move_msg(context, query.message.message_id, query.message.chat_id)
+
     if os.path.exists(new_path):
-        await query.message.reply_text("⚠️ У вибраній теці вже існує файл із такою назвою. Оберіть інший розділ.")
+        kb = _move_browser_kb(path, idx)
+        await _edit_move_panel(update, context, "⚠️ У вибраній теці вже існує файл із такою назвою. Оберіть інший розділ.", kb)
         return
 
     owners = _load_owners()
@@ -274,7 +270,8 @@ async def vip_move_choose_here(update: Update, context: ContextTypes.DEFAULT_TYP
     try:
         shutil.move(old_path, new_path)
     except Exception as e:
-        await query.message.reply_text(f"❌ Не вдалося перемістити файл: {e}")
+        kb = _move_browser_kb(path, idx)
+        await _edit_move_panel(update, context, f"❌ Не вдалося перемістити файл: {e}", kb)
         return
 
     # 2) теки картинок
@@ -317,50 +314,33 @@ async def vip_move_choose_here(update: Update, context: ContextTypes.DEFAULT_TYP
     owners.pop(old_rel, None)
     _save_owners(owners)
 
-    # 6) каталоги (перезбір дерева щоб головне меню/браузер оновились)
+    # 6) каталоги (перезбір дерева щоб головне меню/браузер оновились у пам'яті)
     try:
         context.bot_data["tests_catalog"] = discover_tests(TESTS_ROOT)
         context.bot_data["tests_tree"] = discover_tests_hierarchy(TESTS_ROOT)
     except Exception:
         _refresh_catalogs(context)
 
-    # 7) прибираємо порожню гілку уверх до TESTS_ROOT
+    # 7) прибираємо порожні теки уверх до TESTS_ROOT
     try:
-        # old_dir міг спорожніти; приберемо його і всіх порожніх батьків до tests/
-        _prune_empty_branch_up_to_root(old_dir)
+        _cleanup_empty_dirs(old_dir)
     except Exception as e:
-        logger.warning("Prune empty branch upward failed: %s", e)
+        logger.warning("Cleanup upward failed: %s", e)
 
-    # Очистка стану
+    # Очистка стану MOVE (ID повідомлення залишаємо, щоб лишитись у цьому ж екрані)
     for k in ("vip_move_item", "vip_move_browse_path"):
         context.user_data.pop(k, None)
+    # idx лишаємо для кнопки «Назад до редагування»
+    # context.user_data["vip_move_idx"] збережено навмисно
 
-    # 8) оновимо клавіатуру дерева тестів, якщо користувач у браузері
-    try:
-        tree = context.bot_data.get("tests_tree")
-        if not tree:
-            tree = discover_tests_hierarchy(TESTS_ROOT)
-            context.bot_data["tests_tree"] = tree
-
-        path = context.user_data.get("browse_path", [])
-        cur_path = list(path)
-        while True:
-            subfolders, tests, _ = build_listing_for_path(tree, cur_path)
-            if subfolders is not None:
-                break
-            if not cur_path:
-                break
-            cur_path.pop()
-
-        header = "📂 Оберіть розділ або тест"
-        if cur_path != path:
-            context.user_data["browse_path"] = cur_path
-        await query.message.reply_text(header, reply_markup=browse_menu(cur_path, subfolders, tests))
-    except Exception as e:
-        logger.warning("Failed to send refreshed browse keyboard: %s", e)
-
-    await query.message.reply_text(
+    # Фінальне оновлення ТІЄЇ Ж панелі (ONE-MESSAGE) — без додаткових reply у чат
+    final_kb = InlineKeyboardMarkup([
+        [InlineKeyboardButton("🔙 Назад до редагування", callback_data=f"vip_edit|{idx}")]
+    ])
+    await _edit_move_panel(
+        update, context,
         f"✅ Тест «{name}» переміщено у: `/{new_rel}`.\n"
         "Усі пов’язані файли та папки також перенесено.\n"
-        "Порожні старі розділи повністю прибрано до кореня tests/."
+        "Порожні старі розділи прибрано до кореня tests/.",
+        final_kb
     )

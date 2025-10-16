@@ -15,12 +15,57 @@ logger = logging.getLogger("test_bot.vip_files")
 # - awaiting_vip_single_index : чекаємо номер питання (int > 0)
 # - vip_single_index : вибраний номер
 # - awaiting_vip_single_file : чекаємо один файл (photo/audio/video/document)
-# - vip_media_wipe_target : {"name": str, "abs_dir": str}
-# - очікування підтвердження: callback vip_media_wipe_confirm|(yes|no)
+# - vip_media_wipe_target : {"name": str, "abs_dir": str, "idx": int}
+# - vip_single_idx_for_back : int (щоб «⬅️ Назад» повертало у vip_edit|{idx})
 
-def _media_dir_for_item(item: dict) -> str:
-    """Повертає теку з файлами тесту: <abs_dir>/<name>."""
-    return os.path.join(item["abs_dir"], item["name"])
+# ===== Helpers for single control-message UI =====
+
+def _set_ctrl_from_query(context: ContextTypes.DEFAULT_TYPE, query) -> None:
+    """Зафіксувати керуюче повідомлення (chat_id, message_id) за поточним callback'ом."""
+    context.user_data["vip_ctrl"] = {
+        "chat_id": query.message.chat_id,
+        "message_id": query.message.message_id,
+    }
+
+def _get_ctrl(context: ContextTypes.DEFAULT_TYPE):
+    data = context.user_data.get("vip_ctrl") or {}
+    cid = data.get("chat_id")
+    mid = data.get("message_id")
+    if isinstance(cid, int) and isinstance(mid, int):
+        return cid, mid
+    return None, None
+
+async def _edit_ctrl_text(update: Update, context: ContextTypes.DEFAULT_TYPE, text: str, reply_markup=None):
+    """
+    Редагувати текст/клавіатуру керуючого повідомлення. Якщо немає ctrl — використати query.message.
+    """
+    query = update.callback_query if update and update.callback_query else None
+    chat_id, message_id = _get_ctrl(context)
+    if chat_id and message_id:
+        try:
+            await context.bot.edit_message_text(
+                chat_id=chat_id,
+                message_id=message_id,
+                text=text,
+                reply_markup=reply_markup,
+            )
+            return
+        except Exception:
+            pass
+
+    if query and query.message:
+        _set_ctrl_from_query(context, query)
+        try:
+            await query.message.edit_text(text=text, reply_markup=reply_markup)
+            return
+        except Exception:
+            m = await query.message.reply_text(text=text, reply_markup=reply_markup)
+            context.user_data["vip_ctrl"] = {"chat_id": m.chat_id, "message_id": m.message_id}
+            return
+
+    if update and update.message:
+        m = await update.message.reply_text(text=text, reply_markup=reply_markup)
+        context.user_data["vip_ctrl"] = {"chat_id": m.chat_id, "message_id": m.message_id}
 
 # ---------- Меню: Додати ОКРЕМИЙ файл ----------
 
@@ -31,6 +76,7 @@ async def vip_edit_add_single_file_start(update: Update, context: ContextTypes.D
     """
     query = update.callback_query
     await query.answer()
+    _set_ctrl_from_query(context, query)
 
     idx_str = (query.data.split("|", 1)[1] if "|" in query.data else "").strip()
     try:
@@ -40,23 +86,32 @@ async def vip_edit_add_single_file_start(update: Update, context: ContextTypes.D
 
     items = context.user_data.get("vip_mytests") or []
     if not (0 <= idx < len(items)):
-        await query.message.reply_text("❌ Тест не знайдено.")
+        await _edit_ctrl_text(update, context, "❌ Тест не знайдено.")
         return
 
     item = items[idx]
-    media_dir = _media_dir_for_item(item)
+    media_dir = os.path.join(item["abs_dir"], item["name"])
     os.makedirs(media_dir, exist_ok=True)
 
-    # Скидаємо попередні стани single-file (на всяк випадок)
+    # Скидаємо попередні стани single-file
     for k in ("vip_single_media_dir", "awaiting_vip_single_index", "vip_single_index", "awaiting_vip_single_file"):
         context.user_data.pop(k, None)
 
     context.user_data["vip_single_media_dir"] = media_dir
     context.user_data["awaiting_vip_single_index"] = True
+    context.user_data["vip_single_idx_for_back"] = idx  # щоб працював «⬅️ Назад» у будь-якому кроці
 
-    await query.message.reply_text(
-        "🔢 Введіть номер питання, до якого належить файл (лише число, наприклад 12).\n"
-        "Після цього надішліть один файл (зображення/аудіо/відео/документ)."
+    kb = InlineKeyboardMarkup([
+        [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx}"),
+         InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+    ])
+    await _edit_ctrl_text(
+        update, context,
+        text=(
+            "🔢 Введіть номер питання, до якого належить файл (лише число, наприклад 12).\n"
+            "Після цього надішліть один файл (зображення/аудіо/відео/документ)."
+        ),
+        reply_markup=kb
     )
 
 # ---------- Крок 1: Приймаємо номер ----------
@@ -68,23 +123,40 @@ async def vip_handle_single_index_text(update: Update, context: ContextTypes.DEF
     if not context.user_data.get("awaiting_vip_single_index"):
         return
 
+    idx_for_back = context.user_data.get("vip_single_idx_for_back")
     text = (update.message.text or "").strip()
     if not text.isdigit():
-        await update.message.reply_text("❌ Введіть лише число (наприклад 7).")
+        kb = InlineKeyboardMarkup([
+            [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx_for_back}" if isinstance(idx_for_back, int) else "vip_cancel"),
+             InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+        ])
+        await _edit_ctrl_text(update, context, "❌ Введіть лише число (наприклад 7).", reply_markup=kb)
         return
 
     num = int(text)
     if num <= 0:
-        await update.message.reply_text("❌ Номер має бути додатнім числом.")
+        kb = InlineKeyboardMarkup([
+            [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx_for_back}" if isinstance(idx_for_back, int) else "vip_cancel"),
+             InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+        ])
+        await _edit_ctrl_text(update, context, "❌ Номер має бути додатнім числом.", reply_markup=kb)
         return
 
     context.user_data["vip_single_index"] = num
     context.user_data.pop("awaiting_vip_single_index", None)
     context.user_data["awaiting_vip_single_file"] = True
 
-    await update.message.reply_text(
-        f"✅ Прив’язка до питання №{num} встановлена.\n"
-        "Тепер надішліть один файл (фото/аудіо/відео/документ)."
+    kb = InlineKeyboardMarkup([
+        [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx_for_back}" if isinstance(idx_for_back, int) else "vip_cancel"),
+         InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+    ])
+    await _edit_ctrl_text(
+        update, context,
+        text=(
+            f"✅ Прив’язка до питання №{num} встановлена.\n"
+            "Тепер надішліть один файл (фото/аудіо/відео/документ)."
+        ),
+        reply_markup=kb
     )
 
 # ---------- Крок 2: Приймаємо один файл ----------
@@ -100,7 +172,6 @@ def _detect_kind_and_ext(filename: str, fallback_ext: str = "") -> tuple[str|Non
     if ext in DOC_EXTS:
         return "document", ext
     if fallback_ext:
-        # використаємо фолбек (для фото без імені, наприклад)
         return "image", fallback_ext
     return None, ""
 
@@ -124,23 +195,26 @@ async def vip_handle_single_media_file(update: Update, context: ContextTypes.DEF
     if not context.user_data.get("awaiting_vip_single_file"):
         return
 
+    idx_for_back = context.user_data.get("vip_single_idx_for_back")
     media_dir = context.user_data.get("vip_single_media_dir")
     idx = context.user_data.get("vip_single_index")
     if not media_dir or not isinstance(idx, int) or idx <= 0:
         # зіб’ємо стани і відпустимо
         for k in ("vip_single_media_dir", "vip_single_index", "awaiting_vip_single_file"):
             context.user_data.pop(k, None)
-        await update.message.reply_text("⚠️ Сесія додавання файлу неактивна. Спробуйте ще раз з меню редагування.")
+        kb = InlineKeyboardMarkup([
+            [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx_for_back}" if isinstance(idx_for_back, int) else "vip_cancel"),
+             InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+        ])
+        await _edit_ctrl_text(update, context, "⚠️ Сесія додавання файлу неактивна. Спробуйте ще раз з меню редагування.", reply_markup=kb)
         return
 
-    # ----- Визначаємо тип вхідного файлу -----
     try:
+        # ----- Визначаємо тип вхідного файлу -----
         # 1) Фото
         if update.message.photo:
-            # беремо найбільше за розміром
             photo = update.message.photo[-1]
             raw = await _download_bytes(photo)
-            # зберігаємо як JPEG (узгоджено для сумісності)
             raw = _compress_image_bytes(raw)
             kind, ext = "image", ".jpg"
 
@@ -175,11 +249,14 @@ async def vip_handle_single_media_file(update: Update, context: ContextTypes.DEF
             filename = (doc.file_name or "").strip()
             kind, ext = _detect_kind_and_ext(filename)
             if not kind:
-                # якщо раптом не розпізнали — вважатимемо документом
                 kind, ext = "document", (os.path.splitext(filename)[1].lower() or ".bin")
 
         else:
-            await update.message.reply_text("❌ Надішліть саме файл (фото/аудіо/відео/документ).")
+            kb = InlineKeyboardMarkup([
+                [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx_for_back}" if isinstance(idx_for_back, int) else "vip_cancel"),
+                 InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+            ])
+            await _edit_ctrl_text(update, context, "❌ Надішліть саме файл (фото/аудіо/відео/документ).", reply_markup=kb)
             return
 
         # ----- Збереження -----
@@ -195,11 +272,20 @@ async def vip_handle_single_media_file(update: Update, context: ContextTypes.DEF
 
         from .vip_storage import _relative_to_tests
         rel_media = _relative_to_tests(out_path)
-        await update.message.reply_text(f"✅ Файл збережено як `/{rel_media}`", parse_mode="Markdown")
+
+        kb = InlineKeyboardMarkup([
+            [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx_for_back}" if isinstance(idx_for_back, int) else "vip_cancel"),
+             InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+        ])
+        await _edit_ctrl_text(update, context, f"✅ Файл збережено як `/{rel_media}`", reply_markup=kb)
 
     except Exception as e:
         logger.exception("Single media save failed: %s", e)
-        await update.message.reply_text(f"❌ Не вдалося зберегти файл: {e}")
+        kb = InlineKeyboardMarkup([
+            [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx_for_back}" if isinstance(idx_for_back, int) else "vip_cancel"),
+             InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+        ])
+        await _edit_ctrl_text(update, context, f"❌ Не вдалося зберегти файл: {e}", reply_markup=kb)
         # не чіпаємо стани, щоб можна було повторити відправку
 
 # ---------- Видалити ВСІ файли (теку media) ----------
@@ -210,6 +296,7 @@ async def vip_wipe_media_start(update: Update, context: ContextTypes.DEFAULT_TYP
     """
     query = update.callback_query
     await query.answer()
+    _set_ctrl_from_query(context, query)
 
     idx_str = (query.data.split("|", 1)[1] if "|" in query.data else "").strip()
     try:
@@ -219,21 +306,28 @@ async def vip_wipe_media_start(update: Update, context: ContextTypes.DEFAULT_TYP
 
     items = context.user_data.get("vip_mytests") or []
     if not (0 <= idx < len(items)):
-        await query.message.reply_text("❌ Тест не знайдено.")
+        await _edit_ctrl_text(update, context, "❌ Тест не знайдено.")
         return
 
     item = items[idx]
-    context.user_data["vip_media_wipe_target"] = {"name": item["name"], "abs_dir": item["abs_dir"]}
+    context.user_data["vip_media_wipe_target"] = {"name": item["name"], "abs_dir": item["abs_dir"], "idx": idx}
 
     kb = InlineKeyboardMarkup([
         [
             InlineKeyboardButton("✅ Так, видалити", callback_data="vip_media_wipe_confirm|yes"),
             InlineKeyboardButton("❎ Скасувати", callback_data="vip_media_wipe_confirm|no"),
-        ]
+        ],
+        [
+            InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx}"),
+            InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel"),
+        ],
     ])
-    await query.message.reply_text(
-        f"⚠️ Ви впевнені, що хочете видалити ВСІ файли тесту «{item['name']}»? "
-        "Буде видалено всю теку з файлами для цього тесту.",
+    await _edit_ctrl_text(
+        update, context,
+        text=(
+            f"⚠️ Ви впевнені, що хочете видалити ВСІ файли тесту «{item['name']}»?\n"
+            "Буде видалено всю теку з файлами для цього тесту."
+        ),
         reply_markup=kb
     )
 
@@ -243,17 +337,34 @@ async def vip_wipe_media_confirm(update: Update, context: ContextTypes.DEFAULT_T
 
     choice = (query.data.split("|", 1)[1] if "|" in query.data else "").strip()
     tgt = context.user_data.pop("vip_media_wipe_target", None)
+    idx_for_back = tgt.get("idx") if isinstance(tgt, dict) else None
 
     if choice != "yes" or not tgt:
-        await query.message.reply_text("❎ Скасовано.")
+        kb = InlineKeyboardMarkup([
+            [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx_for_back}" if isinstance(idx_for_back, int) else "vip_cancel"),
+             InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+        ])
+        await _edit_ctrl_text(update, context, "❎ Скасовано.", reply_markup=kb)
         return
 
     media_dir = os.path.join(tgt["abs_dir"], tgt["name"])
     try:
         if os.path.isdir(media_dir):
             shutil.rmtree(media_dir, ignore_errors=True)
-            await query.message.reply_text("🧹 Усі файли тесту видалено.")
+            kb = InlineKeyboardMarkup([
+                [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx_for_back}" if isinstance(idx_for_back, int) else "vip_cancel"),
+                 InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+            ])
+            await _edit_ctrl_text(update, context, "🧹 Усі файли тесту видалено.", reply_markup=kb)
         else:
-            await query.message.reply_text("ℹ️ Теки з файлами не знайдено — нічого видаляти.")
+            kb = InlineKeyboardMarkup([
+                [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx_for_back}" if isinstance(idx_for_back, int) else "vip_cancel"),
+                 InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+            ])
+            await _edit_ctrl_text(update, context, "ℹ️ Теки з файлами не знайдено — нічого видаляти.", reply_markup=kb)
     except Exception as e:
-        await query.message.reply_text(f"❌ Помилка видалення: {e}")
+        kb = InlineKeyboardMarkup([
+            [InlineKeyboardButton("⬅️ Назад", callback_data=f"vip_edit|{idx_for_back}" if isinstance(idx_for_back, int) else "vip_cancel"),
+             InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")]
+        ])
+        await _edit_ctrl_text(update, context, f"❌ Помилка видалення: {e}", reply_markup=kb)

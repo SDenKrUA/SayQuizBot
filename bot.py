@@ -1,4 +1,3 @@
-
 import os
 import re
 from dotenv import load_dotenv
@@ -202,11 +201,10 @@ def main():
     app.add_handler(CallbackQueryHandler(addq_req_cancel_cb, pattern=r"^addq_req_cancel$"), group=0)
     app.add_handler(CallbackQueryHandler(addq_cancel_cb, pattern=r"^addq_cancel$"), group=0)
 
-    # --- Тепер VIP обробники, що можуть конфліктувати з майстром ---
+    # --- VIP: одне медіа + індекс ---
     if g("vip_handle_single_index_text"):
         app.add_handler(
             MessageHandler(
-                # Звужено: лише «чисті» числа (номер питання)
                 filters.TEXT & ~filters.COMMAND & filters.Regex(r"^\d+$"),
                 g("vip_handle_single_index_text")
             ),
@@ -214,7 +212,6 @@ def main():
         )
 
     if g("vip_handle_single_media_file"):
-        # Перенесено НИЖЧЕ за майстра додавання питання
         app.add_handler(
             MessageHandler(
                 filters.Document.ALL | filters.PHOTO | filters.VIDEO | filters.AUDIO,
@@ -223,14 +220,31 @@ def main():
             group=0
         )
 
+    # --- VIP: довірені — username як текст ---
     if g("vip_trusted_handle_username_text"):
         app.add_handler(MessageHandler(filters.Regex(USERNAME_REGEX), g("vip_trusted_handle_username_text")), group=0)
+
+    # --- VIP: wipe media ---
     if g("vip_wipe_media_start"):
         app.add_handler(CallbackQueryHandler(g("vip_wipe_media_start"), pattern=r"^vip_media_wipe\|\d+$"), group=0)
     if g("vip_wipe_media_confirm"):
         app.add_handler(CallbackQueryHandler(g("vip_wipe_media_confirm"), pattern=r"^vip_media_wipe_confirm\|(yes|no)$"), group=0)
+
+    # --- Статистика очищення ---
     app.add_handler(CallbackQueryHandler(stats_clear_all_start, pattern=r"^stats_clear_all$"), group=0)
     app.add_handler(CallbackQueryHandler(stats_clear_all_confirm, pattern=r"^stats_clear_confirm\|(yes|no)$"), group=0)
+
+    # --- VIP: ЗАПИТИ (pending) — у group=0 ---
+    if g("vip_trusted_requests_open"):
+        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_open"), pattern=r"^vip_trusted_requests\|\d+$"), group=0)
+    if g("vip_trusted_requests_accept_one"):
+        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_accept_one"), pattern=r"^vip_tr_req_accept\|\d+\|\d+$"), group=0)
+    if g("vip_trusted_requests_decline_one"):
+        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_decline_one"), pattern=r"^vip_tr_req_decline\|\d+\|\d+$"), group=0)
+    if g("vip_trusted_requests_accept_all"):
+        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_accept_all"), pattern=r"^vip_tr_req_accept_all\|\d+$"), group=0)
+    if g("vip_trusted_requests_decline_all"):
+        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_decline_all"), pattern=r"^vip_tr_req_decline_all\|\d+$"), group=0)
 
     # =======================
     # Group 1: ОФІС, VIP, МЕНЮ, СПЕЦ. ТЕКСТОВІ
@@ -324,17 +338,6 @@ def main():
         app.add_handler(CallbackQueryHandler(g("vip_trusted_remove_do"), pattern=r"^vip_trusted_remove_do\|\d+\|.+$"), group=1)
     if g("vip_trusted_pick_target"):
         app.add_handler(CallbackQueryHandler(g("vip_trusted_pick_target"), pattern=r"^vip_trusted_pick\|\d+\|.+$"), group=1)
-
-    if g("vip_trusted_requests_open"):
-        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_open"), pattern=r"^vip_trusted_requests\|\d+$"), group=1)
-    if g("vip_trusted_requests_accept_one"):
-        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_accept_one"), pattern=r"^vip_tr_req_accept\|\d+\|\d+$"), group=1)
-    if g("vip_trusted_requests_decline_one"):
-        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_decline_one"), pattern=r"^vip_tr_req_decline\|\d+\|\d+$"), group=1)
-    if g("vip_trusted_requests_accept_all"):
-        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_accept_all"), pattern=r"^vip_tr_req_accept_all\|\d+$"), group=1)
-    if g("vip_trusted_requests_decline_all"):
-        app.add_handler(CallbackQueryHandler(g("vip_trusted_requests_decline_all"), pattern=r"^vip_tr_req_decline_all\|\d+$"), group=1)
 
     app.add_handler(MessageHandler(filters.Regex(r"^(📥 Завантажити весь тест)$"), handle_download_test), group=1)
     app.add_handler(MessageHandler(filters.Regex(MAIN_MENU_REGEX), handle_main_menu), group=1)

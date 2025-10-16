@@ -125,19 +125,25 @@ def _should_hide_subdir(abs_parent: str, subdir_name: str) -> bool:
 # ----- UI builders -----
 
 def _placement_kb() -> InlineKeyboardMarkup:
-    # Прибрано «📁 Створити розділ у корені»
-    # «Скасувати» перейменовано на «Скасувати та створити розділ»
+    """
+    Початковий вибір місця розміщення тесту.
+    Додаємо уніфікований футер «⛔ Скасувати».
+    """
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("🗂 Додати в наявний розділ", callback_data="vip_choose_folder")],
-        [InlineKeyboardButton("❌ Скасувати та створити розділ", callback_data="vip_cancel")],
+        [InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")],
     ])
 
 
 def _dup_owner_kb() -> InlineKeyboardMarkup:
+    """
+    Клавіатура для випадку дубля тесту.
+    Додаємо уніфікований футер «⛔ Скасувати».
+    """
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("♻️ Замінити тест", callback_data="vip_dup_replace")],
         [InlineKeyboardButton("👁️ Переглянути тест", callback_data="vip_dup_view")],
-        [InlineKeyboardButton("❌ Скасувати", callback_data="vip_cancel")],
+        [InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")],
     ])
 
 
@@ -148,6 +154,10 @@ def _folder_browser_kb(path: List[str]) -> InlineKeyboardMarkup:
       - папки, що відповідають стему існуючих у цій теці *.json/*.docx/*.docx.meta.json;
       - '#Name', '_Name', '*.comments';
       - папки, які «кошики картинок» (тільки/переважно зображення, без підпапок).
+
+    Додаємо футер:
+      - якщо є шлях — «⬅️ Назад» (vip_up)
+      - завжди — «⛔ Скасувати» (vip_cancel)
     """
     abs_dir = os.path.join(TESTS_ROOT, *path) if path else TESTS_ROOT
     try:
@@ -169,16 +179,29 @@ def _folder_browser_kb(path: List[str]) -> InlineKeyboardMarkup:
     subdirs.sort(key=lambda s: s.lower())
 
     rows = [[InlineKeyboardButton(f"📁 {name}", callback_data=f"vip_open|{name}")] for name in subdirs]
-    ctrl = []
+
+    # Контрольний ряд
+    ctrl_row = []
     if path:
-        ctrl.append(InlineKeyboardButton("⬅️ Назад", callback_data="vip_up"))
-    ctrl.append(InlineKeyboardButton("✅ Обрати тут", callback_data="vip_choose_here"))
-    rows.append(ctrl)
+        ctrl_row.append(InlineKeyboardButton("⬅️ Назад", callback_data="vip_up"))
+    ctrl_row.append(InlineKeyboardButton("✅ Обрати тут", callback_data="vip_choose_here"))
+    rows.append(ctrl_row)
+
+    # Футер: Скасувати
+    rows.append([InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")])
+
     return InlineKeyboardMarkup(rows)
 
 
 def _images_prompt_kb() -> InlineKeyboardMarkup:
-    return InlineKeyboardMarkup([
+    """
+    Підказка після створення/вибору тесту: завантажити архів картинок зараз чи пізніше.
+    Додаємо уніфікований футер «⬅️ Назад» (повернення до вибору розділів) і «⛔ Скасувати».
+    """
+    rows = [
         [InlineKeyboardButton("📦 Додати архів з картинками", callback_data="vip_img_upload")],
         [InlineKeyboardButton("⏭️ Додати архів пізніше", callback_data="vip_img_later")],
-    ])
+        [InlineKeyboardButton("⬅️ Назад", callback_data="vip_choose_folder"),
+         InlineKeyboardButton("⛔ Скасувати", callback_data="vip_cancel")],
+    ]
+    return InlineKeyboardMarkup(rows)
