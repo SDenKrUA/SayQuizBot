@@ -105,16 +105,32 @@ def _ensure_question_answers_gap(body: str) -> str:
     return out if out.endswith("\n") else (out + "\n")
 
 def _is_option_line(s: str) -> bool:
-    s = s.lstrip()
+    """
+    Рядок вважається варіантом відповіді, якщо (після очистки префіксів)
+    має формат 'A) ', 'B) ', 'C) ', 'D) ' або числовий '1) ' тощо.
+
+    Підтримує:
+      - провідні пробіли,
+      - емодзі ✅/❌,
+      - початкові HTML-теги <b> або <strong> перед префіксом.
+    """
+    if not s:
+        return False
+
+    # Приберемо пробіли зліва/справа
+    s = s.strip()
+
+    # Приберемо провідні емодзі з пробілами
+    s = re.sub(r'^(?:✅|❌)\s*', '', s)
+
+    # Приберемо початкові жирні теги, якщо вони стоять перед префіксом
+    s = re.sub(r'^(?:<b>|<strong>)', '', s, flags=re.IGNORECASE)
+
     if len(s) < 3:
         return False
-    head = s[:3]
-    letters = ("A", "B", "C", "D", "А", "Б", "В", "Г")
-    digits  = ("1", "2", "3", "4")
-    return (
-        (head[0] in letters and head[1] in (".", ")") and head[2] == " ")
-        or (head[0] in digits and head[1] in (".", ")") and head[2] == " ")
-    )
+
+    # Пряма перевірка префікса A)/B)/... або 1)/2)/...
+    return bool(re.match(r'^[A-DАБВГ1-4][\.\)]\s', s))
 
 def _add_spacing_between_options(body: str) -> str:
     if not body:
