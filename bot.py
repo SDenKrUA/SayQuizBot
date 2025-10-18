@@ -58,6 +58,16 @@ from handlers.add_question import (
     addq_cancel_cb,
 )
 
+# --- Редагування питання ---
+from handlers.edit_question import (
+    editq_command,         # /edit_question або кнопка
+    editq_buttons_cb,      # інлайн: editq_show_all / editq_edit / editq_delete / editq_field|... / editq_media_clear|N
+    editq_callback,        # alias на buttons_cb
+    editq_message,         # прийом тексту та будь-якого медіа у режимах редагування
+    editq_back,            # інлайн «Назад»
+    editq_cancel_cb,       # інлайн «Скасувати»
+)
+
 # --- Коментарі ---
 from handlers.comments import (
     handle_comment_flow,
@@ -123,7 +133,8 @@ async def set_commands(application):
         BotCommand("office", "Мій кабінет"),
         BotCommand("wrong_answers", "Мої помилки"),
         BotCommand("owner", "Адмін-панель (власник)"),
-        BotCommand("topics", "Фільтр за темами"),  # ⬅️ додано
+        BotCommand("topics", "Фільтр за темами"),
+        BotCommand("edit_question", "Редагування мого питання"),
     ]
     await application.bot.set_my_commands(commands)
 
@@ -143,6 +154,50 @@ async def post_init(application):
 async def post_shutdown(application):
     await close_db_connection()
     logger.info("✅ Бот зупинено, з'єднання закрито")
+
+
+# ======== ROUTERS for group=0 (щоб не конфліктували add/edit) ========
+
+async def _route_text_group0(update, context):
+    """
+    Єдиний роутер для ВСЬОГО тексту в group=0.
+    Вибір:
+      - якщо активний майстер додавання → handle_add_question_step
+      - інакше, якщо активне редагування → editq_message
+      - інакше нічого (не заважаємо іншим групам)
+    """
+    # Активний майстер додавання?
+    addq_flow = context.user_data.get("add_question")
+    addq_active = context.user_data.get("add_question_active")
+    if addq_flow or addq_active:
+        await handle_add_question_step(update, context)
+        return
+
+    # Активне редагування?
+    edit_mode = context.user_data.get("editq_mode")
+    if edit_mode in {"await_num_for_edit", "await_num_for_delete", "await_field_input", "await_media_input", "await_field_choice"}:
+        await editq_message(update, context)
+        return
+    # інакше — пропускаємо
+
+
+async def _route_media_group0(update, context):
+    """
+    Єдиний роутер для МЕДІА в group=0.
+      - якщо активний майстер додавання → handle_add_question_step
+      - якщо редагування чекає медіа → editq_message
+    """
+    addq_flow = context.user_data.get("add_question")
+    addq_active = context.user_data.get("add_question_active")
+    if addq_flow or addq_active:
+        await handle_add_question_step(update, context)
+        return
+
+    edit_mode = context.user_data.get("editq_mode")
+    if edit_mode == "await_media_input":
+        await editq_message(update, context)
+        return
+    # інакше — пропускаємо
 
 
 def main():
@@ -174,51 +229,36 @@ def main():
     app.add_handler(CommandHandler("office", office_open))
     app.add_handler(CommandHandler("wrong_answers", wrong_answers_cmd))
     app.add_handler(CommandHandler("owner", owner_entry))
-    app.add_handler(CommandHandler("topics", topics_start))  # ⬅️ додано
+    app.add_handler(CommandHandler("topics", topics_start))
+    app.add_handler(CommandHandler("edit_question", editq_command))  # ⬅️ вхід у редагування
 
     # =======================
     # Group 0: ВУЗЬКІ/ПРІОРИТЕТНІ
     # =======================
+
+    # --- VIP: одне медіа + індекс ---
     if g("vip_edit_add_single_file_start"):
         app.add_handler(CallbackQueryHandler(g("vip_edit_add_single_file_start"), pattern=r"^vip_edit_addfile\|\d+$"), group=0)
 
-    # --- Майстер додавання питання (ПЕРЕД VIP медіа/цифрами) ---
+    # --- Майстер додавання питання: старт і колбеки гейту/скасування
     app.add_handler(MessageHandler(filters.Regex(r"^➕ Додати питання$"), handle_add_question), group=0)
-    app.add_handler(
-        MessageHandler(
-            (filters.TEXT & ~filters.COMMAND & ~filters.Regex(USERNAME_REGEX)),
-            handle_add_question_step
-        ),
-        group=0
-    )
-    app.add_handler(
-        MessageHandler(filters.Document.ALL | filters.PHOTO | filters.VIDEO | filters.AUDIO, handle_add_question_step),
-        group=0
-    )
     app.add_handler(CallbackQueryHandler(skip_image_button_handler, pattern=r"^addq_skip$"), group=0)
     app.add_handler(CallbackQueryHandler(addq_req_continue_cb, pattern=r"^addq_req_continue$"), group=0)
     app.add_handler(CallbackQueryHandler(addq_req_send_cb, pattern=r"^addq_req_send$"), group=0)
     app.add_handler(CallbackQueryHandler(addq_req_cancel_cb, pattern=r"^addq_req_cancel$"), group=0)
     app.add_handler(CallbackQueryHandler(addq_cancel_cb, pattern=r"^addq_cancel$"), group=0)
 
-    # --- VIP: одне медіа + індекс ---
-    if g("vip_handle_single_index_text"):
-        app.add_handler(
-            MessageHandler(
-                filters.TEXT & ~filters.COMMAND & filters.Regex(r"^\d+$"),
-                g("vip_handle_single_index_text")
-            ),
-            group=0
-        )
+    # --- Редагування питання: меню/кнопки
+    app.add_handler(MessageHandler(filters.Regex(r"^✏️ Редагувати питання$"), editq_command), group=0)
+    app.add_handler(CallbackQueryHandler(editq_buttons_cb, pattern=r"^editq_(show_all|edit|delete)$"), group=0)
+    app.add_handler(CallbackQueryHandler(editq_buttons_cb, pattern=r"^editq_field\|"), group=0)
+    app.add_handler(CallbackQueryHandler(editq_buttons_cb, pattern=r"^editq_media_clear\|\d+$"), group=0)
+    app.add_handler(CallbackQueryHandler(editq_back, pattern=r"^editq_back$"), group=0)
+    app.add_handler(CallbackQueryHandler(editq_cancel_cb, pattern=r"^editq_cancel$"), group=0)
 
-    if g("vip_handle_single_media_file"):
-        app.add_handler(
-            MessageHandler(
-                filters.Document.ALL | filters.PHOTO | filters.VIDEO | filters.AUDIO,
-                g("vip_handle_single_media_file")
-            ),
-            group=0
-        )
+    # ❗ ЄДИНІ роутери group=0 (замість двох конкуруючих MessageHandler-ів)
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND & ~filters.Regex(USERNAME_REGEX), _route_text_group0), group=0)
+    app.add_handler(MessageHandler(filters.Document.ALL | filters.PHOTO | filters.VIDEO | filters.AUDIO, _route_media_group0), group=0)
 
     # --- VIP: довірені — username як текст ---
     if g("vip_trusted_handle_username_text"):
@@ -339,7 +379,8 @@ def main():
     if g("vip_trusted_pick_target"):
         app.add_handler(CallbackQueryHandler(g("vip_trusted_pick_target"), pattern=r"^vip_trusted_pick\|\d+\|.+$"), group=1)
 
-    app.add_handler(MessageHandler(filters.Regex(r"^(📥 Завантажити весь тест)$"), handle_download_test), group=1)
+    app.add_handler(MessageHandler(filters.Regex(r"^(🔎 Пошук)$"), handle_home_menu), group=1)
+
     app.add_handler(MessageHandler(filters.Regex(MAIN_MENU_REGEX), handle_main_menu), group=1)
     app.add_handler(MessageHandler(filters.Regex(r"^🎓 Навчання з улюблених$"), start_favorites_learning), group=1)
     app.add_handler(MessageHandler(filters.Regex(r"^📝 Тест з улюблених$"), start_favorites_test), group=1)

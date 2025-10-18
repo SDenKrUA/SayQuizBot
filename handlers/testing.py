@@ -145,7 +145,7 @@ def _add_spacing_between_options(body: str) -> str:
     return "\n".join(out) + ("\n" if not body.endswith("\n") else "")
 
 def _with_spacing(body: str) -> str:
-    """Працює і з \\n, і з <br> — зберігає відступи після виділення відповіді."""
+    """Працює і з \n, і з <br> — зберігає відступи після виділення відповіді."""
     if not body:
         return body
     s = body.replace("\r\n", "\n").replace("\r", "\n")
@@ -503,6 +503,9 @@ async def handle_test_settings(update: Update, context: ContextTypes.DEFAULT_TYP
     if not pool:
         pool = list(range(total_questions))
 
+    # IMPORTANT: чистимо флаг custom-count якщо обрали фіксований варіант
+    context.user_data.pop("awaiting_custom_count", None)
+
     if choice.startswith("🔟"):
         count = 10
     elif choice.startswith("5️⃣0️⃣"):
@@ -540,6 +543,16 @@ async def handle_test_settings(update: Update, context: ContextTypes.DEFAULT_TYP
     await _show_question(update, context, order[0])
 
 async def handle_custom_test_count(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """
+    Раніше цей хендлер реагував на ЛЮБЕ число і міг випадково запускати тест,
+    коли користувач вводив цифри в інших режимах (додавання/редагування).
+    Виправлено: працюємо тільки якщо явно чекаємо власну кількість.
+    """
+    # ✅ ГОЛОВНЕ ОБМЕЖЕННЯ:
+    if not context.user_data.get("awaiting_custom_count"):
+        # не наш випадок — ігноруємо, щоб не заважати іншим сценаріям
+        return
+
     text = (update.message.text or "").strip()
     try:
         n = int(text)
@@ -565,6 +578,7 @@ async def handle_custom_test_count(update: Update, context: ContextTypes.DEFAULT
     else:
         order = random.sample(pool, n)
 
+    # остаточно прибираємо прапор очікування custom-count
     context.user_data.pop("awaiting_custom_count", None)
 
     context.user_data["mode"] = "test"
