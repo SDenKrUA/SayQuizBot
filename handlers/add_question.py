@@ -9,6 +9,7 @@ from telegram.ext import ContextTypes
 MAX_TEXT_LEN = 1000
 MAX_PHOTO_SIZE = 10 * 1024  # 10 KB
 TESTS_DIR = "tests"
+QOWNERS_FILE = os.path.join(TESTS_DIR, "_qowners.json")
 
 # Спроба підключити Pillow для стиснення
 try:
@@ -84,6 +85,59 @@ def _parse_question_number(qtext: str) -> int | None:
             return None
     return None
 
+def _rel_test_key(json_path: str) -> str:
+    """Ключ для _qowners.json: шлях до тесту відносно tests/ із / як роздільником."""
+    return os.path.relpath(json_path, TESTS_DIR).replace("\\", "/")
+
+# ===== QOWNERS HELPERS (синхронні) =====
+def _ensure_qowners_file() -> None:
+    """Гарантовано створити tests/_qowners.json як {} якщо його немає."""
+    try:
+        os.makedirs(TESTS_DIR, exist_ok=True)
+        if not os.path.exists(QOWNERS_FILE):
+            with open(QOWNERS_FILE, "w", encoding="utf-8") as f:
+                f.write("{}")
+    except Exception as e:
+        print(f"[ADD_Q] ensure _qowners error: {e}")
+
+def _load_qowners_sync() -> dict:
+    """Синхронно прочитати _qowners.json (dict)."""
+    _ensure_qowners_file()
+    try:
+        with open(QOWNERS_FILE, "r", encoding="utf-8") as f:
+            content = f.read()
+        data = json.loads(content) if content.strip() else {}
+        if not isinstance(data, dict):
+            return {}
+        return data
+    except Exception as e:
+        print(f"[ADD_Q] _qowners load error: {e}")
+        return {}
+
+def _save_qowners_sync(data: dict) -> None:
+    """Синхронно записати _qowners.json (atomic replace по можливості)."""
+    try:
+        tmp = QOWNERS_FILE + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            f.write(json.dumps(data, ensure_ascii=False, indent=2))
+        os.replace(tmp, QOWNERS_FILE)
+    except Exception as e:
+        print(f"[ADD_Q] _qowners save error: {e}")
+
+def _record_qowner_sync(json_path: str, q_index_1based: int, user_id: int, username: str | None) -> None:
+    """Додати/оновити власника питання у _qowners.json (синхронно)."""
+    qowners = _load_qowners_sync()
+    key = _rel_test_key(json_path)
+    entry = qowners.get(key)
+    if not isinstance(entry, dict):
+        entry = {}
+    entry[str(q_index_1based)] = {
+        "user_id": int(user_id),
+        "username": username or ""
+    }
+    qowners[key] = entry
+    _save_qowners_sync(qowners)
+
 # ===== Inline-клавіші для гейту =====
 def _addq_gate_kb() -> InlineKeyboardMarkup:
     # Перейменовано згідно з вимогами:
@@ -156,6 +210,7 @@ async def handle_add_question(update: Update, context: ContextTypes.DEFAULT_TYPE
 
 async def _start_addq_flow(update: Update, context: ContextTypes.DEFAULT_TYPE, *, target_test: str, target_dir: str | None):
     """Запускає майстер додавання питання на конкретний тест (базовий або custom)."""
+    u = update.effective_user
     context.user_data["add_question"] = {
         "step": "question",
         "data": {
@@ -165,6 +220,9 @@ async def _start_addq_flow(update: Update, context: ContextTypes.DEFAULT_TYPE, *
             "target_test": target_test,
             "target_test_base": _strip_custom_suffix(target_test),
             "target_dir": target_dir or TESTS_DIR,
+            # автор питання — для _qowners.json
+            "author_id": u.id if u else None,
+            "author_username": (u.username if u else "") or "",
         },
     }
     context.user_data["add_question_active"] = True
@@ -444,7 +502,7 @@ async def handle_add_question_step(update: Update, context: ContextTypes.DEFAULT
         # інтерпретація "пропустити"
         if text and text.strip().lower() in {"пропустити", "без зображення", "без изображения", "no image", "skip", "без файлу", "без файла"}:
             print(f"[ADD_Q] user={user_id} skipped media (text)")
-            await _finalize_and_save_question(data, context)
+            q_index = await _finalize_and_save_question(data, context)  # індекс (1-based)
             from handlers.state_sync import reload_current_test_state
             await reload_current_test_state(context)
             context.user_data.pop("add_question", None)
@@ -470,7 +528,7 @@ async def handle_add_question_step(update: Update, context: ContextTypes.DEFAULT
                 await file.download_to_drive(image_path)
 
             print(f"[ADD_Q] user={user_id} saved IMAGE {image_path}")
-            await _finalize_and_save_question(data, context)
+            q_index = await _finalize_and_save_question(data, context)
             from handlers.state_sync import reload_current_test_state
             await reload_current_test_state(context)
             context.user_data.pop("add_question", None)
@@ -489,7 +547,7 @@ async def handle_add_question_step(update: Update, context: ContextTypes.DEFAULT
             audio_path = os.path.join(media_dir, f"audio{qnum}.mp3")
             await file.download_to_drive(audio_path)
             print(f"[ADD_Q] user={user_id} saved AUDIO {audio_path}")
-            await _finalize_and_save_question(data, context)
+            q_index = await _finalize_and_save_question(data, context)
             from handlers.state_sync import reload_current_test_state
             await reload_current_test_state(context)
             context.user_data.pop("add_question", None)
@@ -508,7 +566,7 @@ async def handle_add_question_step(update: Update, context: ContextTypes.DEFAULT
                 audio_path = os.path.join(media_dir, f"audio{qnum}.mp3")
                 await file.download_to_drive(audio_path)
                 print(f"[ADD_Q] user={user_id} saved AUDIO(doc) {audio_path}")
-                await _finalize_and_save_question(data, context)
+                q_index = await _finalize_and_save_question(data, context)
                 from handlers.state_sync import reload_current_test_state
                 await reload_current_test_state(context)
                 context.user_data.pop("add_question", None)
@@ -527,7 +585,7 @@ async def handle_add_question_step(update: Update, context: ContextTypes.DEFAULT
             video_path = os.path.join(media_dir, f"video{qnum}.mp4")
             await file.download_to_drive(video_path)
             print(f"[ADD_Q] user={user_id} saved VIDEO {video_path}")
-            await _finalize_and_save_question(data, context)
+            q_index = await _finalize_and_save_question(data, context)
             from handlers.state_sync import reload_current_test_state
             await reload_current_test_state(context)
             context.user_data.pop("add_question", None)
@@ -549,7 +607,7 @@ async def handle_add_question_step(update: Update, context: ContextTypes.DEFAULT
                 video_path = os.path.join(media_dir, f"video{qnum}.mp4")
                 await file.download_to_drive(video_path)
                 print(f"[ADD_Q] user={user_id} saved VIDEO(doc) {video_path}")
-                await _finalize_and_save_question(data, context)
+                q_index = await _finalize_and_save_question(data, context)
                 from handlers.state_sync import reload_current_test_state
                 await reload_current_test_state(context)
                 context.user_data.pop("add_question", None)
@@ -568,7 +626,7 @@ async def handle_add_question_step(update: Update, context: ContextTypes.DEFAULT
             doc_path = os.path.join(media_dir, f"doc{qnum}{ext}")
             await file.download_to_drive(doc_path)
             print(f"[ADD_Q] user={user_id} saved DOC {doc_path}")
-            await _finalize_and_save_question(data, context)
+            q_index = await _finalize_and_save_question(data, context)
             from handlers.state_sync import reload_current_test_state
             await reload_current_test_state(context)
             context.user_data.pop("add_question", None)
@@ -604,7 +662,7 @@ async def skip_image_button_handler(update: Update, context: ContextTypes.DEFAUL
 
     data = flow["data"]
     print(f"[ADD_Q] user={query.from_user.id} skipped media (button)")
-    await _finalize_and_save_question(data, context)
+    q_index = await _finalize_and_save_question(data, context)
 
     from handlers.state_sync import reload_current_test_state
     await reload_current_test_state(context)
@@ -633,8 +691,11 @@ async def addq_cancel_cb(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.message.reply_text("❎ Додавання питання скасовано.")
 
 # ===== ВНУТРІШНЄ ЗБЕРЕЖЕННЯ =====
-async def _finalize_and_save_question(data: dict, context: ContextTypes.DEFAULT_TYPE):
-    """Формуємо об'єкт питання та зберігаємо його у визначений для цього flow JSON-файл."""
+async def _finalize_and_save_question(data: dict, context: ContextTypes.DEFAULT_TYPE) -> int:
+    """
+    Формуємо об'єкт питання та зберігаємо його у визначений для цього flow JSON-файл.
+    Повертає 1-базовий індекс створеного питання (для запису у _qowners.json).
+    """
     question_text = str(data.get("question", "")).strip()
     answers_list = data.get("answers", [])
     target_dir = data.get("target_dir") or TESTS_DIR
@@ -682,6 +743,9 @@ async def _finalize_and_save_question(data: dict, context: ContextTypes.DEFAULT_
         except Exception:
             questions = []
 
+    # Індекс майбутнього питання (1-based) — після додавання буде саме таким
+    new_q_index_1based = len(questions) + 1
+
     questions.append(question_obj)
 
     os.makedirs(os.path.dirname(json_path), exist_ok=True)
@@ -690,6 +754,18 @@ async def _finalize_and_save_question(data: dict, context: ContextTypes.DEFAULT_
 
     print(f"[ADD_Q] saved JSON {json_path}, total={len(questions)}")
 
+    # === ЗАПИС У _qowners.json (синхронно/надійно) ===
+    try:
+        author_id = data.get("author_id")
+        author_username = data.get("author_username") or ""
+        if author_id:
+            _record_qowner_sync(json_path, new_q_index_1based, int(author_id), author_username)
+            print(f"[ADD_Q] qowner recorded: key={_rel_test_key(json_path)} idx={new_q_index_1based} user={author_id}")
+        else:
+            print("[ADD_Q] author_id missing — skip qowner record")
+    except Exception as e:
+        print(f"[ADD_Q] failed to record qowner: {e}")
+
     from utils.loader import discover_tests, discover_tests_hierarchy
     try:
         context.bot_data["tests_catalog"] = discover_tests(TESTS_DIR)
@@ -697,6 +773,8 @@ async def _finalize_and_save_question(data: dict, context: ContextTypes.DEFAULT_
         print("[ADD_Q] Catalog & tree reloaded after adding question")
     except Exception as e:
         print(f"[ADD_Q] Failed to reload catalog/tree: {e}")
+
+    return new_q_index_1based
 
 # ====== Компресія зображення ======
 def _compress_image_file_to_limit_sync(src_path: str, dest_path: str, limit_bytes: int) -> bool:
